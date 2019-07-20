@@ -1,0 +1,22 @@
+<div id="peopleContainer"></div>
+<button id="push">Push me!</button>
+
+<script type="text/javascript">
+	var entry = document.getElementById("peopleContainer");
+	Z.people.forEach(function (person) {
+		entry.innerHTML += ("<h2>" + person.name + "</h2>");
+	})
+
+
+	document.getElementById("push").addEventListener("click", function (e) {
+		var liz = {
+			name: "Elizabeth", job: "Queen", age: 93, sex: "Female"
+		};
+		Z.people.push(liz)
+		Z.update({
+			people: Z.people
+		})
+	})
+
+
+</script>

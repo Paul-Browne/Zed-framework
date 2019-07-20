@@ -1,0 +1,8 @@
+<div id="peopleContainer"></div>
+
+<script type="text/javascript">
+	var entry = document.getElementById("peopleContainer");
+	Z.people.forEach(function (person) {
+		entry.innerHTML += ("<h2>" + person.name + "</h2>" + "<h2>" + person.job + "</h2>");
+	})
+</script>
