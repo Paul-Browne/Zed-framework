@@ -1,0 +1,8 @@
+<div>
+	<span id="list-container"></span><button id="remove" >remove</button>
+</div>
+<script>
+	Z.todos.forEach(function(todo){
+		document.getElementById("list-container").innerHTML += "<p>" + todo + "</p>";
+	})
+</script>

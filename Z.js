@@ -3,21 +3,6 @@
         w.Z = {};
         var topics = {};
 
-        // function subscribe(topic, f) {
-        //     console.log('subscribed!', topic);
-        //     topics[topic] = topics[topic] || [];
-        //     topics[topic].push({f: f});
-        // }
-
-        // function publish(topic, args) {
-        //     console.log('published!', topic);
-        //     var subscribers = topics[topic];
-        //     var len = subscribers ? subscribers.length : 0;
-        //     while (len--) {
-        //         subscribers[len].f(topic, args);
-        //     }
-        // }
-
         function ajax(url, cb) {
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
@@ -42,25 +27,13 @@
             }
         }
 
-        // function subscriber(channel, obj) {
-        //     console.log('subscribed!', channel);
-        //     topics[channel] = topics[channel] || [];
-        //     topics[channel].push({f: function(message, data) {
-        //         for (var key in data) {
-        //             obj[key] = data[key];
-        //         }
-        //         Z.render(obj, true);
-        //     }});
-        // }
-
         function filt(obj) {
-          return Object.keys(obj).filter(function(el) {
-              return el != "html" && el != "container";
-          })[0];
+            return Object.keys(obj).filter(function(el) {
+                return el != "html" && el != "container";
+            })[0];
         }
 
         Z.update = function(obj) {
-            //publish(Object.keys(obj)[0], obj);
             var y = filt(obj);
             var subscribers = topics[y];
             var len = subscribers ? subscribers.length : 0;
@@ -73,12 +46,14 @@
             var x = filt(obj);
             if (x && !noSubscribe) {
                 topics[x] = topics[x] || [];
-                topics[x].push({f: function(message, data) {
-                    for (var key in data) {
-                        obj[key] = data[key];
+                topics[x].push({
+                    f: function(message, data) {
+                        for (var key in data) {
+                            obj[key] = data[key];
+                        }
+                        Z.render(obj, true);
                     }
-                    Z.render(obj, true);
-                }});
+                });
             }
             if (typeof obj[x] === 'string') {
                 ajax(obj[x], function(json) {

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=" rel="icon" type="image/x-icon" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TODO app</title>
+    <script src="Z.min.js"></script>
+</head>
+
+<body>
+    <h1>classic todo app</h1>
+    <div id="todo-list"></div>
+    <div id="todo-add"></div>
+
+    <script>
+    Z.render({
+        html: "todo-list.html",
+        container: document.getElementById("todo-list"),
+        todos: []
+    })
+
+    Z.render({
+        html: "todo-add.html",
+        container: document.getElementById("todo-add")
+    })
+    </script>
+</body>
+
+</html>
