@@ -2,7 +2,6 @@
     if (!w.Z) {
         w.Z = {};
         var topics = {};
-
         function filt(obj) {
             return Object.keys(obj).filter(function(el) {
                 return el != "html" && el != "container";
