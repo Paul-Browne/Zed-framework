@@ -9,25 +9,24 @@
             })[0];
         }
         Z.update = function(obj) {
-            var y = filt(obj);
-            var subscribers = topics[y];
+            var subscribers = topics[filt(obj)];
             var len = subscribers ? subscribers.length : 0;
             while (len--) {
-                subscribers[len].f(y, obj);
+                subscribers[len](obj);
             }
         }
         Z.render = function(obj, noSubscribe) {
             var x = filt(obj);
             if (x && !noSubscribe) {
                 topics[x] = topics[x] || [];
-                topics[x].push({
-                    f: function(message, data) {
+                topics[x].push(
+                    function(data) {
                         for (var key in data) {
                             obj[key] = data[key];
                         }
                         Z.render(obj, true);
                     }
-                });
+                );
             }
             var objResolved = {};
             var arr = [obj.html];
