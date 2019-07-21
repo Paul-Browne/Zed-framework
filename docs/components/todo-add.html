@@ -1,0 +1,12 @@
+<input id="task" type="text" name="todo" placeholder="add task">
+<button id="add">Add</button>
+
+<script>
+	document.getElementById("add").addEventListener("click", function () {
+		var task = document.getElementById("task").value;
+		Z.todos.push(task);
+		Z.update({
+			todos: Z.todos
+		})
+	})
+</script>
