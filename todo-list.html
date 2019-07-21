@@ -1,19 +1,17 @@
 <div id="list-container"></div>
 <script>
-Z.todos.forEach(function(todo) {
-    document.getElementById("list-container").innerHTML += "<div><span>" + todo + "</span><button data-item=" + todo + " class='remove-todo'>remove</button></div>";
+Z.todos.forEach(function(todo, index) {
+    document.getElementById("list-container").innerHTML += "<div><span>" + todo + "</span><button data-index=" + index + " class='remove-todo'>remove</button></div>";
 })
 var removes = document.querySelectorAll(".remove-todo");
 var i = removes.length;
 while (i--) {
     removes[i].addEventListener("click", function(e) {
-        var index = Z.todos.indexOf(e.target.dataset.item);
-        if (index > -1) {
-            Z.todos.splice(index, 1);
-            Z.update({
-                todos: Z.todos
-            })
-        }
+        var index = e.target.dataset.index;
+        Z.todos.splice(index, 1);
+        Z.update({
+            todos: Z.todos
+        })
     })
 }
 </script>
