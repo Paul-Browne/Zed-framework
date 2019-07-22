@@ -37,12 +37,8 @@
                         );
                     }
                     var objResolved = {};
-                    var arr = [obj.html];
-                    if (typeof obj[x] === 'string') {
-                        arr.push(obj[x]);
-                    } else {
-                        Z[x] = obj[x];
-                    }
+                    var arr = obj.html ? [obj.html] : [];
+                    typeof obj[x] === 'string' ? arr.push(obj[x]) : Z[x] = obj[x];
                     arr.forEach(function(url, index) {
                         objResolved[index] = null;
                         var xhr = new XMLHttpRequest();
@@ -59,17 +55,7 @@
                                     if (objResolved[1]) {
                                         Z[x] = JSON.parse(objResolved[1]);
                                     }
-                                    
-                                    var re = /≈(.*)≈/g;
-                                    var res = re.exec(objResolved[0]);
-                                    
-                                    console.log(objResolved[0], res);
-                                    
-                                    //console.log(   window[res[1]]   );
-                                    
-                                    var x = objResolved[0].replace(res[0], eval(res[1]));
-
-                                    obj.entry.innerHTML = x;
+                                    obj.entry.innerHTML = objResolved[0];
                                     var scripts = new DOMParser().parseFromString(objResolved[0], 'text/html').querySelectorAll("SCRIPT");
                                     var i = 0;
                                     var j = scripts.length;
@@ -95,14 +81,20 @@
     <h1>Test Counter</h1>
     <button onclick="Z.update({count: Z.count - 1})">-</button>
     <span id="output"></span>
-    <button onclick="Z.update({count: Z.count + 1})">+</button>
+    <button onclick="update()">+</button>
 
     <script>
         Z.render({
-            html: "components/test.html",
+            html: "components/counter-total.html",
             entry: document.getElementById("output"),
             count: 0 
         })
+        function update(){
+            Z.update({count: Z.count + 1});
+            Z.update({count: Z.count - 1});
+            Z.update({count: Z.count + 1});
+            Z.update({count: Z.count + 1});
+        }
     </script>
 </body>
 

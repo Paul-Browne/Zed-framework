@@ -28,12 +28,8 @@
                 );
             }
             var objResolved = {};
-            var arr = [obj.html];
-            if (typeof obj[x] === 'string') {
-                arr.push(obj[x]);
-            } else {
-                Z[x] = obj[x];
-            }
+            var arr = obj.html ? [obj.html] : [];
+            typeof obj[x] === 'string' ? arr.push(obj[x]) : Z[x] = obj[x];
             arr.forEach(function(url, index) {
                 objResolved[index] = null;
                 var xhr = new XMLHttpRequest();

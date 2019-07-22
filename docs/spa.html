@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SPA</title>
-    <script src="Z.min.js"></script>
+    <script src="js/Z.min.js"></script>
 </head>
 
 <body>
@@ -15,16 +15,16 @@
     <div id="todo-add"></div>
 
     <script>
-    Z.render({
-        html: "components/todo-list.html",
-        entry: document.getElementById("todo-list"),
-        todos: []
-    })
+        Z.render({
+            html: "components/todo-list.html",
+            entry: document.getElementById("todo-list"),
+            todos: []
+        })
 
-    Z.render({
-        html: "components/todo-add.html",
-        entry: document.getElementById("todo-add")
-    })
+        Z.render({
+            html: "components/todo-add.html",
+            entry: document.getElementById("todo-add")
+        })
     </script>
 </body>
 
