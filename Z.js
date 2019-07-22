@@ -4,7 +4,7 @@
         var topics = {};
         function filt(obj) {
             return Object.keys(obj).filter(function(el) {
-                return el != "html" && el != "container";
+                return el != "html" && el != "entry";
             })[0];
         }
         Z.update = function(obj) {
@@ -50,7 +50,7 @@
                             if (objResolved[1]) {
                                 Z[x] = JSON.parse(objResolved[1]);
                             }
-                            obj.container.innerHTML = objResolved[0];
+                            obj.entry.innerHTML = objResolved[0];
                             var scripts = new DOMParser().parseFromString(objResolved[0], 'text/html').querySelectorAll("SCRIPT");
                             var i = 0;
                             var j = scripts.length;

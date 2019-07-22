@@ -1,15 +1,17 @@
 # Zed, the 1kb microframework
 
+Zed is a microframework that only focuses on render
+
 ### Z.render
 
 ##### index.html
 ```html
-<div id="entry"></div>
+<div id="container"></div>
 <script>
   Z.render({
     html: "component/people.html",
-    container: document.getElementById("entry"),
-    people: "data/people.json"
+    people: "data/people.json",
+    entry: document.getElementById("container")
   })
 </script>
 ```
@@ -25,18 +27,18 @@
 
 ##### people.html
 ```html
-<div id="people"></div>
+<div id="list"></div>
 <script>
-  var cont = document.getElementById("people");
+  var list = document.getElementById("list");
   Z.people.forEach(function (person) {
-    cont.innerHTML += ("<span>" + person.name + " is " + person.age + " years old and works as a " + person.job + "!</span>");
+    list.innerHTML += ("<span>" + person.name + " is " + person.age + " years old and works as a " + person.job + "!</span>");
   })
 </script>
 ```
 
 ##### output
 ```html
-<div id="entry">
+<div id="container">
   <div id="people">
     <span>Bob is 21 years old and works as a Developer!</span>
     <span>Mike is 31 years old and works as a Lawyer!</span>
@@ -56,7 +58,7 @@ Z.update({
 
 ##### output
 ```html
-<div id="entry">
+<div id="container">
   <div id="people">
     <span>Andrew is 35 years old and works as a Dentist!</span>
   </div>
