@@ -1,0 +1,83 @@
+<div id="template-view" style="display:none;">
+	{{? it.name }}
+    <button onclick="Z.update({view: {}})">close</button>
+    <ul>
+    	<li>{{=it.name}}</li>
+    </ul>
+    <button onclick="addToBasket(Z.view)">Add To Cart</button>
+    {{?}}
+</div>
+
+<div id="template-view-accessories" style="display:none;">
+	<ol>
+		{{~it:value:index}}
+		<li>{{=value.name}} <button onclick="addToBasketAccessory(Z.view, {{=value.id}})">Add To Cart</button></li>
+		{{~}}
+	</ol>
+</div>
+
+
+<script>
+	!function() {
+
+	    var element = document.getElementById("template-view");
+	    var template = doT.template(element.innerHTML);
+	    element.innerHTML = template(Z.view);
+	    element.style.display = '';
+
+	    if(Z.view.name){
+	    	var compatibleAccessories = [];
+	    	Z.products.accessories.forEach(function(accessory){
+	    		Z.view.accessories.forEach(function(id){
+	    			if(id === accessory.id){
+	    				compatibleAccessories.push(accessory);
+	    			}
+	    		})
+	    	})
+	    	
+	    	var element2 = document.getElementById("template-view-accessories");
+	    	var template2 = doT.template(element2.innerHTML);
+	    	element2.innerHTML = template2(compatibleAccessories);
+	    	element2.style.display = '';
+	    }
+	}();
+	function addToBasket(item){
+
+		var newBasket = Z.basket;
+		var found = false;
+		newBasket.forEach(function(basketItem){
+			if(basketItem.name === item.name){
+				found = true
+				basketItem.quantity = basketItem.quantity + 1;
+			}
+		})
+		if(!found){
+			item.quantity = 1;
+			newBasket.push(item);
+		}
+		Z.update({
+			basket: newBasket
+		})
+	}
+
+	function addToBasketAccessory(item, id){
+		item.accessories.forEach(function(accessoryId){
+			if(accessoryId === id){
+				Z.products.accessories.forEach(function(accessory){
+					if(accessoryId === accessory.id){
+						addToBasket(accessory);
+					}
+				})
+			}
+		})
+	}
+
+</script>
+
+
+
+
+
+
+
+

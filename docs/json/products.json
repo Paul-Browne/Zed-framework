@@ -1,0 +1,71 @@
+{
+    "phones": [
+	    {
+	        "name": "Samsung Galaxy S10",
+	        "price": 899.00,
+	        "accessories": [1, 2, 3, 10]
+	    },
+	    {
+	        "name": "iphone X",
+	        "price": 999.00,
+	        "accessories": [4, 5, 6, 10]
+	    },
+	    {
+	        "name": "Huawei P30 pro",
+	        "price": 799.00,
+	        "accessories": [7, 8, 9, 10]
+	    }
+	],
+    "accessories": [
+	    {
+	        "id": 1,
+	        "name": "Samsung Galaxy S10 Smart cover",
+	        "price": 24.99
+	    },
+	    {
+	        "id": 2,
+	        "name": "Samsung Galaxy S10 Screen protector",
+	        "price": 14.99
+	    },
+	    {
+	        "id": 3,
+	        "name": "Samsung Galaxy Gear watch",
+	        "price": 259.99
+	    },
+	    {
+	        "id": 4,
+	        "name": "iPhone X Smart cover",
+	        "price": 29.99
+	    },
+	    {
+	        "id": 5,
+	        "name": "iPhone X Screen protector",
+	        "price": 19.99
+	    },
+	    {
+	        "id": 6,
+	        "name": "iWatch 42mm",
+	        "price": 329.99
+	    },
+	    {
+	        "id": 7,
+	        "name": "Huawei P30 pro Smart cover",
+	        "price": 19.99
+	    },
+	    {
+	        "id": 8,
+	        "name": "Huawei P30 pro Screen protector",
+	        "price": 18.99
+	    },
+	    {
+	        "id": 9,
+	        "name": "Huawei Smart Watch pro",
+	        "price": 299.99
+	    },
+	    {
+	        "id": 10,
+	        "name": "Popsocket",
+	        "price": 9.99
+    	}
+	]
+}

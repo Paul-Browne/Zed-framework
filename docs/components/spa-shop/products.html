@@ -1,0 +1,18 @@
+<div id="template-phones" style="display:none;">
+{{~it:value:index}} 
+    <ul>
+    	<li>Name: {{=value.name}}</li>
+    	<li>Price: {{=value.price}} €</li>
+    </ul>
+    <button onclick="Z.update({view: Z.products.phones[{{=index}}]})">View</button>
+{{~}}
+</div>
+
+<script>
+	!function() {
+	    var element = document.getElementById("template-phones");
+	    var template = doT.template(element.innerHTML);
+	    element.innerHTML = template(Z.products.phones);
+	    element.style.display = '';
+	}();
+</script>

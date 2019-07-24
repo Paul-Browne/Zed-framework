@@ -55,6 +55,9 @@
                                     if (objResolved[1]) {
                                         Z[x] = JSON.parse(objResolved[1]);
                                     }
+
+                                    // TODO: If entry === "self", then either outerHTML (of script tag or something else)
+
                                     obj.entry.innerHTML = objResolved[0];
                                     var scripts = new DOMParser().parseFromString(objResolved[0], 'text/html').querySelectorAll("SCRIPT");
                                     var i = 0;

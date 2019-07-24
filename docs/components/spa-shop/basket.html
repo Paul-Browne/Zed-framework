@@ -1,0 +1,15 @@
+<div id="template-basket" style="display:none;">
+    {{~it:value:index}}
+    <div>
+    	<span>{{=value.quantity}}</span> * <span>{{=value.name}}</span>
+    </div>
+    {{~}}
+</div>
+<script>
+	!function() {
+	    var element = document.getElementById("template-basket");
+	    var template = doT.template(element.innerHTML);
+	    element.innerHTML = template(Z.basket);
+	    element.style.display = '';
+	}();
+</script>
