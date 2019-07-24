@@ -1,6 +1,6 @@
 # Zed, the 1kb microframework
 
-Zed is a microframework that only focuses on rendering and updating.
+Zed is a microframework that only focuses on rendering and updating. It doesn't include a templating engine of any kind, meaning you are free to use whatever one you want!
 
 ### Z.render
 
