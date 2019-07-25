@@ -4,45 +4,99 @@
     <ul>
     	<li>{{=it.name}}</li>
     </ul>
+
+    <div>
+    	
+    	<select onchange="selectedVariant(this.value)">
+    		{{~it.variants:value:index}}
+    			{{? value.selected}}
+    				<option selected value="{{=index}}">{{=value.variant}}</option>
+    			{{??}}
+    				<option value="{{=index}}">{{=value.variant}}</option>
+    			{{?}}
+	    	{{~}}
+	    </select>
+    	
+
+    	{{~it.variants:value:index}}
+    		{{? value.selected}}
+    		<select onchange="selectedColor(this.value)">
+    		{{~value.colors:v:i}}
+    			{{? v.selected}}
+    				{{? v.availability }}<option selected value="{{=v.color}}">{{=v.color}}</option>{{?}}
+    			{{??}}
+    				{{? v.availability }}<option value="{{=v.color}}">{{=v.color}}</option>{{?}}
+    			{{?}}
+    		{{~}}
+    		</select>
+    		{{?}}
+    	{{~}}
+
+    </div>
+
     <button onclick="addToBasket(Z.view)">Add To Cart</button>
     {{?}}
+
+
+    <ol>
+    	{{~it.compatibleAccessories:value:index}}
+    	<li>{{=value.name}} <button onclick="addToBasket(Z.view.compatibleAccessories[{{=index}}])">Add To Cart</button></li>
+    	{{~}}
+    </ol>
+
 </div>
 
-<div id="template-view-accessories" style="display:none;">
-	<ol>
-		{{~it:value:index}}
-		<li>{{=value.name}} <button onclick="addToBasketAccessory(Z.view, {{=value.id}})">Add To Cart</button></li>
-		{{~}}
-	</ol>
-</div>
 
 
 <script>
 	!function() {
+
+		function preConstructAccessories(){
+			Z.view.compatibleAccessories = [];
+			Z.view.accessories.forEach(function(id){
+				Z.products.accessories.forEach(function(accessory){
+					if(accessory.id === id){
+						Z.view.compatibleAccessories.push(accessory);
+					}
+				})
+			})
+		}
+		Z.view.name && preConstructAccessories();
+
+		function preConstructVariants(){
+			var foundVariant = false;
+			Z.view.variants.forEach(function(variant){
+				var foundColor = false;
+				if(variant.selected){
+					foundVariant = true;
+				}
+				variant.selected = variant.selected || false;
+				
+				variant.colors.forEach(function(color){
+					if(color.selected){
+						foundColor = true;
+					}
+					color.selected = color.selected || false;
+				})
+				if(!foundColor){
+					variant.colors[0].selected = true;
+				}
+
+			})
+			if(!foundVariant){
+				Z.view.variants[0].selected = true;
+			}
+		}
+		Z.view.name && preConstructVariants();
+
 
 	    var element = document.getElementById("template-view");
 	    var template = doT.template(element.innerHTML);
 	    element.innerHTML = template(Z.view);
 	    element.style.display = '';
 
-	    if(Z.view.name){
-	    	var compatibleAccessories = [];
-	    	Z.products.accessories.forEach(function(accessory){
-	    		Z.view.accessories.forEach(function(id){
-	    			if(id === accessory.id){
-	    				compatibleAccessories.push(accessory);
-	    			}
-	    		})
-	    	})
-	    	
-	    	var element2 = document.getElementById("template-view-accessories");
-	    	var template2 = doT.template(element2.innerHTML);
-	    	element2.innerHTML = template2(compatibleAccessories);
-	    	element2.style.display = '';
-	    }
 	}();
 	function addToBasket(item){
-
 		var newBasket = Z.basket;
 		var found = false;
 		newBasket.forEach(function(basketItem){
@@ -60,15 +114,27 @@
 		})
 	}
 
-	function addToBasketAccessory(item, id){
-		item.accessories.forEach(function(accessoryId){
-			if(accessoryId === id){
-				Z.products.accessories.forEach(function(accessory){
-					if(accessoryId === accessory.id){
-						addToBasket(accessory);
-					}
-				})
-			}
+	function selectedVariant(variant){
+		Z.view.variants.forEach(function(v){
+			v.selected = false;
+		})
+		Z.view.variants[variant].selected = true;
+		Z.update({
+			view: Z.view
+		})
+	}
+
+	function selectedColor(color){
+		Z.view.variants.forEach(function(v){
+			v.colors.forEach(function(c){
+				c.selected = false;
+				if(color === c.color){
+					c.selected = true;
+				}
+			})
+		})
+		Z.update({
+			view: Z.view
 		})
 	}
 

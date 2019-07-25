@@ -1,7 +1,7 @@
 <div id="template-basket" style="display:none;">
     {{~it:value:index}}
     <div>
-    	<span>{{=value.quantity}}</span> * <span>{{=value.name}}</span>
+    	<span>{{=value.quantity}}</span> * <span>{{=value.name}}</span> <span>{{=(value.price * value.quantity).toFixed(2)}}</span>
     </div>
     {{~}}
 </div>
