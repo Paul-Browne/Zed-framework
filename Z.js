@@ -1,19 +1,29 @@
+// IIFE
 ! function(w, d) {
+    // check if Z is already loaded
     if (!w.Z) {
+        // object store
         w.Z = {};
+        // PubSub store
         var topics = {};
+        // filter for methods, not "html" or "entry"
         function filt(obj) {
             return Object.keys(obj).filter(function(el) {
                 return el != "html" && el != "entry";
             })[0];
         }
+        // update method (simple PubSub publish)
         Z.update = function(obj) {
+            // get array of subscribers
             var subscribers = topics[filt(obj)];
             var len = subscribers ? subscribers.length : 0;
+            // loop
             while (len--) {
+                // callback function
                 subscribers[len](obj);
             }
         }
+        // render
         Z.render = function(obj, noSubscribe) {
             var x = filt(obj);
             if (x && !noSubscribe) {
@@ -27,6 +37,7 @@
                     }
                 );
             }
+            // async ajax
             var objResolved = {};
             var arr = obj.html ? [obj.html] : [];
             typeof obj[x] === 'string' ? arr.push(obj[x]) : Z[x] = obj[x];
@@ -64,4 +75,5 @@
             });
         }
     }
+// init    
 }(window, document);
