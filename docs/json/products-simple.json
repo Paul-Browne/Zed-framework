@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "name": "Samsung Galaxy S10",
+        "price": 949.00,
+        "image": "Galaxy+S10+Red.jpeg",
+        "type": "electronices"
+    },
+    {
+        "id": 2,
+        "name": "Ray Ban sunglasses",
+        "price": 119.00,
+        "image": "rayban.png",
+        "type": "clothes"
+    },
+    {
+        "id": 3,
+        "name": "Green Apple",
+        "price": 0.50,
+        "image": "apple.jpeg",
+        "type": "food"
+    },
+    {
+        "id": 4,
+        "name": "Orange",
+        "price": 0.50,
+        "image": "orange.png",
+        "type": "food"
+    },
+    {
+        "id": 5,
+        "name": "Tomato",
+        "price": 0.30,
+        "image": "tomato.jpeg",
+        "type": "food"
+    },
+    {
+        "id": 6,
+        "name": "MacBook Air",
+        "price": 1199,
+        "image": "macbook-air.jpeg",
+        "type": "electronics"
+    },
+    {
+        "id": 7,
+        "name": "Ferrari 458",
+        "price": 120000.00,
+        "image": "ferrari.png",
+        "type": "cars"
+    },
+    {
+        "id": 8,
+        "name": "Lamborghini",
+        "price": 170000.00,
+        "image": "lamborghini.png",
+        "type": "cars"
+    }
+]

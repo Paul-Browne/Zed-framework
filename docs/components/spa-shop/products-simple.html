@@ -35,7 +35,7 @@ body {
     {{~it:value:index}}
     <div class="product" onclick="Z.update({view: Z.products[{{=index}}]})">
         <h2>{{=value.name}}</h2>
-        <img src="images/{{=value.image}}" height="180">
+        <img src="images/{{=value.image}}" width="200">
         <span>{{=value.price}} €</span>
     </div>
     {{~}}
@@ -43,17 +43,6 @@ body {
 <div id="output-phones" class="products"></div>
 <script>
 ! function() {
-
-    function preSort() {
-        Z.products.categories = [];
-        Z.products.forEach(function(product) {
-            if (product.type && !~Z.products.categories.indexOf(product.type)) {
-                Z.products.categories.push(product.type);
-            }
-        })
-    }
-    preSort();
-
     var template = doT.template(document.getElementById("template-phones").innerHTML);
     document.getElementById("output-phones").innerHTML = template(Z.products);
 }();

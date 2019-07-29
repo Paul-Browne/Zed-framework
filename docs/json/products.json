@@ -1,235 +1,285 @@
-{
-    "phones": [
+[
+    {
+        "name": "Samsung Galaxy S10",
+        "price": 949.00,
+        "accessories": [1, 2, 3, 10],
+        "image": "Galaxy+S10+Red.jpeg",
+        "type": "phone",
+        "variants": [
+        {
+            "name": "128 Gb",
+            "price": 949.00,
+            "colors": [
+            {
+                "name": "red",
+                "availability": 0,
+                "image": "Galaxy+S10+Red.jpeg"
+            },
+            {
+                "name": "black",
+                "availability": 22,
+                "image": "Galaxy+S10+Black.jpeg"
+            },
+            {
+                "name": "blue",
+                "availability": 23,
+                "image": "Galaxy+S10+Blue.jpeg"
+            },
+            {
+                "name": "white",
+                "availability": 23,
+                "image": "Galaxy+S10+White.jpeg"
+            }]
+        },
+        {
+            "name": "512 Gb",
+            "price": 1049.00,
+            "colors": [
+            {
+                "name": "red",
+                "availability": 44,
+                "image": "Galaxy+S10+Red.jpeg"
+            },
+            {
+                "name": "black",
+                "availability": 22,
+                "image": "Galaxy+S10+Black.jpeg"                
+            },
+            {
+                "name": "blue",
+                "availability": 23,
+                "image": "Galaxy+S10+Blue.jpeg"
+            },
+            {
+                "name": "white",
+                "availability": 0,
+                "image": "Galaxy+S10+White.jpeg"
+            }]
+        }]
+    },
+    {
+        "name": "iphone XR",
+        "price": 799.00,
+        "accessories": [4, 5, 6, 10],
+        "image": "iPhone+XR+red.jpeg",
+        "type": "phone",
+        "variants": [
+        {
+            "name": "64 Gb",
+            "price": 799.00,
+            "colors": [
+            {
+                "name": "(product) red",
+                "availability": 200,
+                "image": "iPhone+XR+red.jpeg"
+            },
+            {
+                "name": "black",
+                "availability": 200,
+                "image": "iPhone+XR+black.jpeg"
+            },
+            {
+                "name": "coral",
+                "availability": 200,
+                "image": "iPhone+XR+coral.jpeg"
+            },
+            {
+                "name": "white",
+                "availability": 200,
+                "image": "iPhone+XR+white.jpeg"
+            },
+            {
+                "name": "yellow",
+                "availability": 0,
+                "image": "iPhone+XR+yellow.jpeg"
+            }]
+        },
+        {
+            "name": "128 Gb",
+            "price": 939.00,
+            "colors": [
+            {
+                "name": "(product) red",
+                "availability": 0,
+                "image": "iPhone+XR+red.jpeg"
+            },
+            {
+                "name": "black",
+                "availability": 200,
+                "image": "iPhone+XR+black.jpeg"
+            },
+            {
+                "name": "coral",
+                "availability": 0,
+                "image": "iPhone+XR+coral.jpeg"
+            },
+            {
+                "name": "white",
+                "availability": 200,
+                "image": "iPhone+XR+white.jpeg"
+            },
+            {
+                "name": "yellow",
+                "availability": 201,
+                "image": "iPhone+XR+yellow.jpeg"
+            }]
+        },
+        {
+            "name": "256 Gb",
+            "price": 1049.00,
+            "colors": [
+            {
+                "name": "(product) red",
+                "availability": 30,
+                "image": "iPhone+XR+red.jpeg"
+            },
+            {
+                "name": "black",
+                "availability": 0,
+                "image": "iPhone+XR+black.jpeg"
+            },
+            {
+                "name": "blue",
+                "availability": 200,
+                "image": "iPhone+XR+blue.jpeg"
+            },
+            {
+                "name": "coral",
+                "availability": 0,
+                "image": "iPhone+XR+coral.jpeg"
+            },
+            {
+                "name": "white",
+                "availability": 200,
+                "image": "iPhone+XR+white.jpeg"
+            },
+            {
+                "name": "yellow",
+                "availability": 201,
+                "image": "iPhone+XR+yellow.jpeg"
+            }]
+        }]
+    },
+    {
+        "name": "Huawei P30 pro",
+        "price": 849.00,
+        "accessories": [7, 8, 9, 10],
+        "image": "P30+Pro+orange.jpeg",
+        "type": "phone",
+        "variants": [
+        {
+            "name": "128 Gb",
+            "price": 849.00,
+            "colors": [
+            {
+                "name": "orange",
+                "availability": 200,
+                "image": "P30+Pro+orange.jpeg"
+            },
+            {
+                "name": "black",
+                "availability": 200,
+                "image": "P30+Pro+black.jpeg"
+            },
+            {
+                "name": "blue",
+                "availability": 200,
+                "image": "P30+Pro+blue.jpeg"
+            },
+            {
+                "name": "green",
+                "availability": 200,
+                "image": "P30+Pro+green.jpeg"
+            }]
+        },
 	    {
-	        "name": "Samsung Galaxy S10",
-	        "lowestPrice": 899.00,
-	        "accessories": [1, 2, 3, 10],
-	        "variants": [
-	        	{
-	        		"variant": "128 Gb",
-	        		"price": 899.00,
-	        		"colors": [
-	        			{
-	        				"color": "silver",
-	        				"availability": 0
-	        			},
-	        			{
-	        				"color": "gold",
-	        				"availability": 22
-	        			},
-	        			{
-	        				"color": "black",
-	        				"availability": 23
-	        			}
-	        		]
-	        	},
-	        	{
-	        		"variant": "256 Gb",
-	        		"price": 1099.00,
-	        		"colors": [
-	        			{
-	        				"color": "silver",
-	        				"availability": 31
-	        			},
-	        			{
-	        				"color": "gold",
-	        				"availability": 32
-	        			},
-	        			{
-	        				"color": "black",
-	        				"availability": 33
-	        			}
-	        		]
-	        	},
-	        	{
-	        		"variant": "512 Gb",
-	        		"price": 1199.00,
-	        		"colors": [
-	        			{
-	        				"color": "silver",
-	        				"availability": 41
-	        			},
-	        			{
-	        				"color": "gold",
-	        				"availability": 42
-	        			},
-	        			{
-	        				"color": "black",
-	        				"availability": 43
-	        			}
-	        		]
-	        	}
-	        ]
-	    },
-	    {
-	        "name": "iphone X",
-	        "lowestPrice": 999.00,
-	        "accessories": [4, 5, 6, 10],
-	        "variants": [
-	        	{
-	        		"variant": "64 Gb",
-	        		"price": 999.00,
-	        		"colors": [
-	        			{
-	        				"color": "red",
-	        				"availability": 200
-	        			},
-	        			{
-	        				"color": "yellow",
-	        				"availability": 201
-	        			},
-	        			{
-	        				"color": "green",
-	        				"availability": 202
-	        			}
-	        		]
-	        	},
-	        	{
-	        		"variant": "128 Gb",
-	        		"price": 1099.00,
-	        		"colors": [
-	        			{
-	        				"color": "red",
-	        				"availability": 300
-	        			},
-	        			{
-	        				"color": "yellow",
-	        				"availability": 301
-	        			},
-	        			{
-	        				"color": "green",
-	        				"availability": 302
-	        			}
-	        		]
-	        	},
-	        	{
-	        		"variant": "256 Gb",
-	        		"price": 1199.00,
-	        		"colors": [
-	        			{
-	        				"color": "red",
-	        				"availability": 400
-	        			},
-	        			{
-	        				"color": "yellow",
-	        				"availability": 401
-	        			},
-	        			{
-	        				"color": "green",
-	        				"availability": 402
-	        			}
-	        		]
-	        	},
-	        	{
-	        		"variant": "512 Gb",
-	        		"price": 1299.00,
-	        		"colors": [
-	        			{
-	        				"color": "red",
-	        				"availability": 500
-	        			},
-	        			{
-	        				"color": "yellow",
-	        				"availability": 501
-	        			}
-	        		]
-	        	}
-	        ]
-	    },
-	    {
-	        "name": "Huawei P30 pro",
-	        "lowestPrice": 799.00,
-	        "accessories": [7, 8, 9, 10],
-	        "variants": [
-	        	{
-	        		"variant": "64 Gb",
-	        		"price": 799.00,
-	        		"colors": [
-	        			{
-	        				"color": "silver",
-	        				"availability": 20
-	        			},
-	        			{
-	        				"color": "gold",
-	        				"availability": 20
-	        			},
-	        			{
-	        				"color": "black",
-	        				"availability": 20
-	        			}
-	        		]
-	        	},
-	        	{
-	        		"variant": "128 Gb",
-	        		"price": 849.00,
-	        		"colors": [
-	        			{
-	        				"color": "silver",
-	        				"availability": 20
-	        			},
-	        			{
-	        				"color": "gold",
-	        				"availability": 20
-	        			},
-	        			{
-	        				"color": "black",
-	        				"availability": 20
-	        			}
-	        		]
-	        	}
-	        ]
-	    }
-	],
-    "accessories": [
-	    {
-	        "id": 1,
-	        "name": "Samsung Galaxy S10 Smart cover",
-	        "price": 24.99
-	    },
-	    {
-	        "id": 2,
-	        "name": "Samsung Galaxy S10 Screen protector",
-	        "price": 14.99
-	    },
-	    {
-	        "id": 3,
-	        "name": "Samsung Galaxy Gear watch",
-	        "price": 259.99
-	    },
-	    {
-	        "id": 4,
-	        "name": "iPhone X Smart cover",
-	        "price": 29.99
-	    },
-	    {
-	        "id": 5,
-	        "name": "iPhone X Screen protector",
-	        "price": 19.99
-	    },
-	    {
-	        "id": 6,
-	        "name": "iWatch 42mm",
-	        "price": 329.99
-	    },
-	    {
-	        "id": 7,
-	        "name": "Huawei P30 pro Smart cover",
-	        "price": 19.99
-	    },
-	    {
-	        "id": 8,
-	        "name": "Huawei P30 pro Screen protector",
-	        "price": 18.99
-	    },
-	    {
-	        "id": 9,
-	        "name": "Huawei Smart Watch pro",
-	        "price": 299.99
-	    },
-	    {
-	        "id": 10,
-	        "name": "Popsocket",
-	        "price": 9.99
-    	}
-	]
-}
+	        "name": "256 Gb",
+	        "price": 949.00,
+	        "colors": [
+	        {
+	            "name": "orange",
+	            "availability": 200,
+	            "image": "P30+Pro+orange.jpeg"
+	        },
+	        {
+	            "name": "black",
+	            "availability": 200,
+	            "image": "P30+Pro+black.jpeg"
+	        },
+	        {
+	            "name": "blue",
+	            "availability": 200,
+	            "image": "P30+Pro+blue.jpeg"
+	        },
+	        {
+	            "name": "green",
+	            "availability": 200,
+	            "image": "P30+Pro+green.jpeg"
+	        }]
+	    }]
+    },
+    {
+        "id": 1,
+        "name": "Samsung Galaxy S10 LED cover",
+        "type": "accessory",
+        "image": "Galaxy+S10+LED+View+Cover.jpeg",
+        "price": 69.99	
+    },
+    {
+        "id": 2,
+        "name": "Galaxy S10 Leather Cover",
+        "type": "accessory",
+        "image": "Galaxy+S10+Leather+Cover.jpeg",
+        "price": 14.99
+    },
+    {
+        "id": 3,
+        "name": "Samsung Galaxy Gear watch",
+        "type": "accessory",
+        "price": 259.99
+    },
+    {
+        "id": 4,
+        "name": "iPhone X Smart cover",
+        "type": "accessory",
+        "price": 29.99
+    },
+    {
+        "id": 5,
+        "name": "iPhone X Screen protector",
+        "type": "accessory",
+        "price": 19.99
+    },
+    {
+        "id": 6,
+        "name": "iWatch 42mm",
+        "type": "accessory",
+        "price": 329.99
+    },
+    {
+        "id": 7,
+        "name": "Huawei P30 Pro Smart view cover",
+        "image": "P30+Pro+Smart+View+Cover.jpeg",
+        "type": "accessory",
+        "price": 19.99
+    },
+    {
+        "id": 8,
+        "name": "Huawei P30 pro Screen protector",
+        "type": "accessory",
+        "price": 18.99
+    },
+    {
+        "id": 9,
+        "name": "Huawei Smart Watch pro",
+        "type": "accessory",
+        "price": 299.99
+    },
+    {
+        "id": 10,
+        "name": "Popsocket",
+        "type": "accessory",
+        "price": 9.99,
+        "image": "popsocket.jpeg"
+    }
+]

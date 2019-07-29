@@ -1,0 +1,58 @@
+<template id="template-view">
+    {{? it.name }}
+    <style>
+    .view-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .view {
+        background: #fff;
+        border-radius: 6px;
+        padding: 1em 2em;
+    }
+    </style>
+    <div class="view">
+        <button onclick="Z.update({view: {}})">close</button>
+        <h3>{{=it.name}}</h3>
+        <img src="images/{{=it.image}}" width="250">
+        <p>{{=it.price}} €</p>
+        <button onclick="addToBasket(Z.view)">Add To Cart</button>
+    </div>
+    {{?}}
+</template>
+<div id="output-view" class="view-modal"></div>
+<script>
+! function() {
+    var template = doT.template(document.getElementById("template-view").innerHTML);
+    document.getElementById("output-view").innerHTML = template(Z.view);
+
+}();
+
+function addToBasket(item) {
+    var basketObj = {
+        name: item.name,
+        price: item.price
+    };
+
+    var found = false;
+    Z.basket.products.forEach(function(basketItem) {
+        if (basketItem.name === basketObj.name) {
+            found = true
+            basketItem.quantity = basketItem.quantity + 1;
+        }
+    })
+    if (!found) {
+        basketObj.quantity = 1;
+        Z.basket.products.push(basketObj);
+    }
+    Z.basket.update();
+}
+</script>

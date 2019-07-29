@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=" rel="icon" type="image/x-icon" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>simple shop</title>
+    <script src="js/dot.min.js"></script>
+    <script src="js/Z.min.js"></script>
+</head>
+
+<body>
+    <div id="basket"></div>
+    <div id="products"></div>
+    <div id="view"></div>
+    <script>
+    Z.render({
+        html: "components/spa-shop/basket-simple.html",
+        entry: document.getElementById("basket"),
+        basket: {
+            products: JSON.parse(localStorage.getItem("basket")) || [],
+            total: JSON.parse(localStorage.getItem("total")) || 0,
+            update: function(){
+                this.total = 0;
+                this.products.forEach(function(product) {
+                    this.total += (product.quantity * product.price);
+                }, this)
+                localStorage.setItem("basket", JSON.stringify(this.products));
+                localStorage.setItem("total", JSON.stringify(this.total));
+                Z.update({
+                    basket: this
+                })
+            }
+        }
+    })
+
+    Z.render({
+        html: "components/spa-shop/products-simple.html",
+        entry: document.getElementById("products"),
+        products: "json/products-simple.json"
+    })
+
+    Z.render({
+        html: "components/spa-shop/view-simple.html",
+        entry: document.getElementById("view"),
+        view: {}
+    })
+    </script>
+</body>
+
+</html>
