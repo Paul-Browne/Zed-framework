@@ -1,12 +1,12 @@
-<input id="task" type="text" name="todo" placeholder="add task">
-<button id="add">Add</button>
-
+<input id="task" type="text" placeholder="add task">
+<button onclick="addItem()">Add</button>
 <script>
-	document.getElementById("add").addEventListener("click", function () {
-		var task = document.getElementById("task").value;
-		Z.todos.push(task);
+	function addItem() {
+		var task = document.getElementById("task");
+		Z.todos.push(task.value);
 		Z.update({
 			todos: Z.todos
 		})
-	})
+		task.value = "";
+	}
 </script>

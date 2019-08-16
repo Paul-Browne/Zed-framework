@@ -49,11 +49,6 @@ Zed is a microframework that only focuses on rendering and updating. It doesn't 
 
 ### Z.update
 ```js
-Z.update({
-  people: [
-    {"name": "Andrew", "age": 35, "job": "Dentist"}
-  ]
-})
 ```
 
 ##### output

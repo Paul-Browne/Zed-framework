@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=" rel="icon" type="image/x-icon" />
     <meta charset="utf-8">
@@ -9,7 +8,6 @@
     <script src="js/dot.min.js"></script>
     <script src="js/Z.min.js"></script>
 </head>
-
 <body>
     <div id="basket"></div>
     <div id="products"></div>
@@ -32,13 +30,11 @@
             }
         }
     })
-
     Z.render({
         html: "components/spa-shop/products.html",
         entry: document.getElementById("products"),
         products: "json/products.json"
     })
-
     Z.render({
         html: "components/spa-shop/view.html",
         entry: document.getElementById("view"),
@@ -46,5 +42,4 @@
     })
     </script>
 </body>
-
 </html>
