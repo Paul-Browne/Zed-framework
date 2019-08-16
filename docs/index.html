@@ -4,15 +4,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#2d89ef">
     <meta name="theme-color" content="#ffffff">
     <title>Zed micro framework</title>
-    <link rel="stylesheet" href="/css/prism.css">
+    <link rel="stylesheet" href="css/prism.css">
     <style type="text/css">
     body {
         margin: 10px auto;
@@ -55,7 +55,7 @@
     <h1>Zed.js</h1>
     <h3>Zed.js is a templateless frontend micro framework whose sole purpose is to handle the rendering, updating and state management of your html components in only 866 bytes</h3>
     <code class="wb-ba">!function(n,l){if(!n.Z){n.Z={};var r={};function t(n){return Object.keys(n).filter(function(n){return"html"!=n&&"entry"!=n})[0]}Z.update=function(n){r[t(n)]&&r[t(n)](n)},Z.render=function(c,n){var f=t(c);f&&!n&&(r[f]=function(n){for(var e in n)c[e]=n[e];Z.render(c,!0)});var s={},e=c.html?[c.html]:[];"string"==typeof c[f]?e.push(c[f]):Z[f]=c[f],e.forEach(function(n,o){s[o]=null;var u=new XMLHttpRequest;u.onreadystatechange=function(){if(4==u.readyState&&200==u.status){s[o]=u.responseText;var n=!0;for(var e in s)null===s[e]&&(n=!1);if(n){s[1]&&(Z[f]=JSON.parse(s[1])),c.entry.innerHTML=s[0];for(var r=(new DOMParser).parseFromString(s[0],"text/html").querySelectorAll("SCRIPT"),t=0,a=r.length;t&lt;a;){var i=l.createElement("SCRIPT");r[t].src?i.src=r[t].src:i.innerHTML=r[t].innerHTML,l.head.appendChild(i),t++}}}},u.open("GET",n,!0),u.send()})}}}(window,document);</code>
-    <h4>Classic counter example <a href="https://glitch.com/~zed-framework-counter">live demo</a></h4>
+    <h4>Classic counter example <a href="https://glitch.com/~zed-framework-counter" target="_blank">live demo</a></h4>
     <pre><code class="language-html">
     &lt;!-- index.html --&gt;
     &lt;head&gt;
@@ -79,7 +79,7 @@
         document.getElementById("total").outerHTML = Z.count;
     &lt;/script&gt;
     </code></pre>
-    <h4>Classic todo list example <a href="https://glitch.com/~zed-framework-todo-list">live demo</a></h4>
+    <h4>Classic todo list example <a href="https://glitch.com/~zed-framework-todo-list" target="_blank" >live demo</a></h4>
     <pre><code class="language-html">
     &lt;!-- index.html --&gt;
     &lt;head&gt;
@@ -131,7 +131,7 @@
     </code></pre>
 
     <!-- <p>Check out these <a href="https://glitch.com/@Paul-Browne/zed-framework">demos</a> to get started</p> -->
-    <script src="/js/prism.js"></script>
+    <script src="js/prism.js"></script>
 </body>
 
 </html>
