@@ -11,6 +11,7 @@
     <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#2d89ef">
     <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Zed.js is a templateless frontend micro framework whose sole purpose is to handle the rendering, updating and state management of your html components in only 866 bytes">
     <title>Zed.js | micro framework</title>
     <link rel="stylesheet" href="css/prism.css">
     <style type="text/css">
@@ -19,7 +20,6 @@
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
         max-width: 812px;
         padding: 0 10px;
-
     }
 
     img {
@@ -30,7 +30,7 @@
     }
 
     h1,
-    h3 {
+    h3.center {
         text-align: center;
     }
 
@@ -48,16 +48,55 @@
         }
     }
     </style>
+    <script type="text/javascript">if ('serviceWorker' in navigator) {window.addEventListener('load', function() {navigator.serviceWorker.register('sw.js')});}</script>
 </head>
 
 <body>
     <img src="images/Zed.png" height="100">
     <h1>Zed.js</h1>
-    <h3>Zed.js is a templateless frontend micro framework whose sole purpose is to handle the rendering, updating and state management of your html components in only 866 bytes</h3>
+    <h3 class="center">Zed.js is a templateless frontend micro framework whose sole purpose is to handle the rendering, updating and state management of your html components in only 866 bytes</h3>
     <code class="wb-ba">!function(n,l){if(!n.Z){n.Z={};var r={};function t(n){return Object.keys(n).filter(function(n){return"html"!=n&&"entry"!=n})[0]}Z.update=function(n){r[t(n)]&&r[t(n)](n)},Z.render=function(c,n){var f=t(c);f&&!n&&(r[f]=function(n){for(var e in n)c[e]=n[e];Z.render(c,!0)});var s={},e=c.html?[c.html]:[];"string"==typeof c[f]?e.push(c[f]):Z[f]=c[f],e.forEach(function(n,o){s[o]=null;var u=new XMLHttpRequest;u.onreadystatechange=function(){if(4==u.readyState&&200==u.status){s[o]=u.responseText;var n=!0;for(var e in s)null===s[e]&&(n=!1);if(n){s[1]&&(Z[f]=JSON.parse(s[1])),c.entry.innerHTML=s[0];for(var r=(new DOMParser).parseFromString(s[0],"text/html").querySelectorAll("SCRIPT"),t=0,a=r.length;t&lt;a;){var i=l.createElement("SCRIPT");r[t].src?i.src=r[t].src:i.innerHTML=r[t].innerHTML,l.head.appendChild(i),t++}}}},u.open("GET",n,!0),u.send()})}}}(window,document);</code>
     <br><br>
 	<a class="github-button" href="https://github.com/paul-browne/Zed-framework" data-icon="octicon-star" data-size="large" aria-label="Star paul-browne/Zed-framework on GitHub">Star on GitHub</a>
 	<br>
+	<h3>Render</h3>
+	<p>The simplest <code>Z.render()</code> will just fetch an HTML component and insert it into the "entry" point</p>
+	<pre><code class="language-js">
+	Z.render({
+		html: "path/to/component.html",
+		entry: document.getElementById("insert-here")
+	})
+	</code></pre>
+
+	<p>You can also add some data to the render, in the following example the array <code>["bar", "baz", "buff"]</code> will be available globally as <code>Z.foo</code></p>
+
+	<pre><code class="language-js">
+	Z.render({
+		html: "path/to/component.html",
+		entry: document.getElementById("insert-here"),
+		foo: ["bar", "baz", "buff"]    // optional
+		foo: "path/to/data.json"	   // or as an external resource
+	})
+	</code></pre>
+
+	<h3>Update</h3>
+	<p>To update a component, with new data, simply do the following. This will re-render the component with the new <code>Z.foo</code> array</p>
+	<pre><code class="language-js">
+	Z.update({
+		foo: ["lorem", "ipsum", "dolor"]
+	})
+	</code></pre>
+
+	<p>You can also re-render with a new HTML component, if you so wish</p>
+
+	<pre><code class="language-js">
+	Z.update({
+		html: "path/to/new-component.html",
+		foo: ["lorem", "ipsum", "dolor"]
+	})
+	</code></pre>
+
+	<h3>Demos</h3>
     <h4>Counter Demo</h4>
     <h5>view <a href="counter" >live</a> version or <a href="https://glitch.com/edit/#!/zed-framework-counter" target="_blank" >edit</a> on glitch</h5>
     <pre><code class="language-html">
