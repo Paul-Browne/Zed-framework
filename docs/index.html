@@ -55,7 +55,8 @@
     <h1>Zed.js</h1>
     <h3>Zed.js is a templateless frontend micro framework whose sole purpose is to handle the rendering, updating and state management of your html components in only 866 bytes</h3>
     <code class="wb-ba">!function(n,l){if(!n.Z){n.Z={};var r={};function t(n){return Object.keys(n).filter(function(n){return"html"!=n&&"entry"!=n})[0]}Z.update=function(n){r[t(n)]&&r[t(n)](n)},Z.render=function(c,n){var f=t(c);f&&!n&&(r[f]=function(n){for(var e in n)c[e]=n[e];Z.render(c,!0)});var s={},e=c.html?[c.html]:[];"string"==typeof c[f]?e.push(c[f]):Z[f]=c[f],e.forEach(function(n,o){s[o]=null;var u=new XMLHttpRequest;u.onreadystatechange=function(){if(4==u.readyState&&200==u.status){s[o]=u.responseText;var n=!0;for(var e in s)null===s[e]&&(n=!1);if(n){s[1]&&(Z[f]=JSON.parse(s[1])),c.entry.innerHTML=s[0];for(var r=(new DOMParser).parseFromString(s[0],"text/html").querySelectorAll("SCRIPT"),t=0,a=r.length;t&lt;a;){var i=l.createElement("SCRIPT");r[t].src?i.src=r[t].src:i.innerHTML=r[t].innerHTML,l.head.appendChild(i),t++}}}},u.open("GET",n,!0),u.send()})}}}(window,document);</code>
-    <h4>Counter Demo <a href="counter">live</a></h4>
+    <h4>Counter Demo</h4>
+    <h5>view <a href="counter" >live</a> version or <a href="https://glitch.com/edit/#!/zed-framework-counter" target="_blank" >edit</a> on glitch</h5>
     <pre><code class="language-html">
     &lt;!-- index.html --&gt;
     &lt;head&gt;
@@ -80,7 +81,8 @@
         document.getElementById("total").outerHTML = Z.count;
     &lt;/script&gt;
     </code></pre>
-    <h4>Todo List Demo <a href="todo" >live</a></h4>
+    <h4>Todo List Demo</h4>
+    <h5>view <a href="todo" >live</a> version or <a href="https://glitch.com/edit/#!/zed-framework-todo-list" target="_blank" >edit</a> on glitch</h5>
     <pre><code class="language-html">
     &lt;!-- index.html --&gt;
     &lt;head&gt;
@@ -132,7 +134,11 @@
     &lt;/script&gt;
     </code></pre>
 
-    <!-- <p>Check out these <a href="https://glitch.com/@Paul-Browne/zed-framework">demos</a> to get started</p> -->
+    <h4>Shop Demo</h4>
+    <h5>view <a href="shop" >live</a> version or <a href="https://glitch.com/edit/#!/zed-framework-shop" target="_blank" >edit</a> on glitch</h5>
+    <p>This is a more full-featured demo, with the inclusion of a template engine and local storage.</p>
+    <br><br>
+
     <script src="js/prism.js"></script>
 </body>
 

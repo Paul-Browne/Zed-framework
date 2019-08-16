@@ -14,28 +14,18 @@
         }
         // update method (simple PubSub publish)
         Z.update = function(obj) {
-            // get array of subscribers
-            var subscribers = topics[filt(obj)];
-            var len = subscribers ? subscribers.length : 0;
-            // loop
-            while (len--) {
-                // callback function
-                subscribers[len](obj);
-            }
+            topics[filt(obj)] && topics[filt(obj)](obj);
         }
         // render
         Z.render = function(obj, noSubscribe) {
             var x = filt(obj);
             if (x && !noSubscribe) {
-                topics[x] = topics[x] || [];
-                topics[x].push(
-                    function(data) {
-                        for (var key in data) {
-                            obj[key] = data[key];
-                        }
-                        Z.render(obj, true);
+                topics[x] = function(data) {
+                    for (var key in data) {
+                        obj[key] = data[key];
                     }
-                );
+                    Z.render(obj, true);
+                };
             }
             // async ajax
             var objResolved = {};
@@ -58,6 +48,7 @@
                                 Z[x] = JSON.parse(objResolved[1]);
                             }
                             obj.entry.innerHTML = objResolved[0];
+                            // inject component scripts into the head
                             var scripts = new DOMParser().parseFromString(objResolved[0], 'text/html').querySelectorAll("SCRIPT");
                             var i = 0;
                             var j = scripts.length;
@@ -75,5 +66,5 @@
             });
         }
     }
-// init    
+    // init    
 }(window, document);
