@@ -1,0 +1,22 @@
+{
+  "name": "zedjs",
+  "version": "1.0.0",
+  "description": "A micro frontend framework",
+  "main": "Z.min.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Paul-Browne/Zed-framework.git"
+  },
+  "author": "Paul Browne",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Paul-Browne/Zed-framework/issues"
+  },
+  "homepage": "https://github.com/Paul-Browne/Zed-framework#readme"
+}
