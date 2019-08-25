@@ -32,14 +32,14 @@
             var arr = obj.html ? [obj.html] : [];
             typeof obj[x] === 'string' ? arr.push(obj[x]) : Z[x] = obj[x];
             arr.forEach(function(url, index) {
-                objResolved[index] = null;
+                objResolved[index] = "";
                 var xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState == 4 && xhr.status == 200) {
                         objResolved[index] = xhr.responseText;
                         var allResolved = true;
                         for (var key in objResolved) {
-                            if (objResolved[key] === null) {
+                            if (objResolved[key] == "") {
                                 allResolved = false;
                             }
                         }

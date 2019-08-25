@@ -18,7 +18,7 @@
     body {
         margin: 10px auto;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-        max-width: 812px;
+        max-width: 884px;
         padding: 0 10px;
     }
 
@@ -32,10 +32,16 @@
     h1,
     h3.center {
         text-align: center;
+        font-size: 21px;
     }
 
     .wb-ba {
         word-break: break-all;
+    }
+    .zed{
+        padding: 13px;
+        border: 1px dashed #000;
+        border-radius: 6px;
     }
 
     @keyframes hue {
@@ -54,127 +60,117 @@
 <body>
     <img src="images/Zed.png" height="100">
     <h1>Zed.js</h1>
-    <h3 class="center">Zed.js is a templateless frontend micro framework whose sole purpose is to handle the rendering, updating and state management of your html components in only 866 bytes</h3>
-    <code class="wb-ba">!function(n,l){if(!n.Z){n.Z={};var r={};function t(n){return Object.keys(n).filter(function(n){return"html"!=n&&"entry"!=n})[0]}Z.update=function(n){r[t(n)]&&r[t(n)](n)},Z.render=function(c,n){var f=t(c);f&&!n&&(r[f]=function(n){for(var e in n)c[e]=n[e];Z.render(c,!0)});var s={},e=c.html?[c.html]:[];"string"==typeof c[f]?e.push(c[f]):Z[f]=c[f],e.forEach(function(n,o){s[o]=null;var u=new XMLHttpRequest;u.onreadystatechange=function(){if(4==u.readyState&&200==u.status){s[o]=u.responseText;var n=!0;for(var e in s)null===s[e]&&(n=!1);if(n){s[1]&&(Z[f]=JSON.parse(s[1])),c.entry.innerHTML=s[0];for(var r=(new DOMParser).parseFromString(s[0],"text/html").querySelectorAll("SCRIPT"),t=0,a=r.length;t&lt;a;){var i=l.createElement("SCRIPT");r[t].src?i.src=r[t].src:i.innerHTML=r[t].innerHTML,l.head.appendChild(i),t++}}}},u.open("GET",n,!0),u.send()})}}}(window,document);</code>
-    <br><br>
+    <h3 class="center">Zed.js is a templateless frontend micro framework whose sole purpose is to handle the rendering, updating and state management of your html components in only 861 bytes</h3>
+    <div class="zed">
+        <code class="wb-ba">!function(e,d){if(!e.Z){e.Z={};var r={};function t(e){return Object.keys(e).filter(function(e){return"html"!=e&&"entry"!=e})[0]}Z.update=function(e){r[t(e)]&&r[t(e)](e)},Z.render=function(f,e){var s=t(f);s&&!e&&(r[s]=function(e){for(var n in e)f[n]=e[n];Z.render(f,!0)});var u={},n=f.html?[f.html]:[];"string"==typeof f[s]?n.push(f[s]):Z[s]=f[s],n.forEach(function(e,o){u[o]="";var c=new XMLHttpRequest;c.onreadystatechange=function(){if(4==c.readyState&&200==c.status){u[o]=c.responseText;var e=!0;for(var n in u)""==u[n]&&(e=!1);if(e){u[1]&&(Z[s]=JSON.parse(u[1])),f.entry.innerHTML=u[0];for(var r=(new DOMParser).parseFromString(u[0],"text/html").querySelectorAll("SCRIPT"),t=0,a=r.length;t&lt;a;){var i=d.createElement("SCRIPT");r[t].src?i.src=r[t].src:i.innerHTML=r[t].innerHTML,d.head.appendChild(i),t++}}}},c.open("GET",e,!0),c.send()})}}}(window,document);</code>
+    </div>
+    <br>
 	<a class="github-button" href="https://github.com/paul-browne/Zed-framework" data-icon="octicon-star" data-size="large" aria-label="Star paul-browne/Zed-framework on GitHub">Star on GitHub</a>
 	<br>
 	<h3>Render</h3>
 	<p>The simplest <code>Z.render()</code> will just fetch an HTML component and insert it into the "entry" point</p>
-	<pre><code class="language-js">
-	Z.render({
-		html: "path/to/component.html",
-		entry: document.getElementById("insert-here")
-	})
-	</code></pre>
+	<pre><code class="language-js">Z.render({
+	html: "path/to/component.html",
+	entry: document.getElementById("insert-here")
+})</code></pre>
 
 	<p>You can also add some data to the render, in the following example the array <code>["bar", "baz", "buff"]</code> will be available globally as <code>Z.foo</code></p>
 
-	<pre><code class="language-js">
-	Z.render({
-		html: "path/to/component.html",
-		entry: document.getElementById("insert-here"),
-		foo: ["bar", "baz", "buff"]    // optional
-		foo: "path/to/data.json"	   // or as an external resource
-	})
-	</code></pre>
+	<pre><code class="language-js">Z.render({
+	html: "path/to/component.html",
+	entry: document.getElementById("insert-here"),
+	foo: ["bar", "baz", "buff"]    // optional
+	foo: "path/to/data.json"	   // or as an external resource
+})</code></pre>
 
 	<h3>Update</h3>
 	<p>To update a component, with new data, simply do the following. This will re-render the component with the new <code>Z.foo</code> array</p>
-	<pre><code class="language-js">
-	Z.update({
-		foo: ["lorem", "ipsum", "dolor"]
-	})
-	</code></pre>
+	<pre><code class="language-js">Z.update({
+	foo: ["lorem", "ipsum", "dolor"]
+})</code></pre>
 
 	<p>You can also re-render with a new HTML component, if you so wish</p>
 
-	<pre><code class="language-js">
-	Z.update({
-		html: "path/to/new-component.html",
-		foo: ["lorem", "ipsum", "dolor"]
-	})
-	</code></pre>
+	<pre><code class="language-js">Z.update({
+	html: "path/to/new-component.html",
+	foo: ["lorem", "ipsum", "dolor"]
+})</code></pre>
 
 	<h3>Demos</h3>
     <h4>Counter Demo</h4>
     <h5>view <a href="counter" >live</a> version or <a href="https://glitch.com/edit/#!/zed-framework-counter" target="_blank" >edit</a> on glitch</h5>
-    <pre><code class="language-html">
-    &lt;!-- index.html --&gt;
-    &lt;head&gt;
-        &lt;script src="js/Z.min.js"&gt;&lt;/script&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-    	&lt;h1&gt;Counter Demo&lt;/h1&gt;
-        &lt;button onclick="Z.update({count: Z.count - 1})"&gt;-&lt;/button&gt;
-        &lt;span id="output"&gt;&lt;/span&gt;
-        &lt;button onclick="Z.update({count: Z.count + 1})"&gt;+&lt;/button&gt;
-        &lt;script&gt;
-            Z.render({
-                html: "components/counter-total.html",
-                entry: document.getElementById("output"),
-                count: 0
-            })
-        &lt;/script&gt;
-    &lt;/body&gt;
-
-    &lt;!-- counter-total.html --&gt;
-    &lt;script id="total"&gt;
-        document.getElementById("total").outerHTML = Z.count;
+    <pre><code class="language-html">&lt;!-- index.html --&gt;
+&lt;head&gt;
+    &lt;script src="js/Z.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;h1&gt;Counter Demo&lt;/h1&gt;
+    &lt;button onclick="Z.update({count: Z.count - 1})"&gt;-&lt;/button&gt;
+    &lt;span id="output"&gt;&lt;/span&gt;
+    &lt;button onclick="Z.update({count: Z.count + 1})"&gt;+&lt;/button&gt;
+    &lt;script&gt;
+        Z.render({
+            html: "components/counter-total.html",
+            entry: document.getElementById("output"),
+            count: 0
+        })
     &lt;/script&gt;
-    </code></pre>
+&lt;/body&gt;
+
+&lt;!-- counter-total.html --&gt;
+&lt;script id="total"&gt;
+    document.getElementById("total").outerHTML = Z.count;
+&lt;/script&gt;</code></pre>
     <h4>Todo List Demo</h4>
     <h5>view <a href="todo" >live</a> version or <a href="https://glitch.com/edit/#!/zed-framework-todo-list" target="_blank" >edit</a> on glitch</h5>
-    <pre><code class="language-html">
-    &lt;!-- index.html --&gt;
-    &lt;head&gt;
-        &lt;script src="js/Z.min.js"&gt;&lt;/script&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-    	&lt;h1&gt;Todo List Demo&lt;/h1&gt;
-        &lt;div id="todo-list"&gt;&lt;/div&gt;
-        &lt;div id="todo-add"&gt;&lt;/div&gt;
-        &lt;script&gt;
-            Z.render({
-                html: "components/todo-list.html",
-                entry: document.getElementById("todo-list"),
-                todos: []
-            })
-            Z.render({
-                html: "components/todo-add.html",
-                entry: document.getElementById("todo-add")
-            })
-        &lt;/script&gt;
-    &lt;/body&gt;
-
-    &lt;!-- todo-list.html --&gt;
-    &lt;div id="list-container"&gt;&lt;/div&gt;
+    <pre><code class="language-html">&lt;!-- index.html --&gt;
+&lt;head&gt;
+    &lt;script src="js/Z.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;h1&gt;Todo List Demo&lt;/h1&gt;
+    &lt;div id="todo-list"&gt;&lt;/div&gt;
+    &lt;div id="todo-add"&gt;&lt;/div&gt;
     &lt;script&gt;
-    	Z.todos.forEach(function(todo, index) {
-    	    document.getElementById("list-container").innerHTML += "&lt;div&gt;&lt;span&gt;" + todo + "&lt;/span&gt;&lt;button onclick=removeItem(" + index + ")&gt;remove&lt;/button&gt;&lt;/div&gt;";
-    	})
-    	function removeItem(index) {
-            Z.todos.splice(index, 1);
-            Z.update({
-                todos: Z.todos
-            })
-        }
+        Z.render({
+            html: "components/todo-list.html",
+            entry: document.getElementById("todo-list"),
+            todos: []
+        })
+        Z.render({
+            html: "components/todo-add.html",
+            entry: document.getElementById("todo-add")
+        })
     &lt;/script&gt;
+&lt;/body&gt;
 
-    &lt;!-- todo-add.html --&gt;
-    &lt;input id="task" type="text" placeholder="add task"&gt;
-    &lt;button onclick="addItem()"&gt;Add&lt;/button&gt;
-    &lt;script&gt;
-    	function addItem() {
-    		var task = document.getElementById("task");
-    		Z.todos.push(task.value);
-    		Z.update({
-    			todos: Z.todos
-    		})
-    		task.value = "";
-    	}
-    &lt;/script&gt;
-    </code></pre>
+&lt;!-- todo-list.html --&gt;
+&lt;div id="list-container"&gt;&lt;/div&gt;
+&lt;script&gt;
+	Z.todos.forEach(function(todo, index) {
+	    document.getElementById("list-container").innerHTML += "&lt;div&gt;&lt;span&gt;" + todo + "&lt;/span&gt;&lt;button onclick=removeItem(" + index + ")&gt;remove&lt;/button&gt;&lt;/div&gt;";
+	})
+	function removeItem(index) {
+        Z.todos.splice(index, 1);
+        Z.update({
+            todos: Z.todos
+        })
+    }
+&lt;/script&gt;
+
+&lt;!-- todo-add.html --&gt;
+&lt;input id="task" type="text" placeholder="add task"&gt;
+&lt;button onclick="addItem()"&gt;Add&lt;/button&gt;
+&lt;script&gt;
+	function addItem() {
+		var task = document.getElementById("task");
+		Z.todos.push(task.value);
+		Z.update({
+			todos: Z.todos
+		})
+		task.value = "";
+	}
+&lt;/script&gt;</code></pre>
 
     <h4>Shop Demo</h4>
     <h5>view <a href="shop" >live</a> version or <a href="https://glitch.com/edit/#!/zed-framework-shop" target="_blank" >edit</a> on glitch</h5>
