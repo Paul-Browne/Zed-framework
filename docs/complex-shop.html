@@ -7,12 +7,14 @@
     <title>complex shop</title>
     <script src="js/dot.min.js"></script>
     <script src="js/Z.min.js"></script>
+    <script type="text/javascript">if ('serviceWorker' in navigator) {window.addEventListener('load', function() {navigator.serviceWorker.register('sw.js')});}</script>
 </head>
 <body>
+    <iframe src="/test.html" onload="this.before((this.contentDocument.body || this.contentDocument).children[0]);this.remove()" style="border:0"></iframe>
     <div id="basket"></div>
     <div id="products"></div>
     <div id="view"></div>
-    <script>
+    <!-- <script>
     Z.render({
         html: "components/spa-shop/basket.html",
         entry: document.getElementById("basket"),
@@ -40,6 +42,6 @@
         entry: document.getElementById("view"),
         view: {}
     })
-    </script>
+    </script> -->
 </body>
 </html>

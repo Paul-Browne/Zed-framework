@@ -36,7 +36,8 @@
     }
 
     .wb-ba {
-        word-break: break-all;
+        word-break: break-all!important;
+        white-space: normal!important;
     }
     .zed{
         padding: 13px;
@@ -60,9 +61,11 @@
 <body>
     <img src="images/Zed.png" height="100">
     <h1>Zed.js</h1>
-    <h3 class="center">Zed.js is a templateless frontend micro framework whose sole purpose is to handle the rendering, updating and state management of your html components in only 861 bytes</h3>
-    <div class="zed">
-        <code class="wb-ba">!function(e,d){if(!e.Z){e.Z={};var r={};function t(e){return Object.keys(e).filter(function(e){return"html"!=e&&"entry"!=e})[0]}Z.update=function(e){r[t(e)]&&r[t(e)](e)},Z.render=function(f,e){var s=t(f);s&&!e&&(r[s]=function(e){for(var n in e)f[n]=e[n];Z.render(f,!0)});var u={},n=f.html?[f.html]:[];"string"==typeof f[s]?n.push(f[s]):Z[s]=f[s],n.forEach(function(e,o){u[o]="";var c=new XMLHttpRequest;c.onreadystatechange=function(){if(4==c.readyState&&200==c.status){u[o]=c.responseText;var e=!0;for(var n in u)""==u[n]&&(e=!1);if(e){u[1]&&(Z[s]=JSON.parse(u[1])),f.entry.innerHTML=u[0];for(var r=(new DOMParser).parseFromString(u[0],"text/html").querySelectorAll("SCRIPT"),t=0,a=r.length;t&lt;a;){var i=d.createElement("SCRIPT");r[t].src?i.src=r[t].src:i.innerHTML=r[t].innerHTML,d.head.appendChild(i),t++}}}},c.open("GET",e,!0),c.send()})}}}(window,document);</code>
+    <h3 class="center">Zed.js is a templateless frontend micro framework whose sole purpose is to handle the rendering, updating and state management of your html components in only 861 bytes</h3>    
+    <pre class="language-html"><code class="wb-ba">&lt;script&gt;!function(e,d){if(!e.Z){e.Z={};var r={};function t(e){return Object.keys(e).filter(function(e){return"html"!=e&&"entry"!=e})[0]}Z.update=function(e){r[t(e)]&&r[t(e)](e)},Z.render=function(f,e){var s=t(f);s&&!e&&(r[s]=function(e){for(var n in e)f[n]=e[n];Z.render(f,!0)});var u={},n=f.html?[f.html]:[];"string"==typeof f[s]?n.push(f[s]):Z[s]=f[s],n.forEach(function(e,o){u[o]="";var c=new XMLHttpRequest;c.onreadystatechange=function(){if(4==c.readyState&&200==c.status){u[o]=c.responseText;var e=!0;for(var n in u)""==u[n]&&(e=!1);if(e){u[1]&&(Z[s]=JSON.parse(u[1])),f.entry.innerHTML=u[0];for(var r=(new DOMParser).parseFromString(u[0],"text/html").querySelectorAll("SCRIPT"),t=0,a=r.length;t&lt;a;){var i=d.createElement("SCRIPT");r[t].src?i.src=r[t].src:i.innerHTML=r[t].innerHTML,d.head.appendChild(i),t++}}}},c.open("GET",e,!0),c.send()})}}}(window,document);&lt;/script&gt;</code></pre>
+    <br>
+    <div>
+        <pre class="language-html"><code>&lt;script src="https://cdn.jsdelivr.net/npm/zed-framework"&gt;&lt;/script&gt;</code></pre>
     </div>
     <br>
 	<a class="github-button" href="https://github.com/paul-browne/Zed-framework" data-icon="octicon-star" data-size="large" aria-label="Star paul-browne/Zed-framework on GitHub">Star on GitHub</a>
