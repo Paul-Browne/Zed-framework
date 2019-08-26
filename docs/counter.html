@@ -18,11 +18,12 @@
 
 <body>
     <h1>Counter Demo</h1>
-    <button onclick="Z.update({count: Z.count - 1})">-</button>
+    <button onclick="Z.update({count: Z.count - 1}); console.time('components/counter-total.html');">-</button>
     <span id="output"></span>
-    <button onclick="Z.update({count: Z.count + 1})">+</button>
+    <button onclick="Z.update({count: Z.count + 1}); console.time('components/counter-total.html');">+</button>
 
     <script>
+        console.time("components/counter-total.html");
         Z.render({
             html: "components/counter-total.html",
             entry: document.getElementById("output"),

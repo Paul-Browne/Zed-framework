@@ -36,7 +36,7 @@ body {
 </style>
 <template id="template-phones">
     {{~it:value:index}}
-    <div class="product" onclick="Z.update({view: Z.products[{{=index}}]})">
+    <div class="product" onclick="console.time('components/spa-shop/view-simple.html');Z.update({view: Z.products[{{=index}}]})">
         <h2>{{=value.name}}</h2>
         <img src="images/{{=value.image}}" width="200">
         <span>{{=value.price}} €</span>
@@ -48,5 +48,6 @@ body {
 ! function() {
     var template = doT.template(document.getElementById("template-phones").innerHTML);
     document.getElementById("output-phones").innerHTML = template(Z.products);
+    console.timeEnd("components/spa-shop/products-simple.html");
 }();
 </script>

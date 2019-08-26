@@ -10,16 +10,18 @@
 </template>
 <div id="output-basket"></div>
 <script>
-! function() {
-    var template = doT.template(document.getElementById("template-basket").innerHTML);
-    document.getElementById("output-basket").innerHTML = template(Z.basket);
-}();
-
 function adjustCart(index, increment) {
+    console.time("components/spa-shop/basket-simple.html");
     Z.basket.products[index].quantity += increment;
     if (!Z.basket.products[index].quantity) {
         Z.basket.products.splice(index, 1);
     }
     Z.basket.update();
 }
+
+! function() {
+    var template = doT.template(document.getElementById("template-basket").innerHTML);
+    document.getElementById("output-basket").innerHTML = template(Z.basket);
+    console.timeEnd("components/spa-shop/basket-simple.html");
+}();
 </script>

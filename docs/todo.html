@@ -22,12 +22,14 @@
     <div id="todo-add"></div>
 
     <script>
+    console.time('components/todo-list.html');
     Z.render({
         html: "components/todo-list.html",
         entry: document.getElementById("todo-list"),
         todos: []
     })
-
+    
+    console.time('components/todo-add.html');
     Z.render({
         html: "components/todo-add.html",
         entry: document.getElementById("todo-add")

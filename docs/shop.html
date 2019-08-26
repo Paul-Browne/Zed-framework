@@ -22,6 +22,7 @@
     <div id="products"></div>
     <div id="view"></div>
     <script>
+    console.time("components/spa-shop/basket-simple.html");
     Z.render({
         html: "components/spa-shop/basket-simple.html",
         entry: document.getElementById("basket"),
@@ -42,12 +43,14 @@
         }
     })
 
+    console.time("components/spa-shop/products-simple.html");
     Z.render({
         html: "components/spa-shop/products-simple.html",
         entry: document.getElementById("products"),
         products: "json/products-simple.json"
     })
 
+    console.time("components/spa-shop/view-simple.html");
     Z.render({
         html: "components/spa-shop/view-simple.html",
         entry: document.getElementById("view"),
