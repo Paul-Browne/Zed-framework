@@ -6,10 +6,10 @@
         w.Z = {};
         // PubSub store
         var topics = {};
-        // filter for methods, not "html" or "entry"
+        // filter for methods, not "html", "inner" or "outer"
         function filt(obj) {
             return Object.keys(obj).filter(function(el) {
-                return el != "html" && el != "entry";
+                return el != "html" && el != "inner" && el != "outer";
             })[0];
         }
         // update method (simple PubSub publish)
@@ -47,8 +47,7 @@
                             if (objResolved[1]) {
                                 Z[x] = JSON.parse(objResolved[1]);
                             }
-                            obj.entry.innerHTML = objResolved[0];
-                            // inject component scripts into the head
+                            obj.inner ? obj.inner.innerHTML = objResolved[0] : obj.outer.outerHTML = objResolved[0];
                             var scripts = new DOMParser().parseFromString(objResolved[0], 'text/html').querySelectorAll("SCRIPT");
                             var i = 0;
                             var j = scripts.length;

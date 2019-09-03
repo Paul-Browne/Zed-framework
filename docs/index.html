@@ -61,8 +61,8 @@
 <body>
     <img src="images/Zed.png" height="100">
     <h1>Zed.js</h1>
-    <h3 class="center">Zed.js is a templateless frontend micro framework whose sole purpose is to handle the rendering, updating and state management of your html components in only 861 bytes</h3>    
-    <pre class="language-html"><code class="wb-ba">&lt;script&gt;!function(e,d){if(!e.Z){e.Z={};var r={};function t(e){return Object.keys(e).filter(function(e){return"html"!=e&&"entry"!=e})[0]}Z.update=function(e){r[t(e)]&&r[t(e)](e)},Z.render=function(f,e){var s=t(f);s&&!e&&(r[s]=function(e){for(var n in e)f[n]=e[n];Z.render(f,!0)});var u={},n=f.html?[f.html]:[];"string"==typeof f[s]?n.push(f[s]):Z[s]=f[s],n.forEach(function(e,o){u[o]="";var c=new XMLHttpRequest;c.onreadystatechange=function(){if(4==c.readyState&&200==c.status){u[o]=c.responseText;var e=!0;for(var n in u)""==u[n]&&(e=!1);if(e){u[1]&&(Z[s]=JSON.parse(u[1])),f.entry.innerHTML=u[0];for(var r=(new DOMParser).parseFromString(u[0],"text/html").querySelectorAll("SCRIPT"),t=0,a=r.length;t&lt;a;){var i=d.createElement("SCRIPT");r[t].src?i.src=r[t].src:i.innerHTML=r[t].innerHTML,d.head.appendChild(i),t++}}}},c.open("GET",e,!0),c.send()})}}}(window,document);&lt;/script&gt;</code></pre>
+    <h3 class="center">Zed.js is a templateless frontend micro framework whose sole purpose is to handle the rendering, updating and state management of your html components in only 904 bytes</h3>    
+    <pre class="language-html"><code class="wb-ba">&lt;script&gt;!function(e,n){if(!e.Z){e.Z={};var r={};function t(e){return Object.keys(e).filter(function(e){return"html"!=e&&"inner"!=e&&"outer"!=e})[0]}Z.update=function(e){r[t(e)]&&r[t(e)](e)},Z.render=function(e,i){var a=t(e);a&&!i&&(r[a]=function(n){for(var r in n)e[r]=n[r];Z.render(e,!0)});var o={},u=e.html?[e.html]:[];"string"==typeof e[a]?u.push(e[a]):Z[a]=e[a],u.forEach(function(r,t){o[t]="";var i=new XMLHttpRequest;i.onreadystatechange=function(){if(4==i.readyState&&200==i.status){o[t]=i.responseText;var r=!0;for(var u in o)""==o[u]&&(r=!1);if(r){o[1]&&(Z[a]=JSON.parse(o[1])),e.inner?e.inner.innerHTML=o[0]:e.outer.outerHTML=o[0];for(var c=(new DOMParser).parseFromString(o[0],"text/html").querySelectorAll("SCRIPT"),f=0,s=c.length;f&lt;s;){var d=n.createElement("SCRIPT");c[f].src?d.src=c[f].src:d.innerHTML=c[f].innerHTML,n.head.appendChild(d),f++}}}},i.open("GET",r,!0),i.send()})}}}(window,document);&lt;/script&gt;</code></pre>
     <p>or include from a cdn</p>
     <div>
         <pre class="language-html"><code>&lt;script src="https://cdn.jsdelivr.net/npm/zed-framework"&gt;&lt;/script&gt;</code></pre>
@@ -71,17 +71,17 @@
 	<a class="github-button" href="https://github.com/paul-browne/Zed-framework" data-icon="octicon-star" data-size="large" aria-label="Star paul-browne/Zed-framework on GitHub">Star on GitHub</a>
 	<br>
 	<h3>Render</h3>
-	<p>The simplest <code>Z.render()</code> will just fetch an HTML component and insert it into the "entry" point</p>
+	<p>The simplest <code>Z.render()</code> will just fetch an HTML component and insert it into the "inner" element. You can also use "outer" to replace that element.</p>
 	<pre><code class="language-js">Z.render({
 	html: "path/to/component.html",
-	entry: document.getElementById("insert-here")
+	inner: document.getElementById("insert-here")
 })</code></pre>
 
 	<p>You can also add some data to the render, in the following example the array <code>["bar", "baz", "buff"]</code> will be available globally as <code>Z.foo</code></p>
 
 	<pre><code class="language-js">Z.render({
 	html: "path/to/component.html",
-	entry: document.getElementById("insert-here"),
+	inner: document.getElementById("insert-here"),
 	foo: ["bar", "baz", "buff"]    // optional
 	foo: "path/to/data.json"	   // or as an external resource
 })</code></pre>
@@ -114,7 +114,7 @@
     &lt;script&gt;
         Z.render({
             html: "components/counter-total.html",
-            entry: document.getElementById("output"),
+            inner: document.getElementById("output"),
             count: 0
         })
     &lt;/script&gt;
@@ -137,12 +137,12 @@
     &lt;script&gt;
         Z.render({
             html: "components/todo-list.html",
-            entry: document.getElementById("todo-list"),
+            inner: document.getElementById("todo-list"),
             todos: []
         })
         Z.render({
             html: "components/todo-add.html",
-            entry: document.getElementById("todo-add")
+            inner: document.getElementById("todo-add")
         })
     &lt;/script&gt;
 &lt;/body&gt;
