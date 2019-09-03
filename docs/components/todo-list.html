@@ -1,4 +1,6 @@
-<div id="list-container"></div>
+<div id="todo-list">
+    <div id="list-container"></div>
+</div>
 <script>
 	Z.todos.forEach(function(todo, index) {
 	    document.getElementById("list-container").innerHTML += "<div><span>" + todo + "</span><button onclick=removeItem(" + index + ");>remove</button></div>";
