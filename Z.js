@@ -6,11 +6,10 @@
         w.Z = {};
         // PubSub store
         var topics = {};
-        // filter for methods, not "html", "inner" or "outer"
+        // last key in object filter
         function filt(obj) {
-            return Object.keys(obj).filter(function(el) {
-                return el != "html" && el != "inner" && el != "outer";
-            })[0];
+            var x = Object.keys(obj);
+            return x[x.length-1];
         }
         // update method (simple PubSub publish)
         Z.update = function(obj) {
