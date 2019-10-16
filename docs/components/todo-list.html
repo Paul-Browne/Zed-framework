@@ -1,10 +1,8 @@
-<div id="todo-list">
-    <div id="list-container"></div>
-</div>
-<script>
-	Z.todos.forEach(function(todo, index) {
-	    document.getElementById("list-container").innerHTML += "<div><span>" + todo + "</span><button onclick=removeItem(" + index + ");>remove</button></div>";
-	})
+<script id="list-container">
+    document.getElementById("list-container").outerHTML = Z.todos.map(function(todo, index){
+        return "<div><span>" + todo + "</span><button onclick=removeItem(" + index + ");>remove</button></div>";
+    }).join("");
+
 	function removeItem(index) {
 		console.time("components/todo-list.html");
         Z.todos.splice(index, 1);

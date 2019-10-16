@@ -34,7 +34,7 @@ body {
     margin: 1em 0;
 }
 </style>
-<template id="template-phones">
+<template id="template">
     {{~it:value:index}}
     <div class="product" onclick="console.time('components/spa-shop/view-simple.html');Z.update({view: Z.products[{{=index}}]})">
         <h2>{{=value.name}}</h2>
@@ -43,11 +43,11 @@ body {
     </div>
     {{~}}
 </template>
-<div id="output-phones" class="products"></div>
+<div id="output" class="products"></div>
 <script>
 ! function() {
-    var template = doT.template(document.getElementById("template-phones").innerHTML);
-    document.getElementById("output-phones").innerHTML = template(Z.products);
+    var template = doT.template(document.getElementById("template").innerHTML);
+    document.getElementById("output").innerHTML = template(Z.products);
     console.timeEnd("components/spa-shop/products-simple.html");
 }();
 </script>
