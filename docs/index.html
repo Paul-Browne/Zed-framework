@@ -18,7 +18,7 @@
     body {
         margin: 10px auto;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-        max-width: 884px;
+        max-width: 900px;
         padding: 0 10px;
     }
 
@@ -131,7 +131,7 @@
     &lt;script src="js/Z.min.js"&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
-	&lt;h1&gt;Todo List Demo&lt;/h1&gt;
+    &lt;h1&gt;Todo List Demo&lt;/h1&gt;
     &lt;div id="todo-list"&gt;&lt;/div&gt;
     &lt;div id="todo-add"&gt;&lt;/div&gt;
     &lt;script&gt;
@@ -140,20 +140,21 @@
             inner: document.getElementById("todo-list"),
             todos: []
         })
+
         Z.render({
             html: "components/todo-add.html",
-            inner: document.getElementById("todo-add")
+            outer: document.getElementById("todo-add")
         })
     &lt;/script&gt;
 &lt;/body&gt;
 
 &lt;!-- todo-list.html --&gt;
-&lt;div id="list-container"&gt;&lt;/div&gt;
-&lt;script&gt;
-	Z.todos.forEach(function(todo, index) {
-	    document.getElementById("list-container").innerHTML += "&lt;div&gt;&lt;span&gt;" + todo + "&lt;/span&gt;&lt;button onclick=removeItem(" + index + ")&gt;remove&lt;/button&gt;&lt;/div&gt;";
-	})
-	function removeItem(index) {
+&lt;script id="list-container"&gt;
+    document.getElementById("list-container").outerHTML = Z.todos.map(function(todo, index){
+        return "&lt;div&gt;&lt;span&gt;" + todo + "&lt;/span&gt;&lt;button onclick=removeItem(" + index + ");&gt;remove&lt;/button&gt;&lt;/div&gt;";
+    }).join("");
+
+    function removeItem(index) {
         Z.todos.splice(index, 1);
         Z.update({
             todos: Z.todos
