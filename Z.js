@@ -29,6 +29,7 @@
             // async ajax
             var objResolved = {};
             var arr = obj.html ? [obj.html] : [];
+            // if data is an endpoint, push to array for xhr request, else assign it to global Z.
             typeof obj[x] === 'string' ? arr.push(obj[x]) : Z[x] = obj[x];
             arr.forEach(function(url, index) {
                 objResolved[index] = "";
@@ -36,6 +37,7 @@
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState == 4 && xhr.status == 200) {
                         objResolved[index] = xhr.responseText;
+                        // check if "other" xhr request has resolved
                         var allResolved = true;
                         for (var key in objResolved) {
                             if (objResolved[key] == "") {
@@ -44,17 +46,16 @@
                         }
                         if (allResolved) {
                             if (objResolved[1]) {
+                                // assign the global before the html is injected
                                 Z[x] = JSON.parse(objResolved[1]);
                             }
                             obj.inner ? obj.inner.innerHTML = objResolved[0] : obj.outer.outerHTML = objResolved[0];
+                            // inject nested scripts into the head.
                             var scripts = new DOMParser().parseFromString(objResolved[0], 'text/html').querySelectorAll("SCRIPT");
-                            var i = 0;
-                            var j = scripts.length;
-                            while (i < j) {
+                            for(var i = 0; i < scripts.length; i++){
                                 var newScript = d.createElement("SCRIPT");
                                 scripts[i].src ? newScript.src = scripts[i].src : newScript.innerHTML = scripts[i].innerHTML;
                                 d.head.appendChild(newScript);
-                                i++;
                             }
                         }
                     }

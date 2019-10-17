@@ -11,7 +11,7 @@
     <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#2d89ef">
     <meta name="theme-color" content="#ffffff">
-    <meta name="description" content="Zed.js is a templateless frontend micro framework whose sole purpose is to handle the rendering, updating and state management of your html components in only 860 bytes">
+    <meta name="description" content="Zed.js is a templateless frontend micro framework whose sole purpose is to handle the rendering, updating and state management of your html components in only 855 bytes">
     <title>Zed.js | micro framework</title>
     <link rel="stylesheet" href="css/prism.css">
     <style type="text/css">
@@ -61,8 +61,8 @@
 <body>
     <img src="images/Zed.png" height="100">
     <h1>Zed.js</h1>
-    <h3 class="center">Zed.js is a templateless frontend micro framework whose sole purpose is to handle the rendering, updating and state management of your html components in only 860 bytes</h3>    
-    <pre class="language-html"><code class="wb-ba">&lt;script&gt;!function(e,d){if(!e.Z){e.Z={};var r={};function t(e){var n=Object.keys(e);return n[n.length-1]}Z.update=function(e){r[t(e)]&&r[t(e)](e)},Z.render=function(s,e){var u=t(s);u&&!e&&(r[u]=function(e){for(var n in e)s[n]=e[n];Z.render(s,!0)});var f={},n=s.html?[s.html]:[];"string"==typeof s[u]?n.push(s[u]):Z[u]=s[u],n.forEach(function(e,o){f[o]="";var c=new XMLHttpRequest;c.onreadystatechange=function(){if(4==c.readyState&&200==c.status){f[o]=c.responseText;var e=!0;for(var n in f)""==f[n]&&(e=!1);if(e){f[1]&&(Z[u]=JSON.parse(f[1])),s.inner?s.inner.innerHTML=f[0]:s.outer.outerHTML=f[0];for(var r=(new DOMParser).parseFromString(f[0],"text/html").querySelectorAll("SCRIPT"),t=0,a=r.length;t&lt;a;){var i=d.createElement("SCRIPT");r[t].src?i.src=r[t].src:i.innerHTML=r[t].innerHTML,d.head.appendChild(i),t++}}}},c.open("GET",e,!0),c.send()})}}}(window,document);&lt;/script&gt;</code></pre>
+    <h3 class="center">Zed.js is a templateless frontend micro framework whose sole purpose is to handle the rendering, updating and state management of your html components in only 855 bytes</h3>    
+    <pre class="language-html"><code class="wb-ba">&lt;script&gt;!function(e,f){if(!e.Z){e.Z={};var r={};function t(e){var n=Object.keys(e);return n[n.length-1]}Z.update=function(e){r[t(e)]&&r[t(e)](e)},Z.render=function(c,e){var s=t(c);s&&!e&&(r[s]=function(e){for(var n in e)c[n]=e[n];Z.render(c,!0)});var u={},n=c.html?[c.html]:[];"string"==typeof c[s]?n.push(c[s]):Z[s]=c[s],n.forEach(function(e,i){u[i]="";var o=new XMLHttpRequest;o.onreadystatechange=function(){if(4==o.readyState&&200==o.status){u[i]=o.responseText;var e=!0;for(var n in u)""==u[n]&&(e=!1);if(e){u[1]&&(Z[s]=JSON.parse(u[1])),c.inner?c.inner.innerHTML=u[0]:c.outer.outerHTML=u[0];for(var r=(new DOMParser).parseFromString(u[0],"text/html").querySelectorAll("SCRIPT"),t=0;t&lt;r.length;t++){var a=f.createElement("SCRIPT");r[t].src?a.src=r[t].src:a.innerHTML=r[t].innerHTML,f.head.appendChild(a)}}}},o.open("GET",e,!0),o.send()})}}}(window,document);&lt;/script&gt;</code></pre>
     <p>or include from a cdn</p>
     <div>
         <pre class="language-html"><code>&lt;script src="https://cdn.jsdelivr.net/npm/zedjs"&gt;&lt;/script&gt;</code></pre>
