@@ -12,9 +12,9 @@
         <div>
             <span>${product.name}</span> <span><button onclick="adjustCart(${index}, -1)">-</button> <span>${product.quantity}</span> <button onclick="adjustCart(${index}, 1)">+</button></span> <span>${(product.price * product.quantity).toFixed(2)}</span>
         </div>
+        `
+    }).join("") + `
         <div>
             <span>Total: ${(Z.basket.total).toFixed(2)}</span>
-        </div>
-        `
-    }).join("") : "";
+        </div>` : "";
 </script>
