@@ -1,6 +1,6 @@
 {
   "name": "zedjs",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A micro frontend framework",
   "main": "Z.min.js",
   "files": ["Z.min.js"],
