@@ -12,7 +12,6 @@
             outer: document.getElementById("head")
         })
     </script>
-    <script src="js/dot.min.js"></script>
 </head>
 
 <body>
@@ -20,7 +19,6 @@
     <div id="products"></div>
     <div id="view"></div>
     <script>
-    console.time("components/spa-shop/basket-simple.html");
     Z.render({
         html: "components/spa-shop/basket-simple.html",
         inner: document.getElementById("basket"),
@@ -40,15 +38,11 @@
             }
         }
     })
-
-    console.time("components/spa-shop/products-simple.html");
     Z.render({
         html: "components/spa-shop/products-simple.html",
         inner: document.getElementById("products"),
         products: "json/products-simple.json"
     })
-
-    console.time("components/spa-shop/view-simple.html");
     Z.render({
         html: "components/spa-shop/view-simple.html",
         inner: document.getElementById("view"),
