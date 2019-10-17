@@ -65,7 +65,7 @@
     <pre class="language-html"><code class="wb-ba">&lt;script&gt;!function(e,d){if(!e.Z){e.Z={};var r={};function t(e){var n=Object.keys(e);return n[n.length-1]}Z.update=function(e){r[t(e)]&&r[t(e)](e)},Z.render=function(s,e){var u=t(s);u&&!e&&(r[u]=function(e){for(var n in e)s[n]=e[n];Z.render(s,!0)});var f={},n=s.html?[s.html]:[];"string"==typeof s[u]?n.push(s[u]):Z[u]=s[u],n.forEach(function(e,o){f[o]="";var c=new XMLHttpRequest;c.onreadystatechange=function(){if(4==c.readyState&&200==c.status){f[o]=c.responseText;var e=!0;for(var n in f)""==f[n]&&(e=!1);if(e){f[1]&&(Z[u]=JSON.parse(f[1])),s.inner?s.inner.innerHTML=f[0]:s.outer.outerHTML=f[0];for(var r=(new DOMParser).parseFromString(f[0],"text/html").querySelectorAll("SCRIPT"),t=0,a=r.length;t&lt;a;){var i=d.createElement("SCRIPT");r[t].src?i.src=r[t].src:i.innerHTML=r[t].innerHTML,d.head.appendChild(i),t++}}}},c.open("GET",e,!0),c.send()})}}}(window,document);&lt;/script&gt;</code></pre>
     <p>or include from a cdn</p>
     <div>
-        <pre class="language-html"><code>&lt;script src="https://cdn.jsdelivr.net/npm/zed-framework"&gt;&lt;/script&gt;</code></pre>
+        <pre class="language-html"><code>&lt;script src="https://cdn.jsdelivr.net/npm/zedjs"&gt;&lt;/script&gt;</code></pre>
     </div>
     <br>
 	<a class="github-button" href="https://github.com/paul-browne/Zed-framework" data-icon="octicon-star" data-size="large" aria-label="Star paul-browne/Zed-framework on GitHub">Star on GitHub</a>
