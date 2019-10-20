@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#2d89ef" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta
+      name="description"
+      content="Zed.js is a templateless frontend micro framework whose sole purpose is to handle the rendering, updating and state management of your html components in only 855 bytes"
+    />
+    <title>Zed.js | micro framework</title>
+    <link rel="stylesheet" href="css/prism.css" />
+    <style type="text/css">
+      body {
+        margin: 10px auto;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+          "Segoe UI Symbol";
+        max-width: 900px;
+        padding: 0 10px;
+      }
+
+      img {
+        margin: 0 auto;
+        display: block;
+        animation-name: hue;
+        animation-duration: 36s;
+      }
+
+      h1,
+      h3.center {
+        text-align: center;
+        font-size: 21px;
+      }
+
+      .wb-ba {
+        word-break: break-all !important;
+        white-space: normal !important;
+      }
+      .zed {
+        padding: 13px;
+        border: 1px dashed #000;
+        border-radius: 6px;
+      }
+
+      @keyframes hue {
+        from {
+          filter: hue-rotate(0deg);
+        }
+
+        to {
+          filter: hue-rotate(360deg);
+        }
+      }
+    </style>
+    <!-- <script type="text/javascript">if ('serviceWorker' in navigator) {window.addEventListener('load', function() {navigator.serviceWorker.register('sw.js')});}</script> -->
+  </head>
+
+  <body>
+    <img src="images/Zed.png" height="100" />
+    <h1>Zed.js</h1>
+    <h3 class="center">
+      Zed.js is a templateless frontend micro framework whose sole purpose is to
+      handle the rendering, updating and state management of your html
+      components in only 855 bytes
+    </h3>
+    <pre
+      class="language-html"
+    ><code class="wb-ba">&lt;script&gt;!function(e,f){if(!e.Z){e.Z={};var r={};function t(e){var n=Object.keys(e);return n[n.length-1]}Z.update=function(e){r[t(e)]&&r[t(e)](e)},Z.render=function(c,e){var s=t(c);s&&!e&&(r[s]=function(e){for(var n in e)c[n]=e[n];Z.render(c,!0)});var u={},n=c.html?[c.html]:[];"string"==typeof c[s]?n.push(c[s]):Z[s]=c[s],n.forEach(function(e,i){u[i]="";var o=new XMLHttpRequest;o.onreadystatechange=function(){if(4==o.readyState&&200==o.status){u[i]=o.responseText;var e=!0;for(var n in u)""==u[n]&&(e=!1);if(e){u[1]&&(Z[s]=JSON.parse(u[1])),c.inner?c.inner.innerHTML=u[0]:c.outer.outerHTML=u[0];for(var r=(new DOMParser).parseFromString(u[0],"text/html").querySelectorAll("SCRIPT"),t=0;t&lt;r.length;t++){var a=f.createElement("SCRIPT");r[t].src?a.src=r[t].src:a.innerHTML=r[t].innerHTML,f.head.appendChild(a)}}}},o.open("GET",e,!0),o.send()})}}}(window,document);&lt;/script&gt;</code></pre>
+    <p>or include from a cdn</p>
+    <div>
+      <pre
+        class="language-html"
+      ><code>&lt;script src="https://cdn.jsdelivr.net/npm/zedjs"&gt;&lt;/script&gt;</code></pre>
+    </div>
+    <br />
+    <a
+      class="github-button"
+      href="https://github.com/paul-browne/Zed-framework"
+      data-icon="octicon-star"
+      data-size="large"
+      aria-label="Star paul-browne/Zed-framework on GitHub"
+      >Star on GitHub</a
+    >
+    <br />
+    <h3>Render</h3>
+    <p>
+      The simplest <code>Z.render()</code> will just fetch an HTML component and
+      insert it into the "inner" element. You can also use "outer" to replace
+      that element.
+    </p>
+    <pre><code class="language-js">Z.render({
+	html: "path/to/component.html",
+	inner: document.getElementById("insert-here")
+})</code></pre>
+
+    <p>
+      You can also add some data to the render, in the following example the
+      array <code>["bar", "baz", "buff"]</code> will be available globally as
+      <code>Z.foo</code>
+    </p>
+
+    <pre><code class="language-js">Z.render({
+	html: "path/to/component.html",
+	inner: document.getElementById("insert-here"),
+	foo: ["bar", "baz", "buff"]    // optional
+	foo: "path/to/data.json"	   // or as an external resource
+})</code></pre>
+
+    <h3>Update</h3>
+    <p>
+      To update a component, with new data, simply do the following. This will
+      re-render the component with the new <code>Z.foo</code> array
+    </p>
+    <pre><code class="language-js">Z.update({
+	foo: ["lorem", "ipsum", "dolor"]
+})</code></pre>
+
+    <p>You can also re-render with a new HTML component, if you so wish</p>
+
+    <pre><code class="language-js">Z.update({
+	html: "path/to/new-component.html",
+	foo: ["lorem", "ipsum", "dolor"]
+})</code></pre>
+
+    <h3>Demos</h3>
+    <h4>Counter Demo</h4>
+    <h5>
+      view <a href="counter">live</a> version or
+      <a href="https://glitch.com/edit/#!/zed-framework-counter" target="_blank"
+        >edit</a
+      >
+      on glitch
+    </h5>
+    <pre><code class="language-html">&lt;!-- index.html --&gt;
+&lt;head&gt;
+    &lt;script src="js/Z.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;h1&gt;Counter Demo&lt;/h1&gt;
+    &lt;button onclick="Z.update({count: Z.count - 1})"&gt;-&lt;/button&gt;
+    &lt;span id="output"&gt;&lt;/span&gt;
+    &lt;button onclick="Z.update({count: Z.count + 1})"&gt;+&lt;/button&gt;
+    &lt;script&gt;
+        Z.render({
+            html: "components/counter-total.html",
+            inner: document.getElementById("output"),
+            count: 0
+        })
+    &lt;/script&gt;
+&lt;/body&gt;
+
+&lt;!-- counter-total.html --&gt;
+&lt;script id="total"&gt;
+    document.getElementById("total").outerHTML = Z.count;
+&lt;/script&gt;</code></pre>
+    <h4>Todo List Demo</h4>
+    <h5>
+      view <a href="todo">live</a> version or
+      <a
+        href="https://glitch.com/edit/#!/zed-framework-todo-list"
+        target="_blank"
+        >edit</a
+      >
+      on glitch
+    </h5>
+    <pre><code class="language-html">&lt;!-- index.html --&gt;
+&lt;head&gt;
+    &lt;script src="js/Z.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Todo List Demo&lt;/h1&gt;
+    &lt;div id="todo-list"&gt;&lt;/div&gt;
+    &lt;div id="todo-add"&gt;&lt;/div&gt;
+    &lt;script&gt;
+        Z.render({
+            html: "components/todo-list.html",
+            inner: document.getElementById("todo-list"),
+            todos: []
+        })
+
+        Z.render({
+            html: "components/todo-add.html",
+            outer: document.getElementById("todo-add")
+        })
+    &lt;/script&gt;
+&lt;/body&gt;
+
+&lt;!-- todo-list.html --&gt;
+&lt;script id="list-container"&gt;
+    document.getElementById("list-container").outerHTML = Z.todos.map(function(todo, index){
+        return "&lt;div&gt;&lt;span&gt;" + todo + "&lt;/span&gt;&lt;button onclick=removeItem(" + index + ");&gt;remove&lt;/button&gt;&lt;/div&gt;";
+    }).join("");
+
+    function removeItem(index) {
+        Z.todos.splice(index, 1);
+        Z.update({
+            todos: Z.todos
+        })
+    }
+&lt;/script&gt;
+
+&lt;!-- todo-add.html --&gt;
+&lt;input id="task" type="text" placeholder="add task"&gt;
+&lt;button onclick="addItem()"&gt;Add&lt;/button&gt;
+&lt;script&gt;
+	function addItem() {
+		var task = document.getElementById("task");
+		Z.todos.push(task.value);
+		Z.update({
+			todos: Z.todos
+		})
+		task.value = "";
+	}
+&lt;/script&gt;</code></pre>
+
+    <h4>Shop Demo</h4>
+    <h5>
+      view <a href="shop">live</a> version or
+      <a href="https://glitch.com/edit/#!/zed-framework-shop" target="_blank"
+        >edit</a
+      >
+      on glitch
+    </h5>
+    <p>
+      This is a more full-featured demo, with the use of template literals and
+      local storage.
+    </p>
+    <br /><br />
+
+    <script src="js/prism.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-7"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "UA-36765884-7");
+    </script>
+  </body>
+</html>

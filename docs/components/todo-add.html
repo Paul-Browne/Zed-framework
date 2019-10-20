@@ -1,14 +1,1 @@
-<input id="task" type="text" placeholder="add task">
-<button onclick="addItem();">Add</button>
-<script>
-	function addItem() {
-		console.time('components/todo-list.html');
-		var task = document.getElementById("task");
-		Z.todos.push(task.value);
-		Z.update({
-			todos: Z.todos
-		})
-		task.value = "";
-	}
-	console.timeEnd("components/todo-add.html");
-</script>
+<input id="task" type="text" placeholder="add task"> <button onclick="addItem()">Add</button><script>function addItem(){console.time("components/todo-list.html");var o=document.getElementById("task");Z.todos.push(o.value),Z.update({todos:Z.todos}),o.value=""}console.timeEnd("components/todo-add.html")</script>
