@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/Paul-Browne/Zed-framework#readme",
   "devDependencies": {
-    "web-build-process": "^1.0.14"
+    "web-build-process": "^1.2.2"
   },
   "babel": {
     "presets": [
