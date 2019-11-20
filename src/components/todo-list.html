@@ -15,7 +15,8 @@
     console.time("components/todo-list.html");
     Z.todos.splice(index, 1);
     Z.update({
-      todos: Z.todos
+      key: "todos",
+      data: Z.todos
     });
   }
   console.timeEnd("components/todo-list.html");

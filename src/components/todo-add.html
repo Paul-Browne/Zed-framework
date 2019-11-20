@@ -6,7 +6,8 @@
     var task = document.getElementById("task");
     Z.todos.push(task.value);
     Z.update({
-      todos: Z.todos
+      key: "todos",
+      data: Z.todos
     });
     task.value = "";
   }

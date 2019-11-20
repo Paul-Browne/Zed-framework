@@ -12,7 +12,7 @@
     <script id="head">
       console.time("components/head.html");
       Z.render({
-        html: "/components/head.html",
+        html: "components/head.html",
         outer: document.getElementById("head")
       });
     </script>
@@ -26,14 +26,15 @@
     <script>
       console.time("components/todo-list.html");
       Z.render({
-        html: "/components/todo-list.html",
+        key: "todos",
+        html: "components/todo-list.html",
         inner: document.getElementById("todo-list"),
-        todos: []
+        data: []
       });
 
       console.time("components/todo-add.html");
       Z.render({
-        html: "/components/todo-add.html",
+        html: "components/todo-add.html",
         outer: document.getElementById("todo-add")
       });
     </script>
