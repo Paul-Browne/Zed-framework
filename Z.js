@@ -15,13 +15,17 @@
         function injector(obj, x, requests, resolved){
             if (resolved.data && resolved.html) {
                 Z[x] = requests.data ? JSON.parse(resolved.data) : resolved.data;
-                obj.inner ? obj.inner.innerHTML = resolved.html : obj.outer.outerHTML = resolved.html;
-                // inject nested scripts into the head.
-                var scripts = new DOMParser().parseFromString(resolved.html, 'text/html').querySelectorAll("SCRIPT");
-                for(var i = 0; i < scripts.length; i++){
-                    var newScript = d.createElement("SCRIPT");
-                    scripts[i].src ? newScript.src = scripts[i].src : newScript.innerHTML = scripts[i].innerHTML;
-                    d.head.appendChild(newScript);
+                if(requests.html){
+                    obj.inner ? obj.inner.innerHTML = resolved.html : obj.outer.outerHTML = resolved.html;
+                    // inject nested scripts into the head.
+                    var scripts = new DOMParser().parseFromString(resolved.html, 'text/html').querySelectorAll("SCRIPT");
+                    for(var i = 0; i < scripts.length; i++){
+                        var newScript = d.createElement("SCRIPT");
+                        scripts[i].src ? newScript.src = scripts[i].src : newScript.innerHTML = scripts[i].innerHTML;
+                        d.head.appendChild(newScript);
+                    }
+                }else{
+                    obj.inner ? obj.inner.innerHTML = resolved.html() : obj.outer.outerHTML = resolved.html();
                 }
             }
         }
@@ -58,13 +62,8 @@
             var requests = {};
 
             typeof obj[x] === 'string' ? requests.data = obj[x] : resolved.data = obj[x];
+            typeof obj.html === 'string' ? requests.html = obj.html : resolved.html = obj.html;
             
-            if(obj.raw){
-                resolved.html = obj.raw;
-            }
-            if(obj.html){
-                requests.html = obj.html;
-            }
             injector(obj, x, requests, resolved);
             for (var req in requests){
                 ajax(requests, resolved, req, obj, x);
