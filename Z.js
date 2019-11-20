@@ -12,7 +12,7 @@
             return x[x.length-1];
         }
 
-        function injector(obj, requests, resolved){
+        function injector(obj, x, requests, resolved){
             if (resolved.data && resolved.html) {
                 Z[x] = requests.data ? JSON.parse(resolved.data) : resolved.data;
                 obj.inner ? obj.inner.innerHTML = resolved.html : obj.outer.outerHTML = resolved.html;
@@ -55,14 +55,14 @@
             }
 
             if(resolved.html && resolved.data){
-                injector(obj, requests, resolved);
+                injector(obj, x, requests, resolved);
             }else{
                 for (var req in requests){
                     var xhr = new XMLHttpRequest();
                     xhr.onreadystatechange = function() {
                         if (xhr.readyState == 4 && xhr.status == 200) {
                             resolved[req] = xhr.responseText;
-                            injector(obj, requests, resolved);
+                            injector(obj, x, requests, resolved);
                         }
                     };
                     xhr.open("GET", requests[req], true);
