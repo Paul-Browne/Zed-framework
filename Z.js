@@ -65,7 +65,7 @@
                             injector(obj, requests, resolved);
                         }
                     };
-                    xhr.open("GET", url, true);
+                    xhr.open("GET", requests[req], true);
                     xhr.send();
                 }
             }
