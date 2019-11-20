@@ -65,13 +65,9 @@
             if(obj.html){
                 requests.html = obj.html;
             }
-
-            if(resolved.html && resolved.data){
-                injector(obj, x, requests, resolved);
-            }else{
-                for (var req in requests){
-                    ajax(requests, resolved, req, obj, x)
-                }
+            injector(obj, x, requests, resolved);
+            for (var req in requests){
+                ajax(requests, resolved, req, obj, x);
             }
         }
     }
