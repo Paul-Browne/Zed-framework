@@ -5,14 +5,14 @@
     <script>
       console.time("loaded Z.min.js");
     </script>
-    <script src="https://unpkg.com/zedjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/zedjs"></script>
     <script>
       console.timeEnd("loaded Z.min.js");
     </script>
     <script id="head">
       console.time("components/head.html");
       Z.render({
-        html: "components/head.html",
+        html: "/components/head.html",
         outer: document.getElementById("head")
       });
     </script>
@@ -35,7 +35,7 @@
     <script>
       console.time("components/counter-total.html");
       Z.render({
-        html: "components/counter-total.html",
+        html: "/components/counter-total.html",
         inner: document.getElementById("output"),
         count: 0
       });

@@ -12,7 +12,7 @@
     <meta name="theme-color" content="#ffffff" />
     <meta
       name="description"
-      content="Zed.js is a templateless frontend micro framework whose sole purpose is to handle the rendering, updating and state management of your html components in only 855 bytes"
+      content="Zed.js is a templateless frontend micro framework whose sole purpose is to handle the rendering, updating and state management of your html components in only 928 bytes"
     />
     <title>Zed.js | micro framework</title>
     <link rel="stylesheet" href="css/prism.css" />
@@ -63,21 +63,21 @@
   </head>
 
   <body>
-    <img src="images/Zed.png" height="100" />
+    <img src="/images/Zed.png" height="100" />
     <h1>Zed.js</h1>
     <h3 class="center">
       Zed.js is a templateless frontend micro framework whose sole purpose is to
       handle the rendering, updating and state management of your html
-      components in only 855 bytes
+      components in only 928 bytes
     </h3>
     <pre
       class="language-html"
-    ><code class="wb-ba">&lt;script&gt;!function(e,f){if(!e.Z){e.Z={};var r={};function t(e){var n=Object.keys(e);return n[n.length-1]}Z.update=function(e){r[t(e)]&&r[t(e)](e)},Z.render=function(c,e){var s=t(c);s&&!e&&(r[s]=function(e){for(var n in e)c[n]=e[n];Z.render(c,!0)});var u={},n=c.html?[c.html]:[];"string"==typeof c[s]?n.push(c[s]):Z[s]=c[s],n.forEach(function(e,i){u[i]="";var o=new XMLHttpRequest;o.onreadystatechange=function(){if(4==o.readyState&&200==o.status){u[i]=o.responseText;var e=!0;for(var n in u)""==u[n]&&(e=!1);if(e){u[1]&&(Z[s]=JSON.parse(u[1])),c.inner?c.inner.innerHTML=u[0]:c.outer.outerHTML=u[0];for(var r=(new DOMParser).parseFromString(u[0],"text/html").querySelectorAll("SCRIPT"),t=0;t&lt;r.length;t++){var a=f.createElement("SCRIPT");r[t].src?a.src=r[t].src:a.innerHTML=r[t].innerHTML,f.head.appendChild(a)}}}},o.open("GET",e,!0),o.send()})}}}(window,document);&lt;/script&gt;</code></pre>
+    ><code class="wb-ba">&lt;script&gt;!function(e,i){if(!e.Z){e.Z={};var r={};function a(e,n){if("data"in e&&"html"in e)if(Z[n.key]=o(e.data)?JSON.parse(e.data):e.data,o(e.html)){n.inner?n.inner.innerHTML=e.html:n.outer.outerHTML=e.html;for(var t=(new DOMParser).parseFromString(e.html,"text/html").querySelectorAll("SCRIPT"),r=0;r&lt;t.length;r++){var a=i.createElement("SCRIPT");t[r].src?a.src=t[r].src:a.innerHTML=t[r].innerHTML,i.head.appendChild(a)}}else n.inner?n.inner.innerHTML=e.html():n.outer.outerHTML=e.html()}function o(e){return"string"==typeof e}Z.update=function(e){r[e.key]&&r[e.key](e)},Z.render=function(t,e){t.key&&!e&&(r[t.key]=function(e){for(var n in e)t[n]=e[n];Z.render(t,!0)});var n={};["data","html"].forEach(function(e){o(t[e])?function(e,n,t){var r=new XMLHttpRequest;r.onreadystatechange=function(){4==r.readyState&&200==r.status&&(e[t]=r.responseText,a(e,n))},r.open("GET",n[t],!0),r.send()}(n,t,e):n[e]=t[e]}),a(n,t)}}}(window,document);&lt;/script&gt;</code></pre>
     <p>or include from a cdn</p>
     <div>
       <pre
         class="language-html"
-      ><code>&lt;script src="https://unpkg.com/zedjs"&gt;&lt;/script&gt;</code></pre>
+      ><code>&lt;script src="https://cdn.jsdelivr.net/npm/zedjs"&gt;&lt;/script&gt;</code></pre>
     </div>
     <br />
     <a

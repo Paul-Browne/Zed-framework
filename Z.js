@@ -6,16 +6,11 @@
         w.Z = {};
         // PubSub store
         var topics = {};
-        // last key in object filter
-        function filt(obj) {
-            var x = Object.keys(obj);
-            return x[x.length-1];
-        }
 
-        function injector(obj, x, requests, resolved){
-            if (resolved.data && resolved.html) {
-                Z[x] = requests.data ? JSON.parse(resolved.data) : resolved.data;
-                if(requests.html){
+        function injector(resolved, obj){
+            if ('data' in resolved && 'html' in resolved) {
+                Z[obj.key] = isString(resolved.data) ? JSON.parse(resolved.data) : resolved.data;
+                if(isString(resolved.html)){
                     obj.inner ? obj.inner.innerHTML = resolved.html : obj.outer.outerHTML = resolved.html;
                     // inject nested scripts into the head.
                     var scripts = new DOMParser().parseFromString(resolved.html, 'text/html').querySelectorAll("SCRIPT");
@@ -30,44 +25,42 @@
             }
         }
 
-        function ajax(requests, resolved, req, obj, x){
+        function ajax(resolved, obj, method){
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
-                    resolved[req] = xhr.responseText;
-                    injector(obj, x, requests, resolved);
+                    resolved[method] = xhr.responseText;
+                    injector(resolved, obj);
                 }
             };
-            xhr.open("GET", requests[req], true);
+            xhr.open("GET", obj[method], true);
             xhr.send();
+        }
+
+        function isString(string){
+            return typeof string === "string";
         }
 
         // update method (simple PubSub publish)
         Z.update = function(obj) {
-            topics[filt(obj)] && topics[filt(obj)](obj);
+            topics[obj.key] && topics[obj.key](obj);
         }
         // render
         Z.render = function(obj, noSubscribe) {
-            var x = filt(obj);
-            if (x && !noSubscribe) {
-                topics[x] = function(data) {
-                    for (var key in data) {
-                        obj[key] = data[key];
+            if (obj.key && !noSubscribe) {
+                topics[obj.key] = function(data) {
+                    for (var k in data) {
+                        obj[k] = data[k];
                     }
                     Z.render(obj, true);
                 };
             }
             // async ajax
             var resolved = {};
-            var requests = {};
-
-            typeof obj[x] === 'string' ? requests.data = obj[x] : resolved.data = obj[x];
-            typeof obj.html === 'string' ? requests.html = obj.html : resolved.html = obj.html;
-            
-            injector(obj, x, requests, resolved);
-            for (var req in requests){
-                ajax(requests, resolved, req, obj, x);
-            }
+            ["data", "html"].forEach(function(el){
+                isString(obj[el]) ? ajax(resolved, obj, el) : resolved[el] = obj[el];    
+            })
+            injector(resolved, obj);
         }
     }
     // init    
