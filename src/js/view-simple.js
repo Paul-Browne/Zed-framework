@@ -26,7 +26,7 @@ document.getElementById("output-view").innerHTML = Z.view.name
         }
     </style>
     <div class="view">
-        <button onclick="Z.update({key:"view", data:{}})">close</button>
+        <button onclick='Z.update({key:"view", data:{}})''>close</button>
         <h3>${Z.view.name}</h3>
         <img src="images/${Z.view.image}" width="250">
         <p>${Z.view.price} €</p>
