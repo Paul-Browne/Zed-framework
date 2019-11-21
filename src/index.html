@@ -78,6 +78,9 @@
       <pre
         class="language-html"
       ><code>&lt;script src="https://cdn.jsdelivr.net/npm/zedjs"&gt;&lt;/script&gt;</code></pre>
+      <pre
+        class="language-html"
+      ><code>&lt;script src="https://unpkg.com/zedjs"&gt;&lt;/script&gt;</code></pre>
     </div>
     <br />
     <a
@@ -90,14 +93,32 @@
     >
     <br />
     <h3>Render</h3>
+
     <p>
-      The simplest <code>Z.render()</code> will just fetch an HTML component and
-      insert it into the "inner" element. You can also use "outer" to replace
-      that element.
+      The simplest <code>Z.render()</code> will just insert the contents on
+      <code>html:</code> into the <code>inner:</code> element.
     </p>
     <pre><code class="language-js">Z.render({
-	html: "path/to/component.html",
-	inner: document.getElementById("insert-here")
+    html: function(){
+        return "<h1>Hello world!</h1>";
+    },
+    inner: document.getElementById("insert-here")
+})</code></pre>
+
+    <p>
+      <code>Z.render()</code> can be used to fetch an HTML component and insert
+      it into the "inner" element.
+    </p>
+    <pre><code class="language-js">Z.render({
+    html: "path/to/component.html",
+    inner: document.getElementById("insert-here")
+})</code></pre>
+
+    <p>You can also use "outer" instead to replace that element.</p>
+
+    <pre><code class="language-js">Z.render({
+    html: "path/to/component.html",
+    outer: document.getElementById("insert-here")
 })</code></pre>
 
     <p>
@@ -107,10 +128,37 @@
     </p>
 
     <pre><code class="language-js">Z.render({
-	html: "path/to/component.html",
-	inner: document.getElementById("insert-here"),
-	foo: ["bar", "baz", "buff"]    // optional
-	foo: "path/to/data.json"	   // or as an external resource
+    key: "foo",    
+    html: "path/to/component.html",
+    inner: document.getElementById("insert-here"),
+    data: ["bar", "baz", "buff"]
+})</code></pre>
+
+    <p>
+      Again, you can use an external resource for the data.
+    </p>
+
+    <pre><code class="language-js">Z.render({
+    key: "foo",
+    html: "path/to/component.html",
+    inner: document.getElementById("insert-here"),
+    data: "path/to/data.json"
+})</code></pre>
+
+    <p>
+      Any <code>data:</code> is available before the render of the
+      <code>html:</code>
+    </p>
+
+    <pre><code class="language-js">Z.render({
+    key: "foo",
+    html: function(){
+        return Z.foo.map(function(item){
+            return "&lt;h1&gt;" + item + "&lt;/h1&gt;";
+        })
+    },
+    inner: document.getElementById("insert-here"),
+    data: "path/to/data.json"
 })</code></pre>
 
     <h3>Update</h3>
@@ -119,14 +167,16 @@
       re-render the component with the new <code>Z.foo</code> array
     </p>
     <pre><code class="language-js">Z.update({
-	foo: ["lorem", "ipsum", "dolor"]
+    key: "foo",
+    data: ["lorem", "ipsum", "dolor"]
 })</code></pre>
 
     <p>You can also re-render with a new HTML component, if you so wish</p>
 
     <pre><code class="language-js">Z.update({
-	html: "path/to/new-component.html",
-	foo: ["lorem", "ipsum", "dolor"]
+    key: "foo",
+    html: "path/to/new-component.html",
+    data: ["lorem", "ipsum", "dolor"]
 })</code></pre>
 
     <h3>Demos</h3>
@@ -144,14 +194,15 @@
 &lt;/head&gt;
 &lt;body&gt;
 	&lt;h1&gt;Counter Demo&lt;/h1&gt;
-    &lt;button onclick="Z.update({count: Z.count - 1})"&gt;-&lt;/button&gt;
+    &lt;button onclick='Z.update({key:"count", data: Z.count - 1})'&gt;-&lt;/button&gt;
     &lt;span id="output"&gt;&lt;/span&gt;
-    &lt;button onclick="Z.update({count: Z.count + 1})"&gt;+&lt;/button&gt;
+    &lt;button onclick='Z.update({key:"count", data: Z.count + 1})'&gt;+&lt;/button&gt;
     &lt;script&gt;
         Z.render({
+            key: "count",
             html: "components/counter-total.html",
             inner: document.getElementById("output"),
-            count: 0
+            data: 0
         })
     &lt;/script&gt;
 &lt;/body&gt;
@@ -180,9 +231,10 @@
     &lt;div id="todo-add"&gt;&lt;/div&gt;
     &lt;script&gt;
         Z.render({
+            key: "todos",
             html: "components/todo-list.html",
             inner: document.getElementById("todo-list"),
-            todos: []
+            data: []
         })
 
         Z.render({
@@ -201,7 +253,8 @@
     function removeItem(index) {
         Z.todos.splice(index, 1);
         Z.update({
-            todos: Z.todos
+            key: "todos",
+            data: Z.todos
         })
     }
 &lt;/script&gt;
@@ -210,14 +263,15 @@
 &lt;input id="task" type="text" placeholder="add task"&gt;
 &lt;button onclick="addItem()"&gt;Add&lt;/button&gt;
 &lt;script&gt;
-	function addItem() {
-		var task = document.getElementById("task");
-		Z.todos.push(task.value);
-		Z.update({
-			todos: Z.todos
-		})
-		task.value = "";
-	}
+    function addItem() {
+        var task = document.getElementById("task");
+        Z.todos.push(task.value);
+        Z.update({
+            key: "todos",
+            data: Z.todos
+        })
+        task.value = "";
+    }
 &lt;/script&gt;</code></pre>
 
     <h4>Shop Demo</h4>
