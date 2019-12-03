@@ -2,17 +2,10 @@
 <html>
   <head>
     <title>Zed.js | todo list demo</title>
-    <script>
-      console.time("loaded Z.min.js");
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/zedjs@2.0.0"></script>
-    <script>
-      console.timeEnd("loaded Z.min.js");
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/zedjs"></script>
     <script id="head">
-      console.time("components/head.html");
-      Z.render({
-        html: "components/head.html",
+      Z.mount({
+        render: "components/head.html",
         outer: document.getElementById("head")
       });
     </script>
@@ -26,25 +19,22 @@
     <br /><br /><br />
 
     <pre><code>
-Z.update({
-  key: "todos",
+Z.update("todos", {
   data: ["foo", "bar", "buzz"]
 })
     </code></pre>
     <p>paste the above into the console and see what happens</p>
 
     <script>
-      console.time("components/todo-list.html");
-      Z.render({
+      Z.mount({
         key: "todos",
-        html: "components/todo-list.html",
+        render: "components/todo-list.html",
         inner: document.getElementById("todo-list"),
         data: []
       });
 
-      console.time("components/todo-add.html");
-      Z.render({
-        html: "components/todo-add.html",
+      Z.mount({
+        render: "components/todo-add.html",
         outer: document.getElementById("todo-add")
       });
     </script>

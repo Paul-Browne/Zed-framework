@@ -1,0 +1,5 @@
+<!DOCTYPE html><html><head><title>Zed.js | todo list demo</title><script src="https://cdn.jsdelivr.net/npm/zedjs"></script><script id="head">Z.mount({render:"components/head.html",outer:document.getElementById("head")})</script></head><body><h1>Todo List Demo</h1><div id="todo-list"></div><div id="todo-add"></div><br><br><br><pre><code>
+Z.update("todos", {
+  data: ["foo", "bar", "buzz"]
+})
+    </code></pre><p>paste the above into the console and see what happens</p><script>Z.mount({key:"todos",render:"components/todo-list.html",inner:document.getElementById("todo-list"),data:[]}),Z.mount({render:"components/todo-add.html",outer:document.getElementById("todo-add")})</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-7"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-36765884-7")</script></body></html>

@@ -1,0 +1,1 @@
+<script id="list-container">function removeItem(t){Z.todos.splice(t,1),Z.update("todos",{data:Z.todos})}document.getElementById("list-container").outerHTML=Z.todos.map(function(t,o){return"<div><span>"+t+"</span><button onclick=removeItem("+o+");>remove</button></div>"}).join("")</script>

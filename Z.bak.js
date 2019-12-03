@@ -16,14 +16,14 @@
             topics[filt(obj)] && topics[filt(obj)](obj);
         }
         // render
-        Z.render = function(obj, noSubscribe) {
+        Z.mount = function(obj, noSubscribe) {
             var x = filt(obj);
             if (x && !noSubscribe) {
                 topics[x] = function(data) {
                     for (var key in data) {
                         obj[key] = data[key];
                     }
-                    Z.render(obj, true);
+                    Z.mount(obj, true);
                 };
             }
             // async ajax

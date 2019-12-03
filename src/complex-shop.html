@@ -29,8 +29,8 @@
     <div id="products"></div>
     <div id="view"></div>
     <!-- <script>
-    Z.render({
-        html: "components/spa-shop/basket.html",
+    Z.mount({
+        render: "components/spa-shop/basket.html",
         inner: document.getElementById("basket"),
         basket: {
             products: [],
@@ -46,13 +46,13 @@
             }
         }
     })
-    Z.render({
-        html: "components/spa-shop/products.html",
+    Z.mount({
+        render: "components/spa-shop/products.html",
         inner: document.getElementById("products"),
         products: "json/products.json"
     })
-    Z.render({
-        html: "components/spa-shop/view.html",
+    Z.mount({
+        render: "components/spa-shop/view.html",
         inner: document.getElementById("view"),
         view: {}
     })

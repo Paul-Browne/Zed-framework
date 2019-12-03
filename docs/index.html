@@ -1,53 +1,64 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"><link rel="manifest" href="site.webmanifest"><link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#2d89ef"><meta name="theme-color" content="#ffffff"><meta name="description" content="Zed.js is a templateless frontend micro framework whose sole purpose is to handle the rendering, updating and state management of your html components in only 928 bytes"><title>Zed.js | micro framework</title><link rel="stylesheet" href="css/prism.css"><style type="text/css">body{margin:10px auto;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";max-width:900px;padding:0 10px}img{margin:0 auto;display:block;animation-name:hue;animation-duration:36s}h1,h3.center{text-align:center;font-size:21px}.wb-ba{word-break:break-all!important;white-space:normal!important}.zed{padding:13px;border:1px dashed #000;border-radius:6px}@keyframes hue{from{filter:hue-rotate(0)}to{filter:hue-rotate(360deg)}}</style></head><body><img src="images/Zed.png" height="100"><h1>Zed.js</h1><h3 class="center">Zed.js is a templateless frontend micro framework whose sole purpose is to handle the rendering, updating and state management of your html components in only 928 bytes</h3><pre class="language-html"><code class="wb-ba">&lt;script>!function(e,i){if(!e.Z){e.Z={};var r={};function a(e,n){if("data"in e&&"html"in e)if(Z[n.key]=o(e.data)?JSON.parse(e.data):e.data,o(e.html)){n.inner?n.inner.innerHTML=e.html:n.outer.outerHTML=e.html;for(var t=(new DOMParser).parseFromString(e.html,"text/html").querySelectorAll("SCRIPT"),r=0;r&lt;t.length;r++){var a=i.createElement("SCRIPT");t[r].src?a.src=t[r].src:a.innerHTML=t[r].innerHTML,i.head.appendChild(a)}}else n.inner?n.inner.innerHTML=e.html():n.outer.outerHTML=e.html()}function o(e){return"string"==typeof e}Z.update=function(e){r[e.key]&&r[e.key](e)},Z.render=function(t,e){t.key&&!e&&(r[t.key]=function(e){for(var n in e)t[n]=e[n];Z.render(t,!0)});var n={};["data","html"].forEach(function(e){o(t[e])?function(e,n,t){var r=new XMLHttpRequest;r.onreadystatechange=function(){4==r.readyState&&200==r.status&&(e[t]=r.responseText,a(e,n))},r.open("GET",n[t],!0),r.send()}(n,t,e):n[e]=t[e]}),a(n,t)}}}(window,document);&lt;/script></code></pre><p>or include from a cdn</p><div><pre class="language-html"><code>&lt;script src="https://cdn.jsdelivr.net/npm/zedjs">&lt;/script></code></pre><pre class="language-html"><code>&lt;script src="https://unpkg.com/zedjs">&lt;/script></code></pre></div><br><a class="github-button" href="https://github.com/paul-browne/Zed-framework" data-icon="octicon-star" data-size="large" aria-label="Star paul-browne/Zed-framework on GitHub">Star on GitHub</a><br><h3>Render</h3><p>The simplest <code>Z.render()</code> will just insert the contents on <code>html:</code> into the <code>inner:</code> element.</p><pre><code class="language-js">Z.render({
-    html: function(){
-        return "<h1>Hello world!</h1>";
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"><link rel="manifest" href="site.webmanifest"><link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#2d89ef"><meta name="theme-color" content="#ffffff"><meta name="description" content="Zed.js is a templateless frontend micro framework whose sole purpose is to handle the rendering, updating and state management of your html components in only 1085 bytes"><title>Zed.js | micro framework</title><link rel="stylesheet" href="css/prism.css"><style type="text/css">body{margin:10px auto;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";max-width:900px;padding:0 10px}img{margin:0 auto;display:block;animation-name:hue;animation-duration:36s}.center{text-align:center}.wb-ba{word-break:break-all!important;white-space:normal!important}.zed{padding:13px;border:1px dashed #000;border-radius:6px}@keyframes hue{from{filter:hue-rotate(0)}to{filter:hue-rotate(360deg)}}</style></head><body><img src="images/Zed.png" height="100"><h1 class="center">Zed.js</h1><h3 class="center">Zed.js is a templateless frontend micro framework whose sole purpose is to handle the rendering, updating and state management of your html components in only 1085 bytes</h3><pre class="language-html"><code class="wb-ba">&lt;script>!function(e,o){if(!e.Z){var r={};function u(e,n){if("data"in e&&"render"in e){if(Z.previous[n.key]=Z[n.key],Z[n.key]=f(e.data)?JSON.parse(e.data):e.data,n.before&&n.before(),f(e.render)){n.inner?n.inner.innerHTML=e.render:n.outer.outerHTML=e.render;for(var r=(new DOMParser).parseFromString(e.render,"text/html").querySelectorAll("SCRIPT"),t=0;t&lt;r.length;t++){var a=o.createElement("SCRIPT");r[t].src?a.src=r[t].src:a.innerHTML=r[t].innerHTML,o.head.appendChild(a)}}else n.inner?n.inner.innerHTML=e.render():n.outer.outerHTML=e.render();n.after&&n.after()}}function f(e){return"string"==typeof e}e.Z={previous:{},update:function(e,n){r[e].f(n),r[e].l.forEach(function(e){e()})},mount:function(o,e){o.key&&!e&&(r[o.key]={l:[],f:function(e){for(var n in e)o[n]=e[n];Z.mount(o,!0)}});var i={};["data","render"].forEach(function(e){var n,r,t,a;f(o[e])?(n=i,r=o,t=e,(a=new XMLHttpRequest).onreadystatechange=function(){4==a.readyState&&200==a.status&&(n[t]=a.responseText,u(n,r))},a.open("GET",r[t],!0),a.send()):i[e]=o[e]}),u(i,o)},listen:function(e,n){r[e].l.push(n)}}}}(window,document);&lt;/script></code></pre><p>or include from a cdn</p><div><pre class="language-html"><code>&lt;script src="https://cdn.jsdelivr.net/npm/zedjs">&lt;/script></code></pre><pre class="language-html"><code>&lt;script src="https://unpkg.com/zedjs">&lt;/script></code></pre></div><br><a class="github-button" href="https://github.com/paul-browne/Zed-framework" data-icon="octicon-star" data-size="large" aria-label="Star paul-browne/Zed-framework on GitHub">Star on GitHub</a><br><h1>Mount</h1><pre><code class="language-js">Z.mount({
+    key: string, // optional, needed to update component and for data key, eg Z.string
+    inner: DOM node, // one of inner or outer needed
+    outer: DOM node, // one of inner or outer needed
+    before: function(), // optional, fired before the render
+    render: function() or string (path to resource), 
+    after: function(), // optional, fired after the render
+    data: JSON or string (path to resource) // optional, requires key
+})</code></pre><h2>render:</h2><p>The simplest <code>Z.mount()</code> will just insert the contents on <code>render:</code> into the <code>inner:</code> DOM element.</p><pre><code class="language-js">Z.mount({
+    render: function(){
+        return "&lt;h1>Hello world!&lt;/h1>";
     },
     inner: document.getElementById("insert-here")
-})</code></pre><p><code>Z.render()</code> can be used to fetch an HTML component and insert it into the "inner" element.</p><pre><code class="language-js">Z.render({
-    html: "path/to/component.html",
+})</code></pre><p>You can alternatively pass a string to <code>render:</code> which will be interpreted as a path to the HTML resource.</p><pre><code class="language-js">Z.mount({
+    render: "path/to/component.html",
     inner: document.getElementById("insert-here")
-})</code></pre><p>You can also use "outer" instead to replace that element.</p><pre><code class="language-js">Z.render({
-    html: "path/to/component.html",
-    outer: document.getElementById("insert-here")
-})</code></pre><p>You can also add some data to the render, in the following example the array <code>["bar", "baz", "buff"]</code> will be available globally as <code>Z.foo</code></p><pre><code class="language-js">Z.render({
-    key: "foo",    
-    html: "path/to/component.html",
+})</code></pre><h2>inner: and outer:</h2><p><code>inner:</code> and <code>outer:</code> are both DOM node references that are used as the entry point for the <code>render:</code></p><p>The only difference is that the <code>render:</code> will be placed inside the <code>inner:</code> DOM node, but will replace the <code>outer:</code> DOM node.</p><p>NOTE: when you use <code>outer:</code> it will not be possible to update that component.</p><h2>before: and after:</h2><p><code>before:</code> and <code>after:</code> are functions that will be executed before and after the <code>render:</code></p><pre><code class="language-js">Z.mount({
+    before: function(){
+      console.log("fires before the render");
+      return ...
+    },    
+    render: "path/to/component.html",
+    after: function(){
+      console.log("fires after the render");
+      return ...
+    },
+    inner: document.getElementById("insert-here")
+})</code></pre><h2>key:</h2><p>A <code>key:</code> is required if you are updating a component, or if you are associating some <code>data:</code> with that component.</p><h2>data:</h2><p>You can also add some <code>data:</code> to the <code>render:</code>, in the following example the array <code>["bar", "baz", "buff"]</code> will be available globally as <code>Z.foo</code> before the <code>render:</code></p><pre><code class="language-js">Z.mount({
+    key: "foo",
+    render: "path/to/component.html",
     inner: document.getElementById("insert-here"),
     data: ["bar", "baz", "buff"]
-})</code></pre><p>Again, you can use an external resource for the data.</p><pre><code class="language-js">Z.render({
+})</code></pre><p>Again, you can pass a string to <code>data:</code> to use an external resource for the data.</p><pre><code class="language-js">Z.mount({
     key: "foo",
-    html: "path/to/component.html",
+    render: "path/to/component.html",
     inner: document.getElementById("insert-here"),
     data: "path/to/data.json"
-})</code></pre><p>Any <code>data:</code> is available before the render of the <code>html:</code></p><pre><code class="language-js">Z.render({
-    key: "foo",
-    html: function(){
-        return Z.foo.map(function(item){
-            return "&lt;h1>" + item + "&lt;/h1>";
-        })
-    },
-    inner: document.getElementById("insert-here"),
-    data: "path/to/data.json"
-})</code></pre><h3>Update</h3><p>To update a component, with new data, simply do the following. This will re-render the component with the new <code>Z.foo</code> array</p><pre><code class="language-js">Z.update({
-    key: "foo",
+})</code></pre><h1>Update</h1><p>To update a component, with new data, simply do the following. This will re-render the component with the new <code>Z.foo</code> array.</p><pre><code class="language-js">Z.update("foo", {
     data: ["lorem", "ipsum", "dolor"]
-})</code></pre><p>You can also re-render with a new HTML component, if you so wish</p><pre><code class="language-js">Z.update({
-    key: "foo",
-    html: "path/to/new-component.html",
-    data: ["lorem", "ipsum", "dolor"]
-})</code></pre><h3>Demos</h3><h4>Counter Demo</h4><h5>view <a href="counter">live</a> version or <a href="https://glitch.com/edit/#!/zed-framework-counter" target="_blank">edit</a> on glitch</h5><pre><code class="language-html">&lt;!-- index.html -->
+})</code></pre><p>You can also re-render with a new HTML component, if you so wish.</p><pre><code class="language-js">Z.update("foo", {
+    render: "path/to/new-component.html"
+})</code></pre><p>and you could also pass new <code>before:</code> and/or <code>after:</code> functions.</p><pre><code class="language-js">Z.update("foo", {
+    before: null,
+    after: function(){
+      console.log("after");
+    }
+})</code></pre><p>and you could pass no methods which will just re-render that component.</p><pre><code class="language-js">Z.update("foo")</code></pre><h1>Listen</h1><p>You can <code>Z.listen()</code> to a key for when it's updated.</p><pre><code class="language-js">Z.listen("foo", function(){
+      console.log("foo updated!");
+})</code></pre><h1>Previous</h1><p>You can access the prevoius state of a method eg. <code>Z.previous.foo</code> would be the previous state of <code>Z.foo</code></p><h2>Demos</h2><h3>Counter Demo</h3><h5>view <a href="counter">live</a> version or <a href="https://glitch.com/edit/#!/zed-framework-counter" target="_blank">edit</a> on glitch</h5><pre><code class="language-html">&lt;!-- index.html -->
 &lt;head>
     &lt;script src="js/Z.min.js">&lt;/script>
 &lt;/head>
 &lt;body>
 	&lt;h1>Counter Demo&lt;/h1>
-    &lt;button onclick='Z.update({key:"count", data: Z.count - 1})'>-&lt;/button>
+    &lt;button onclick='Z.update("count", {data: Z.count - 1})'>-&lt;/button>
     &lt;span id="output">&lt;/span>
-    &lt;button onclick='Z.update({key:"count", data: Z.count + 1})'>+&lt;/button>
+    &lt;button onclick='Z.update("count", {data: Z.count + 1})'>+&lt;/button>
     &lt;script>
-        Z.render({
+        Z.mount({
             key: "count",
-            html: "components/counter-total.html",
+            render: "components/counter-total.html",
             inner: document.getElementById("output"),
             data: 0
         })
@@ -57,7 +68,7 @@
 &lt;!-- counter-total.html -->
 &lt;script id="total">
     document.getElementById("total").outerHTML = Z.count;
-&lt;/script></code></pre><h4>Todo List Demo</h4><h5>view <a href="todo">live</a> version or <a href="https://glitch.com/edit/#!/zed-framework-todo-list" target="_blank">edit</a> on glitch</h5><pre><code class="language-html">&lt;!-- index.html -->
+&lt;/script></code></pre><h3>Todo List Demo</h3><h5>view <a href="todo">live</a> version or <a href="https://glitch.com/edit/#!/zed-framework-todo-list" target="_blank">edit</a> on glitch</h5><pre><code class="language-html">&lt;!-- index.html -->
 &lt;head>
     &lt;script src="js/Z.min.js">&lt;/script>
 &lt;/head>
@@ -66,15 +77,15 @@
     &lt;div id="todo-list">&lt;/div>
     &lt;div id="todo-add">&lt;/div>
     &lt;script>
-        Z.render({
+        Z.mount({
             key: "todos",
-            html: "components/todo-list.html",
+            render: "components/todo-list.html",
             inner: document.getElementById("todo-list"),
             data: []
         })
 
-        Z.render({
-            html: "components/todo-add.html",
+        Z.mount({
+            render: "components/todo-add.html",
             outer: document.getElementById("todo-add")
         })
     &lt;/script>
@@ -88,8 +99,7 @@
 
     function removeItem(index) {
         Z.todos.splice(index, 1);
-        Z.update({
-            key: "todos",
+        Z.update("todos", {
             data: Z.todos
         })
     }
@@ -102,10 +112,9 @@
     function addItem() {
         var task = document.getElementById("task");
         Z.todos.push(task.value);
-        Z.update({
-            key: "todos",
+        Z.update("todos", {
             data: Z.todos
         })
         task.value = "";
     }
-&lt;/script></code></pre><h4>Shop Demo</h4><h5>view <a href="shop">live</a> version or <a href="https://glitch.com/edit/#!/zed-framework-shop" target="_blank">edit</a> on glitch</h5><p>This is a more full-featured demo, with the use of template literals and local storage.</p><br><br><script src="js/prism.js"></script><script async defer="defer" src="https://buttons.github.io/buttons.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-7"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-36765884-7")</script></body></html>
+&lt;/script></code></pre><h3>Shop Demo</h3><h5>view <a href="shop">live</a> version or <a href="https://glitch.com/edit/#!/zed-framework-shop" target="_blank">edit</a> on glitch</h5><p>This is a more full-featured demo, with the use of template literals and local storage.</p><br><br><script src="js/prism.js"></script><script async defer="defer" src="https://buttons.github.io/buttons.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-7"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-36765884-7")</script></body></html>

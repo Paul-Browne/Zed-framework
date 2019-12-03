@@ -12,12 +12,9 @@
     .join("");
 
   function removeItem(index) {
-    console.time("components/todo-list.html");
     Z.todos.splice(index, 1);
-    Z.update({
-      key: "todos",
+    Z.update("todos", {
       data: Z.todos
     });
   }
-  console.timeEnd("components/todo-list.html");
 </script>
