@@ -46,7 +46,7 @@
     }
 })</code></pre><p>and you could pass no methods which will just re-render that component.</p><pre><code class="language-js">Z.update("foo")</code></pre><h1>Listen</h1><p>You can <code>Z.listen()</code> to a key for when it's updated.</p><pre><code class="language-js">Z.listen("foo", function(){
       console.log("foo updated!");
-})</code></pre><h1>Previous</h1><p>You can access the prevoius state of a method eg. <code>Z.previous.foo</code> would be the previous state of <code>Z.foo</code></p><h2>Demos</h2><h3>Counter Demo</h3><h5>view <a href="counter">live</a> version or <a href="https://glitch.com/edit/#!/zed-framework-counter" target="_blank">edit</a> on glitch</h5><pre><code class="language-html">&lt;!-- index.html -->
+})</code></pre><h1>Previous</h1><p>You can access the prevoius state of a method eg. <code>Z.previous.foo</code> would be the previous state of <code>Z.foo</code></p><h2>Demos</h2><h3>Counter Demo</h3><h5>view <a href="demo/counter">live</a> version or <a href="https://glitch.com/edit/#!/zed-framework-counter" target="_blank">edit</a> on glitch</h5><pre><code class="language-html">&lt;!-- index.html -->
 &lt;head>
     &lt;script src="js/Z.min.js">&lt;/script>
 &lt;/head>
@@ -68,7 +68,7 @@
 &lt;!-- counter-total.html -->
 &lt;script id="total">
     document.getElementById("total").outerHTML = Z.count;
-&lt;/script></code></pre><h3>Todo List Demo</h3><h5>view <a href="todo">live</a> version or <a href="https://glitch.com/edit/#!/zed-framework-todo-list" target="_blank">edit</a> on glitch</h5><pre><code class="language-html">&lt;!-- index.html -->
+&lt;/script></code></pre><h3>Todo List Demo</h3><h5>view <a href="demo/todo">live</a> version or <a href="https://glitch.com/edit/#!/zed-framework-todo-list" target="_blank">edit</a> on glitch</h5><pre><code class="language-html">&lt;!-- index.html -->
 &lt;head>
     &lt;script src="js/Z.min.js">&lt;/script>
 &lt;/head>
@@ -117,4 +117,4 @@
         })
         task.value = "";
     }
-&lt;/script></code></pre><h3>Shop Demo</h3><h5>view <a href="shop">live</a> version or <a href="https://glitch.com/edit/#!/zed-framework-shop" target="_blank">edit</a> on glitch</h5><p>This is a more full-featured demo, with the use of template literals and local storage.</p><br><br><script src="js/prism.js"></script><script async defer="defer" src="https://buttons.github.io/buttons.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-7"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-36765884-7")</script></body></html>
+&lt;/script></code></pre><h3>Shop Demo</h3><h5>view <a href="demo/shop">live</a> version or <a href="https://glitch.com/edit/#!/zed-framework-shop" target="_blank">edit</a> on glitch</h5><p>This is a more full-featured demo, with the use of template literals and local storage.</p><br><br><script src="js/prism.js"></script><script async defer="defer" src="https://buttons.github.io/buttons.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-7"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-36765884-7")</script></body></html>
