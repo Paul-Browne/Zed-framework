@@ -28,7 +28,7 @@ document.getElementById("output-view").innerHTML = Z.view.name
     <div class="view">
         <button onclick='Z.update("view", {data:{}})'>close</button>
         <h3>${Z.view.name}</h3>
-        <img src="images/${Z.view.image}" width="250">
+        <img src="/Zed-framework/images/${Z.view.image}" width="250">
         <p>${Z.view.price} €</p>
         <button onclick="addToBasket(Z.view)">Add To Cart</button>
     </div>
