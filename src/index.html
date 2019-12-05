@@ -261,19 +261,17 @@
     &lt;span id="output"&gt;&lt;/span&gt;
     &lt;button onclick='Z.update("count", {data: Z.count + 1})'&gt;+&lt;/button&gt;
     &lt;script&gt;
-        Z.mount({
-            key: "count",
-            render: "components/counter-total.html",
-            inner: document.getElementById("output"),
-            data: 0
-        })
+      Z.mount({
+        key: "count",
+        render: function() {
+          return Z.count;
+        },
+        inner: document.getElementById("output"),
+        data: 0
+      })
     &lt;/script&gt;
-&lt;/body&gt;
+&lt;/body&gt;</code></pre>
 
-&lt;!-- counter-total.html --&gt;
-&lt;script id="total"&gt;
-    document.getElementById("total").outerHTML = Z.count;
-&lt;/script&gt;</code></pre>
     <h3>Todo List Demo</h3>
     <h5>
       view <a href="demo/todo">live</a> version or
@@ -293,47 +291,43 @@
     &lt;div id="todo-list"&gt;&lt;/div&gt;
     &lt;div id="todo-add"&gt;&lt;/div&gt;
     &lt;script&gt;
-        Z.mount({
-            key: "todos",
-            render: "components/todo-list.html",
-            inner: document.getElementById("todo-list"),
-            data: []
-        })
+      Z.mount({
+        key: "todos",
+        render: function() {
+          return Z.todos.map(function(todo, index) {
+            return `
+              &lt;div&gt;
+                &lt;span&gt;${todo}&lt;/span&gt;
+                &lt;button onclick="Z.todos.splice(${index}, 1); Z.update('todos', {data: Z.todos})"&gt;remove&lt;/button&gt;
+              &lt;/div&gt;
+            `;
+          }).join("");
+        },
+        inner: document.getElementById("todo-list"),
+        data: []
+      });
 
-        Z.mount({
-            render: "components/todo-add.html",
-            outer: document.getElementById("todo-add")
-        })
+      Z.mount({
+        render: function() {
+          return `
+            &lt;input id="task" type="text" placeholder="add task" /&gt;
+            &lt;button&gt;Add&lt;/button&gt;
+          `;
+        },
+        after: function() {
+          document.querySelector("#task + button").addEventListener("click", function() {
+            var task = document.getElementById("task");
+            Z.todos.push(task.value);
+            Z.update("todos", {
+              data: Z.todos
+            });
+            task.value = "";
+          });
+        },
+        outer: document.getElementById("todo-add")
+      });      
     &lt;/script&gt;
-&lt;/body&gt;
-
-&lt;!-- todo-list.html --&gt;
-&lt;script id="list-container"&gt;
-    document.getElementById("list-container").outerHTML = Z.todos.map(function(todo, index){
-        return "&lt;div&gt;&lt;span&gt;" + todo + "&lt;/span&gt;&lt;button onclick=removeItem(" + index + ");&gt;remove&lt;/button&gt;&lt;/div&gt;";
-    }).join("");
-
-    function removeItem(index) {
-        Z.todos.splice(index, 1);
-        Z.update("todos", {
-            data: Z.todos
-        })
-    }
-&lt;/script&gt;
-
-&lt;!-- todo-add.html --&gt;
-&lt;input id="task" type="text" placeholder="add task"&gt;
-&lt;button onclick="addItem()"&gt;Add&lt;/button&gt;
-&lt;script&gt;
-    function addItem() {
-        var task = document.getElementById("task");
-        Z.todos.push(task.value);
-        Z.update("todos", {
-            data: Z.todos
-        })
-        task.value = "";
-    }
-&lt;/script&gt;</code></pre>
+&lt;/body&gt;</code></pre>
 
     <h3>Shop Demo</h3>
     <h5>
@@ -343,10 +337,115 @@
       >
       on glitch
     </h5>
-    <p>
-      This is a more full-featured demo, with the use of template literals and
-      local storage.
-    </p>
+    <pre><code class="language-html">&lt;!-- index.html --&gt;
+    &lt;head&gt;
+        &lt;script src="js/Z.min.js"&gt;&lt;/script&gt;
+        &lt;link rel="stylesheet" type="text/css" href="css/shop.css" /&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id="basket"&gt;&lt;/div&gt;
+        &lt;div id="products"&gt;&lt;/div&gt;
+        &lt;div id="view"&gt;&lt;/div&gt;
+        &lt;script&gt;
+          Z.mount({
+            key: "basket",
+            render: function() {
+              var total = Z.basket.products.reduce(function(acc, current) {
+                return acc + current.quantity * current.price;
+              }, 0);
+
+              return Z.basket.products.length
+                ? Z.basket.products.map(function(product, index) {
+                  return `
+                    &lt;div&gt;
+                      &lt;span&gt;${
+                        product.name
+                      }&lt;/span&gt; &lt;span&gt;&lt;button onclick="Z.basket.adjustCart(${index}, -1)"&gt;-&lt;/button&gt; &lt;span&gt;${product.quantity}&lt;/span&gt; &lt;button onclick="Z.basket.adjustCart(${index}, 1)"&gt;+&lt;/button&gt;&lt;/span&gt; &lt;span&gt;${(product.price * product.quantity).toFixed(2)}&lt;/span&gt;
+                    &lt;/div&gt;`;
+                  }).join("") +
+                  `&lt;div&gt;
+                    &lt;span&gt;Total: ${total.toFixed(2)}&lt;/span&gt;
+                  &lt;/div&gt;`
+                : "";
+            },
+            inner: document.getElementById("basket"),
+            data: {
+              products: JSON.parse(localStorage.getItem("basket")) || [],
+              update: function() {
+                localStorage.setItem("basket", JSON.stringify(this.products));
+                Z.update("basket", {
+                  data: this
+                });
+              },
+
+              adjustCart: function(index, increment) {
+                Z.basket.products[index].quantity += increment;
+                if (!Z.basket.products[index].quantity) {
+                  Z.basket.products.splice(index, 1);
+                }
+                Z.basket.update();
+              },
+
+              addToBasket: function(item) {
+                var basketObj = {
+                  name: item.name,
+                  price: item.price
+                };
+
+                var found = false;
+                Z.basket.products.forEach(function(basketItem) {
+                  if (basketItem.name === basketObj.name) {
+                    found = true;
+                    basketItem.quantity = basketItem.quantity + 1;
+                  }
+                });
+                if (!found) {
+                  basketObj.quantity = 1;
+                  Z.basket.products.push(basketObj);
+                }
+                Z.basket.update();
+              }
+            }
+          });
+
+          Z.mount({
+            key: "products",
+            render: function() {
+              return Z.products
+                .map(function(product, index) {
+                  return `
+                  &lt;div class="product" onclick='Z.update("view", {data:Z.products[${index}]})'&gt;
+                    &lt;h2&gt;${product.name}&lt;/h2&gt;
+                    &lt;img src="images/${product.image}" width="200"&gt;
+                    &lt;span&gt;${product.price} €&lt;/span&gt;
+                  &lt;/div&gt;`;
+                }).join("");
+            },
+            inner: document.getElementById("products"),
+            data: "json/products.json"
+          });
+
+          Z.mount({
+            key: "view",
+            render: function() {
+              return Z.view.name
+                ? `
+                &lt;div class="view-modal"&gt;
+                  &lt;div class="view"&gt;
+                    &lt;button onclick='Z.update("view", {data:{}})'&gt;close&lt;/button&gt;
+                    &lt;h3&gt;${Z.view.name}&lt;/h3&gt;
+                    &lt;img src="images/${Z.view.image}" width="250"&gt;
+                    &lt;p&gt;${Z.view.price} €&lt;/p&gt;
+                    &lt;button onclick="Z.basket.addToBasket(Z.view)"&gt;Add To Cart&lt;/button&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;`
+                : "";
+            },
+            inner: document.getElementById("view"),
+            data: {}
+          });     
+        &lt;/script&gt;
+    &lt;/body&gt;</code></pre>
     <br /><br />
 
     <script src="js/prism.js"></script>

@@ -1,6 +1,10 @@
 Z.mount({
   key: "basket",
   render: function() {
+    var total = Z.basket.products.reduce(function(acc, current) {
+      return acc + current.quantity * current.price;
+    }, 0);
+
     return Z.basket.products.length
       ? Z.basket.products
           .map(function(product, index) {
@@ -14,26 +18,22 @@ Z.mount({
           })
           .join("") +
           `<div>
-            <span>Total: ${Z.basket.total.toFixed(2)}</span>
+            <span>Total: ${total.toFixed(2)}</span>
           </div>
           `
       : "";
   },
   inner: document.getElementById("basket"),
+  before: function() {},
   data: {
     products: JSON.parse(localStorage.getItem("basket")) || [],
-    total: JSON.parse(localStorage.getItem("total")) || 0,
     update: function() {
-      this.total = 0;
-      this.products.forEach(function(product) {
-        this.total += product.quantity * product.price;
-      }, this);
       localStorage.setItem("basket", JSON.stringify(this.products));
-      localStorage.setItem("total", JSON.stringify(this.total));
       Z.update("basket", {
         data: this
       });
     },
+
     adjustCart: function(index, increment) {
       Z.basket.products[index].quantity += increment;
       if (!Z.basket.products[index].quantity) {
@@ -41,6 +41,7 @@ Z.mount({
       }
       Z.basket.update();
     },
+
     addToBasket: function(item) {
       var basketObj = {
         name: item.name,
