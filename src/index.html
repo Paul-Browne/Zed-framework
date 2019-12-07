@@ -12,7 +12,7 @@
     <meta name="theme-color" content="#ffffff" />
     <meta
       name="description"
-      content="Zed.js is a templateless frontend micro framework whose sole purpose is to handle the rendering, updating and state management of your html components in only 1085 bytes"
+      content="Zed.js is a templateless micro frontend framework. It handles the rendering, updating and state management of your html components in only 1,085 bytes"
     />
     <title>Zed.js | micro framework</title>
     <link rel="stylesheet" href="css/prism.css" />
@@ -22,7 +22,7 @@
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
           Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
           "Segoe UI Symbol";
-        max-width: 900px;
+        max-width: 920px;
         padding: 0 10px;
       }
 
@@ -46,6 +46,15 @@
         border-radius: 6px;
       }
 
+      p code {
+        background: #333;
+        color: #fff;
+        font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+        border-radius: 4px;
+        padding: 0.05rem 0.3rem;
+        font-size: 13px;
+      }
+
       @keyframes hue {
         from {
           filter: hue-rotate(0deg);
@@ -63,9 +72,9 @@
     <img src="images/Zed.png" height="100" />
     <h1 class="center">Zed.js</h1>
     <h3 class="center">
-      Zed.js is a templateless frontend micro framework whose sole purpose is to
-      handle the rendering, updating and state management of your html
-      components in only 1085 bytes
+      Zed.js is a templateless micro frontend framework.<br />
+      It handles the rendering, updating and state management of your html
+      components in only 1,085 bytes
     </h3>
     <pre
       class="language-html"
@@ -92,19 +101,19 @@
     <h1>Mount</h1>
 
     <pre><code class="language-js">Z.mount({
-    key: string, // optional, needed to update component and for data key, eg Z.string
+    key: string, // optional, needed to update the component or if using data
     inner: DOM node, // one of inner or outer needed
     outer: DOM node, // one of inner or outer needed
     before: function(), // optional, fired before the render
-    render: function() or string (path to resource), 
+    render: function() or string "path/to/resource.html", 
     after: function(), // optional, fired after the render
-    data: JSON or string (path to resource) // optional, requires key
+    data: JSON or string "path/to/resource.json" // optional, requires key
 })</code></pre>
 
     <h2>render:</h2>
 
     <p>
-      The simplest <code>Z.mount()</code> will just insert the contents on
+      The simplest <code>Z.mount()</code> will insert the contents of
       <code>render:</code> into the <code>inner:</code> DOM element.
     </p>
     <pre><code class="language-js">Z.mount({
@@ -126,13 +135,13 @@
     <h2>inner: and outer:</h2>
 
     <p>
-      <code>inner:</code> and <code>outer:</code> are both DOM node references
-      that are used as the entry point for the <code>render:</code>
+      <code>inner:</code> and <code>outer:</code> are DOM node references that
+      are used as the entry point for the <code>render:</code>
     </p>
     <p>
-      The only difference is that the <code>render:</code> will be placed inside
-      the <code>inner:</code> DOM node, but will replace the
-      <code>outer:</code> DOM node.
+      The only difference is that the contents of <code>render:</code> will be
+      placed inside the <code>inner:</code> DOM node, but will entirely replace
+      the <code>outer:</code> DOM node.
     </p>
     <p>
       NOTE: when you use <code>outer:</code> it will not be possible to update
@@ -174,6 +183,10 @@
       <code>render:</code>
     </p>
 
+    <p>
+      <code>data:</code> is also available for the <code>before:</code> function
+    </p>
+
     <pre><code class="language-js">Z.mount({
     key: "foo",
     render: "path/to/component.html",
@@ -194,15 +207,32 @@
 })</code></pre>
 
     <h1>Update</h1>
+
+    <pre><code class="language-js">Z.update("key", {
+    before: function(), // update the "before" function
+    render: function() or string "path/to/resource.html", // update the render
+    after: function(), // update the "after" function
+    data: JSON or string "path/to/resource.json" // update the data
+})</code></pre>
+
     <p>
-      To update a component, with new data, simply do the following. This will
-      re-render the component with the new <code>Z.foo</code> array.
+      To update a component, with no new methods, simply do the following.
     </p>
+
+    <p></p>
+
+    <pre><code class="language-js">Z.update("foo")</code></pre>
+
+    <p>To update a component with new <code>data:</code></p>
+    <p>
+      This will re-render the component with the new <code>Z.foo</code> array.
+    </p>
+
     <pre><code class="language-js">Z.update("foo", {
     data: ["lorem", "ipsum", "dolor"]
 })</code></pre>
 
-    <p>You can also re-render with a new HTML component, if you so wish.</p>
+    <p>You can also re-render with a new HTML component.</p>
 
     <pre><code class="language-js">Z.update("foo", {
     render: "path/to/new-component.html"
@@ -220,15 +250,9 @@
     }
 })</code></pre>
 
-    <p>
-      and you could pass no methods which will just re-render that component.
-    </p>
-
-    <pre><code class="language-js">Z.update("foo")</code></pre>
-
     <h1>Listen</h1>
 
-    <p>You can <code>Z.listen()</code> to a key for when it's updated.</p>
+    <p>You can <code>Z.listen()</code> to a component for when it's updated.</p>
 
     <pre><code class="language-js">Z.listen("foo", function(){
       console.log("foo updated!");
@@ -244,15 +268,8 @@
 
     <h2>Demos</h2>
     <h3>Counter Demo</h3>
-    <h5>
-      view <a href="demo/counter">live</a> version or
-      <a href="https://glitch.com/edit/#!/zed-framework-counter" target="_blank"
-        >edit</a
-      >
-      on glitch
-    </h5>
-    <pre><code class="language-html">&lt;!-- index.html --&gt;
-&lt;head&gt;
+    <h4>view <a href="demos/counter">live</a> version</h4>
+    <pre><code class="language-html">&lt;head&gt;
     &lt;script src="js/Z.min.js"&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
@@ -273,17 +290,8 @@
 &lt;/body&gt;</code></pre>
 
     <h3>Todo List Demo</h3>
-    <h5>
-      view <a href="demo/todo">live</a> version or
-      <a
-        href="https://glitch.com/edit/#!/zed-framework-todo-list"
-        target="_blank"
-        >edit</a
-      >
-      on glitch
-    </h5>
-    <pre><code class="language-html">&lt;!-- index.html --&gt;
-&lt;head&gt;
+    <h4>view <a href="demos/todo">live</a> version</h4>
+    <pre><code class="language-html">&lt;head&gt;
     &lt;script src="js/Z.min.js"&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
@@ -330,122 +338,119 @@
 &lt;/body&gt;</code></pre>
 
     <h3>Shop Demo</h3>
-    <h5>
-      view <a href="demo/shop">live</a> version or
-      <a href="https://glitch.com/edit/#!/zed-framework-shop" target="_blank"
-        >edit</a
-      >
-      on glitch
-    </h5>
-    <pre><code class="language-html">&lt;!-- index.html --&gt;
-    &lt;head&gt;
-        &lt;script src="js/Z.min.js"&gt;&lt;/script&gt;
-        &lt;link rel="stylesheet" type="text/css" href="css/shop.css" /&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;div id="basket"&gt;&lt;/div&gt;
-        &lt;div id="products"&gt;&lt;/div&gt;
-        &lt;div id="view"&gt;&lt;/div&gt;
-        &lt;script&gt;
-          Z.mount({
-            key: "basket",
-            render: function() {
-              var total = Z.basket.products.reduce(function(acc, current) {
-                return acc + current.quantity * current.price;
-              }, 0);
+    <h4>view <a href="demos/shop">live</a> version</h4>
+    <pre><code class="language-html">&lt;head&gt;
+    &lt;script src="js/Z.min.js"&gt;&lt;/script&gt;
+    &lt;link rel="stylesheet" type="text/css" href="css/shop.css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id="basket"&gt;&lt;/div&gt;
+    &lt;div id="products"&gt;&lt;/div&gt;
+    &lt;div id="view"&gt;&lt;/div&gt;
+    &lt;script&gt;
 
-              return Z.basket.products.length
-                ? Z.basket.products.map(function(product, index) {
-                  return `
-                    &lt;div&gt;
-                      &lt;span&gt;${
-                        product.name
-                      }&lt;/span&gt; &lt;span&gt;&lt;button onclick="Z.basket.adjustCart(${index}, -1)"&gt;-&lt;/button&gt; &lt;span&gt;${product.quantity}&lt;/span&gt; &lt;button onclick="Z.basket.adjustCart(${index}, 1)"&gt;+&lt;/button&gt;&lt;/span&gt; &lt;span&gt;${(product.price * product.quantity).toFixed(2)}&lt;/span&gt;
-                    &lt;/div&gt;`;
-                  }).join("") +
-                  `&lt;div&gt;
-                    &lt;span&gt;Total: ${total.toFixed(2)}&lt;/span&gt;
-                  &lt;/div&gt;`
-                : "";
-            },
-            inner: document.getElementById("basket"),
-            data: {
-              products: JSON.parse(localStorage.getItem("basket")) || [],
-              update: function() {
-                localStorage.setItem("basket", JSON.stringify(this.products));
-                Z.update("basket", {
-                  data: this
-                });
-              },
+      // basket
+      Z.mount({
+        key: "basket",
+        render: function() {
+          var total = Z.basket.products.reduce(function(acc, current) {
+            return acc + current.quantity * current.price;
+          }, 0);
 
-              adjustCart: function(index, increment) {
-                Z.basket.products[index].quantity += increment;
-                if (!Z.basket.products[index].quantity) {
-                  Z.basket.products.splice(index, 1);
-                }
-                Z.basket.update();
-              },
+          return Z.basket.products.length
+            ? Z.basket.products.map(function(product, index) {
+              return `
+                &lt;div&gt;
+                  &lt;span&gt;${
+                    product.name
+                  }&lt;/span&gt; &lt;span&gt;&lt;button onclick="Z.basket.adjustCart(${index}, -1)"&gt;-&lt;/button&gt; &lt;span&gt;${product.quantity}&lt;/span&gt; &lt;button onclick="Z.basket.adjustCart(${index}, 1)"&gt;+&lt;/button&gt;&lt;/span&gt; &lt;span&gt;${(product.price * product.quantity).toFixed(2)}&lt;/span&gt;
+                &lt;/div&gt;`;
+              }).join("") +
+              `&lt;div&gt;
+                &lt;span&gt;Total: ${total.toFixed(2)}&lt;/span&gt;
+              &lt;/div&gt;`
+            : "";
+        },
+        inner: document.getElementById("basket"),
+        data: {
+          products: JSON.parse(localStorage.getItem("basket")) || [],
+          update: function() {
+            localStorage.setItem("basket", JSON.stringify(this.products));
+            Z.update("basket", {
+              data: this
+            });
+          },
 
-              addToBasket: function(item) {
-                var basketObj = {
-                  name: item.name,
-                  price: item.price
-                };
-
-                var found = false;
-                Z.basket.products.forEach(function(basketItem) {
-                  if (basketItem.name === basketObj.name) {
-                    found = true;
-                    basketItem.quantity = basketItem.quantity + 1;
-                  }
-                });
-                if (!found) {
-                  basketObj.quantity = 1;
-                  Z.basket.products.push(basketObj);
-                }
-                Z.basket.update();
-              }
+          adjustCart: function(index, increment) {
+            Z.basket.products[index].quantity += increment;
+            if (!Z.basket.products[index].quantity) {
+              Z.basket.products.splice(index, 1);
             }
-          });
+            Z.basket.update();
+          },
 
-          Z.mount({
-            key: "products",
-            render: function() {
-              return Z.products
-                .map(function(product, index) {
-                  return `
-                  &lt;div class="product" onclick='Z.update("view", {data:Z.products[${index}]})'&gt;
-                    &lt;h2&gt;${product.name}&lt;/h2&gt;
-                    &lt;img src="images/${product.image}" width="200"&gt;
-                    &lt;span&gt;${product.price} €&lt;/span&gt;
-                  &lt;/div&gt;`;
-                }).join("");
-            },
-            inner: document.getElementById("products"),
-            data: "json/products.json"
-          });
+          addToBasket: function(item) {
+            var basketObj = {
+              name: item.name,
+              price: item.price
+            };
 
-          Z.mount({
-            key: "view",
-            render: function() {
-              return Z.view.name
-                ? `
-                &lt;div class="view-modal"&gt;
-                  &lt;div class="view"&gt;
-                    &lt;button onclick='Z.update("view", {data:{}})'&gt;close&lt;/button&gt;
-                    &lt;h3&gt;${Z.view.name}&lt;/h3&gt;
-                    &lt;img src="images/${Z.view.image}" width="250"&gt;
-                    &lt;p&gt;${Z.view.price} €&lt;/p&gt;
-                    &lt;button onclick="Z.basket.addToBasket(Z.view)"&gt;Add To Cart&lt;/button&gt;
-                  &lt;/div&gt;
-                &lt;/div&gt;`
-                : "";
-            },
-            inner: document.getElementById("view"),
-            data: {}
-          });     
-        &lt;/script&gt;
-    &lt;/body&gt;</code></pre>
+            var cartContainsItem = Z.basket.products.some(function(element, index){
+              if(element.name === basketObj.name){
+                basketItem.quantity = basketItem.quantity + 1;
+                return true;
+              }
+            });
+
+            if (!cartContainsItem) {
+              basketObj.quantity = 1;
+              Z.basket.products.push(basketObj);
+            }
+            Z.basket.update();
+          }
+        }
+      });
+
+      // products grid
+      Z.mount({
+        key: "products",
+        render: function() {
+          return Z.products
+            .map(function(product, index) {
+              return `
+              &lt;div class="product" onclick='Z.update("view", {data:Z.products[${index}]})'&gt;
+                &lt;h2&gt;${product.name}&lt;/h2&gt;
+                &lt;img src="images/${product.image}" width="200"&gt;
+                &lt;span&gt;${product.price} €&lt;/span&gt;
+              &lt;/div&gt;`;
+            }).join("");
+        },
+        inner: document.getElementById("products"),
+        data: "json/products.json"
+      });
+
+      // product modal
+      Z.mount({
+        key: "view",
+        render: function() {
+          return Z.view.name
+            ? `
+            &lt;div class="view-modal"&gt;
+              &lt;div class="view"&gt;
+                &lt;button onclick='Z.update("view", {data:{}})'&gt;close&lt;/button&gt;
+                &lt;h3&gt;${Z.view.name}&lt;/h3&gt;
+                &lt;img src="images/${Z.view.image}" width="250"&gt;
+                &lt;p&gt;${Z.view.price} €&lt;/p&gt;
+                &lt;button onclick="Z.basket.addToBasket(Z.view)"&gt;Add To Cart&lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;`
+            : "";
+        },
+        inner: document.getElementById("view"),
+        data: {}
+      });     
+    &lt;/script&gt;
+&lt;/body&gt;</code></pre>
     <br /><br />
 
     <script src="js/prism.js"></script>

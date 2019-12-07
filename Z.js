@@ -1,5 +1,5 @@
 // IIFE
-!(function(w, d) {
+!function(w, d) {
   // check if Z is already loaded
   if (!w.Z) {
     // PubSub store
@@ -86,4 +86,4 @@
     };
   }
   // init
-})(window, document);
+}(window, document);

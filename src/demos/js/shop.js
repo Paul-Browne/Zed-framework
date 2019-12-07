@@ -48,14 +48,14 @@ Z.mount({
         price: item.price
       };
 
-      var found = false;
-      Z.basket.products.forEach(function(basketItem) {
-        if (basketItem.name === basketObj.name) {
-          found = true;
+      var cartContainsItem = Z.basket.products.some(function(element, index) {
+        if (element.name === basketObj.name) {
           basketItem.quantity = basketItem.quantity + 1;
+          return true;
         }
       });
-      if (!found) {
+
+      if (!cartContainsItem) {
         basketObj.quantity = 1;
         Z.basket.products.push(basketObj);
       }
