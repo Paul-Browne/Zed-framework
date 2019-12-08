@@ -123,105 +123,118 @@
     &lt;div id="view">&lt;/div>
     &lt;script>
 
-      // basket
-      Z.mount({
-        key: "basket",
-        render: function() {
-          var total = Z.basket.products.reduce(function(acc, current) {
-            return acc + current.quantity * current.price;
-          }, 0);
+    Z.mount({
+      key: "basket",
+      render: function() {
+        var total = Z.basket.products.reduce(function(acc, current) {
+          return acc + current.quantity * current.price;
+        }, 0);
 
-          return Z.basket.products.length
-            ? Z.basket.products.map(function(product, index) {
-              return `
-                &lt;div>
-                  &lt;span>${
-                    product.name
-                  }&lt;/span> &lt;span>&lt;button onclick="Z.basket.adjustCart(${index}, -1)">-&lt;/button> &lt;span>${product.quantity}&lt;/span> &lt;button onclick="Z.basket.adjustCart(${index}, 1)">+&lt;/button>&lt;/span> &lt;span>${(product.price * product.quantity).toFixed(2)}&lt;/span>
-                &lt;/div>`;
-              }).join("") +
+        return Z.basket.products.length
+          ? Z.basket.products
+              .map(function(product, index) {
+                return `
+                  &lt;div>
+                      &lt;span>${
+                        product.name
+                      }&lt;/span> &lt;span>&lt;button onclick="Z.basket.adjustCart(${index}, -1)">-&lt;/button> &lt;span>${product.quantity}&lt;/span> &lt;button onclick="Z.basket.adjustCart(${index}, 1)">+&lt;/button>&lt;/span> &lt;span>${(product.price * product.quantity).toFixed(2)}&lt;/span>
+                  &lt;/div>
+                `;
+              })
+              .join("") +
               `&lt;div>
                 &lt;span>Total: ${total.toFixed(2)}&lt;/span>
-              &lt;/div>`
-            : "";
+              &lt;/div>
+              `
+          : "";
+      },
+      inner: document.getElementById("basket"),
+      before: function() {},
+      data: {
+        products: JSON.parse(localStorage.getItem("basket")) || [],
+        update: function() {
+          localStorage.setItem("basket", JSON.stringify(this.products));
+          Z.update("basket", {
+            data: this
+          });
+          Z.update("view");
         },
-        inner: document.getElementById("basket"),
-        data: {
-          products: JSON.parse(localStorage.getItem("basket")) || [],
-          update: function() {
-            localStorage.setItem("basket", JSON.stringify(this.products));
-            Z.update("basket", {
-              data: this
-            });
-          },
 
-          adjustCart: function(index, increment) {
-            Z.basket.products[index].quantity += increment;
-            if (!Z.basket.products[index].quantity) {
-              Z.basket.products.splice(index, 1);
-            }
-            Z.basket.update();
-          },
-
-          addToBasket: function(item) {
-            var basketObj = {
-              name: item.name,
-              price: item.price
-            };
-
-            var cartContainsItem = Z.basket.products.some(function(element, index){
-              if(element.name === basketObj.name){
-                basketItem.quantity = basketItem.quantity + 1;
-                return true;
-              }
-            });
-
-            if (!cartContainsItem) {
-              basketObj.quantity = 1;
-              Z.basket.products.push(basketObj);
-            }
-            Z.basket.update();
+        adjustCart: function(index, increment) {
+          Z.basket.products[index].quantity += increment;
+          if (!Z.basket.products[index].quantity) {
+            Z.basket.products.splice(index, 1);
           }
-        }
-      });
+          Z.basket.update();
+        },
 
-      // products grid
-      Z.mount({
-        key: "products",
-        render: function() {
-          return Z.products
-            .map(function(product, index) {
-              return `
-              &lt;div class="product" onclick='Z.update("view", {data:Z.products[${index}]})'>
+        addToBasket: function(item) {
+          var basketObj = {
+            name: item.name,
+            price: item.price
+          };
+
+          var cartContainsItem = Z.basket.products.some(function(product, index) {
+            if (product.name === basketObj.name) {
+              product.quantity = product.quantity + 1;
+              return true;
+            }
+          });
+
+          if (!cartContainsItem) {
+            basketObj.quantity = 1;
+            Z.basket.products.push(basketObj);
+          }
+          Z.basket.update();
+        }
+      }
+    });
+
+    Z.mount({
+      key: "products",
+      render: function() {
+        return Z.products
+          .map(function(product, index) {
+            return `
+            &lt;div class="product" onclick='Z.update("view", {data:Z.products[${index}]})'>
                 &lt;h2>${product.name}&lt;/h2>
                 &lt;img src="images/${product.image}" width="200">
                 &lt;span>${product.price} €&lt;/span>
-              &lt;/div>`;
-            }).join("");
-        },
-        inner: document.getElementById("products"),
-        data: "json/products.json"
-      });
+            &lt;/div>
+          `;
+          })
+          .join("");
+      },
+      inner: document.getElementById("products"),
+      data: "json/products.json"
+    });
 
-      // product modal
-      Z.mount({
-        key: "view",
-        render: function() {
-          return Z.view.name
-            ? `
-            &lt;div class="view-modal">
-              &lt;div class="view">
+    Z.mount({
+      key: "view",
+      render: function() {
+        var btn = `&lt;button onclick="Z.basket.addToBasket(Z.view)">Add To Cart&lt;/button>`;
+        Z.basket.products.forEach(function(product, index) {
+          if (product.name === Z.view.name) {
+            btn = `&lt;button onclick="Z.basket.adjustCart(${index}, -1)">-&lt;/button> &lt;span>${product.quantity}&lt;/span> &lt;button onclick="Z.basket.adjustCart(${index}, 1)">+&lt;/button>`;
+          }
+        });
+        
+        return Z.view.name
+          ? `
+          &lt;div class="view-modal">
+            &lt;div class="view">
                 &lt;button onclick='Z.update("view", {data:{}})'>close&lt;/button>
                 &lt;h3>${Z.view.name}&lt;/h3>
                 &lt;img src="images/${Z.view.image}" width="250">
                 &lt;p>${Z.view.price} €&lt;/p>
-                &lt;button onclick="Z.basket.addToBasket(Z.view)">Add To Cart&lt;/button>
-              &lt;/div>
-            &lt;/div>`
-            : "";
-        },
-        inner: document.getElementById("view"),
-        data: {}
-      });     
+                ${btn}
+            &lt;/div>
+          &lt;/div>
+          `
+          : "";
+      },
+      inner: document.getElementById("view"),
+      data: {}
+    });    
     &lt;/script>
 &lt;/body></code></pre><br><br><script src="js/prism.js"></script><script async defer="defer" src="https://buttons.github.io/buttons.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-7"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-36765884-7")</script></body></html>
