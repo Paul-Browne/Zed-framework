@@ -32,7 +32,7 @@ Z.mount({
       Z.update("basket", {
         data: this
       });
-      Z.update("view");
+      Z.update("button");
     },
 
     adjustCart: function(index, increment) {
@@ -102,11 +102,28 @@ Z.mount({
             <h3>${Z.view.name}</h3>
             <img src="images/${Z.view.image}" width="250">
             <p>${Z.view.price} €</p>
-            ${btn}
+            <div id="button"></div>
         </div>
       </div>
       `
       : "";
+  },
+  after: function() {
+    if (Z.view.name) {
+      Z.mount({
+        key: "button",
+        render: function() {
+          var btn = `<button onclick="Z.basket.addToBasket(Z.view)">Add To Cart</button>`;
+          Z.basket.products.forEach(function(product, index) {
+            if (product.name === Z.view.name) {
+              btn = `<button onclick="Z.basket.adjustCart(${index}, -1)">-</button> <span>${product.quantity}</span> <button onclick="Z.basket.adjustCart(${index}, 1)">+</button>`;
+            }
+          });
+          return btn;
+        },
+        inner: document.getElementById("button")
+      });
+    }
   },
   inner: document.getElementById("view"),
   data: {}

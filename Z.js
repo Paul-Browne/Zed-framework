@@ -54,10 +54,12 @@
     w.Z = {
       previous: {},
       update: function(key, obj) {
-        topics[key].f(obj);
-        topics[key].l.forEach(function(fn) {
-          fn();
-        });
+        if(topics[key]){
+          topics[key].f(obj);
+          topics[key].l.forEach(function(fn) {
+            fn();
+          });
+        }
       },
       mount: function(obj, noSubscribe) {
         if (obj.key && !noSubscribe) {
