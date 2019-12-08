@@ -84,6 +84,10 @@ Z.mount({
   data: "json/products.json"
 });
 
+Z.listen("view", function() {
+  console.log(Z.previous.view === Z.view);
+});
+
 Z.mount({
   key: "view",
   render: function() {

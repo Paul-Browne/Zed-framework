@@ -83,7 +83,7 @@
         injector(resolved, obj);
       },
       listen: function(key, obj) {
-        topics[key].l.push(obj);
+        topics[key] && topics[key].l.push(obj);
       }
     };
   }

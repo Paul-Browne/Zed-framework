@@ -12,7 +12,7 @@
     <meta name="theme-color" content="#ffffff" />
     <meta
       name="description"
-      content="Zed.js is a templateless micro frontend framework. It handles the rendering, updating and state management of your html components in only 1,093 bytes"
+      content="Zed.js is a templateless micro frontend framework. It handles the rendering, updating and state management of your html components in only 1,099 bytes"
     />
     <title>Zed.js | micro framework</title>
     <link rel="stylesheet" href="css/prism.css" />
@@ -22,7 +22,7 @@
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
           Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
           "Segoe UI Symbol";
-        max-width: 860px;
+        max-width: 1016px;
         padding: 0 10px;
       }
 
@@ -74,11 +74,11 @@
     <h3 class="center">
       Zed.js is a templateless micro frontend framework.<br />
       It handles the rendering, updating and state management of your html
-      components in only 1,093 bytes
+      components in only 1,099 bytes
     </h3>
     <pre
       class="language-html"
-    ><code class="wb-ba">&lt;script&gt;!function(e,o){if(!e.Z){var r={};function u(e,n){if("data"in e&&"render"in e){if(Z.previous[n.key]=Z[n.key],Z[n.key]=f(e.data)?JSON.parse(e.data):e.data,n.before&&n.before(),f(e.render)){n.inner?n.inner.innerHTML=e.render:n.outer.outerHTML=e.render;for(var r=(new DOMParser).parseFromString(e.render,"text/html").querySelectorAll("SCRIPT"),t=0;t&lt;r.length;t++){var a=o.createElement("SCRIPT");r[t].src?a.src=r[t].src:a.innerHTML=r[t].innerHTML,o.head.appendChild(a)}}else n.inner?n.inner.innerHTML=e.render():n.outer.outerHTML=e.render();n.after&&n.after()}}function f(e){return"string"==typeof e}e.Z={previous:{},update:function(e,n){r[e]&&(r[e].f(n),r[e].l.forEach(function(e){e()}))},mount:function(o,e){o.key&&!e&&(r[o.key]={l:[],f:function(e){for(var n in e)o[n]=e[n];Z.mount(o,!0)}});var i={};["data","render"].forEach(function(e){var n,r,t,a;f(o[e])?(n=i,r=o,t=e,(a=new XMLHttpRequest).onreadystatechange=function(){4==a.readyState&&200==a.status&&(n[t]=a.responseText,u(n,r))},a.open("GET",r[t],!0),a.send()):i[e]=o[e]}),u(i,o)},listen:function(e,n){r[e].l.push(n)}}}}(window,document);&lt;/script&gt;</code></pre>
+    ><code class="wb-ba">&lt;script&gt;!function(e,o){if(!e.Z){var r={};function u(e,n){if("data"in e&&"render"in e){if(Z.previous[n.key]=Z[n.key],Z[n.key]=f(e.data)?JSON.parse(e.data):e.data,n.before&&n.before(),f(e.render)){n.inner?n.inner.innerHTML=e.render:n.outer.outerHTML=e.render;for(var r=(new DOMParser).parseFromString(e.render,"text/html").querySelectorAll("SCRIPT"),t=0;t&lt;r.length;t++){var a=o.createElement("SCRIPT");r[t].src?a.src=r[t].src:a.innerHTML=r[t].innerHTML,o.head.appendChild(a)}}else n.inner?n.inner.innerHTML=e.render():n.outer.outerHTML=e.render();n.after&&n.after()}}function f(e){return"string"==typeof e}e.Z={previous:{},update:function(e,n){r[e]&&(r[e].f(n),r[e].l.forEach(function(e){e()}))},mount:function(o,e){o.key&&!e&&(r[o.key]={l:[],f:function(e){for(var n in e)o[n]=e[n];Z.mount(o,!0)}});var i={};["data","render"].forEach(function(e){var n,r,t,a;f(o[e])?(n=i,r=o,t=e,(a=new XMLHttpRequest).onreadystatechange=function(){4==a.readyState&&200==a.status&&(n[t]=a.responseText,u(n,r))},a.open("GET",r[t],!0),a.send()):i[e]=o[e]}),u(i,o)},listen:function(e,n){r[e]&&r[e].l.push(n)}}}}(window,document);&lt;/script&gt;</code></pre>
     <p>or include from a cdn</p>
     <div>
       <pre
