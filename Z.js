@@ -7,7 +7,7 @@
 
     function injector(resolved, obj) {
       if ("data" in resolved && "render" in resolved) {
-        Z.previous[obj.key] = Z[obj.key];
+        Z.previous[obj.key] = JSON.parse(JSON.stringify(Z[obj.key]));
         Z[obj.key] = isString(resolved.data) ? JSON.parse(resolved.data) : resolved.data;
         obj.before && obj.before();
         if (isString(resolved.render)) {
