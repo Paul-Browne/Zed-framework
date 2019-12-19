@@ -10,13 +10,17 @@
         Z.previous[obj.key] = Z[obj.key];
         Z[obj.key] = isString(resolved.data) ? JSON.parse(resolved.data) : resolved.data;
         obj.before && obj.before();
+        var resolvedRender = resolved.render;
         if (isString(resolved.render)) {
-          obj.inner
-            ? (obj.inner.innerHTML = resolved.render)
-            : (obj.outer.outerHTML = resolved.render);
+          if(obj.inner){
+            obj.inner.innerHTML = resolvedRender;
+          }
+          if(obj.outer){
+            obj.outer.outerHTML = resolvedRender;
+          }
           // inject nested scripts into the head.
           var scripts = new DOMParser()
-            .parseFromString(resolved.render, "text/html")
+            .parseFromString(resolvedRender, "text/html")
             .querySelectorAll("SCRIPT");
           for (var i = 0; i < scripts.length; i++) {
             var newScript = d.createElement("SCRIPT");
@@ -26,9 +30,12 @@
             d.head.appendChild(newScript);
           }
         } else {
-          obj.inner
-            ? (obj.inner.innerHTML = resolved.render())
-            : (obj.outer.outerHTML = resolved.render());
+          if(obj.inner){
+            obj.inner.innerHTML = resolvedRender();
+          }
+          if(obj.outer){
+            obj.outer.outerHTML = resolvedRender();
+          }
         }
         obj.after && obj.after();
       }

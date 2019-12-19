@@ -23,7 +23,7 @@
             }
           };
         }
-        Z.previous[obj.key] = Z[obj.key] && JSON.parse(JSON.stringify(Z[obj.key]));
+        Z.previous[obj.key] = Z[obj.key];
         Z[obj.key] = obj.data;
         obj.before && obj.before();
         obj.inner ? obj.inner.innerHTML = obj.render() : obj.outer.outerHTML = obj.render();
