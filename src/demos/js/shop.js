@@ -24,7 +24,6 @@ Z.mount({
       : "";
   },
   inner: document.getElementById("basket"),
-  before: function() {},
   data: {
     products: JSON.parse(localStorage.getItem("basket")) || [],
     update: function() {
@@ -82,10 +81,6 @@ Z.mount({
   },
   inner: document.getElementById("products"),
   data: "json/products.json"
-});
-
-Z.listen("view", function() {
-  console.log(Z.previous.view === Z.view);
 });
 
 Z.mount({
