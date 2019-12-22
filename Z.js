@@ -7,7 +7,6 @@
 
     function injector(resolved, obj) {
       if ("data" in resolved && "render" in resolved) {
-        Z.previous[obj.key] = Z[obj.key];
         Z[obj.key] = isString(resolved.data) ? JSON.parse(resolved.data) : resolved.data;
         obj.before && obj.before();
         var resolvedRender = resolved.render;
@@ -59,7 +58,6 @@
 
     // object store
     w.Z = {
-      previous: {},
       update: function(key, obj) {
         if(topics[key]){
           topics[key].f(obj);
@@ -89,7 +87,7 @@
         });
         injector(resolved, obj);
       },
-      listen: function(key, obj) {
+      watch: function(key, obj) {
         topics[key] && topics[key].l.push(obj);
       }
     };

@@ -1,16 +1,7 @@
-!function(w, d) {
+!function(w) {
   if (!w.Z) {
     var topics = {};
     w.Z = {
-      previous: {},
-      update: function(key, obj) {
-        if(topics[key]){
-          topics[key].f(obj);
-          topics[key].l.forEach(function(fn) {
-            fn();
-          });
-        }
-      },
       mount: function(obj, noSubscribe) {
         if (obj.key && !noSubscribe) {
           topics[obj.key] = {
@@ -23,15 +14,27 @@
             }
           };
         }
-        Z.previous[obj.key] = Z[obj.key];
         Z[obj.key] = obj.data;
         obj.before && obj.before();
-        obj.inner ? obj.inner.innerHTML = obj.render() : obj.outer.outerHTML = obj.render();
+        if(obj.inner){
+          obj.inner.innerHTML = obj.render();
+        }
+        if(obj.outer){
+          obj.outer.outerHTML = obj.render();
+        }
         obj.after && obj.after();
       },
-      listen: function(key, obj) {
+      update: function(key, obj) {
+        if(topics[key]){
+          topics[key].f(obj);
+          topics[key].l.forEach(function(fn) {
+            fn();
+          });
+        }
+      },
+      watch: function(key, obj) {
         topics[key] && topics[key].l.push(obj);
       }
     };
   }
-}(window, document);
+}(window);

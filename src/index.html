@@ -78,7 +78,7 @@
     </h3>
     <pre
       class="language-html"
-    ><code class="wb-ba">&lt;script&gt;!function(e,i){if(!e.Z){var r={};function u(e,n){if("data"in e&&"render"in e){Z.previous[n.key]=Z[n.key],Z[n.key]=f(e.data)?JSON.parse(e.data):e.data,n.before&&n.before();var r=e.render;if(f(e.render)){n.inner&&(n.inner.innerHTML=r),n.outer&&(n.outer.outerHTML=r);for(var t=(new DOMParser).parseFromString(r,"text/html").querySelectorAll("SCRIPT"),a=0;a&lt;t.length;a++){var o=i.createElement("SCRIPT");t[a].src?o.src=t[a].src:o.innerHTML=t[a].innerHTML,i.head.appendChild(o)}}else n.inner&&(n.inner.innerHTML=r()),n.outer&&(n.outer.outerHTML=r());n.after&&n.after()}}function f(e){return"string"==typeof e}e.Z={previous:{},update:function(e,n){r[e]&&(r[e].f(n),r[e].l.forEach(function(e){e()}))},mount:function(o,e){o.key&&!e&&(r[o.key]={l:[],f:function(e){for(var n in e)o[n]=e[n];Z.mount(o,!0)}});var i={};["data","render"].forEach(function(e){var n,r,t,a;f(o[e])?(n=i,r=o,t=e,(a=new XMLHttpRequest).onreadystatechange=function(){4==a.readyState&&200==a.status&&(n[t]=a.responseText,u(n,r))},a.open("GET",r[t],!0),a.send()):i[e]=o[e]}),u(i,o)},listen:function(e,n){r[e]&&r[e].l.push(n)}}}}(window,document);&lt;/script&gt;</code></pre>
+    ><code class="wb-ba">&lt;script&gt;!function(e,i){if(!e.Z){var r={};function u(e,n){if("data"in e&&"render"in e){Z[n.key]=f(e.data)?JSON.parse(e.data):e.data,n.before&&n.before();var r=e.render;if(f(e.render)){n.inner&&(n.inner.innerHTML=r),n.outer&&(n.outer.outerHTML=r);for(var t=(new DOMParser).parseFromString(r,"text/html").querySelectorAll("SCRIPT"),a=0;a&lt;t.length;a++){var o=i.createElement("SCRIPT");t[a].src?o.src=t[a].src:o.innerHTML=t[a].innerHTML,i.head.appendChild(o)}}else n.inner&&(n.inner.innerHTML=r()),n.outer&&(n.outer.outerHTML=r());n.after&&n.after()}}function f(e){return"string"==typeof e}e.Z={update:function(e,n){r[e]&&(r[e].f(n),r[e].l.forEach(function(e){e()}))},mount:function(o,e){o.key&&!e&&(r[o.key]={l:[],f:function(e){for(var n in e)o[n]=e[n];Z.mount(o,!0)}});var i={};["data","render"].forEach(function(e){var n,r,t,a;f(o[e])?(n=i,r=o,t=e,(a=new XMLHttpRequest).onreadystatechange=function(){4==a.readyState&&200==a.status&&(n[t]=a.responseText,u(n,r))},a.open("GET",r[t],!0),a.send()):i[e]=o[e]}),u(i,o)},watch:function(e,n){r[e]&&r[e].l.push(n)}}}}(window,document);&lt;/script&gt;</code></pre>
     <p>or include from a cdn</p>
     <div>
       <pre
@@ -262,21 +262,13 @@
     }
 })</code></pre>
 
-    <h1>Listen</h1>
+    <h1>Watch</h1>
 
-    <p>You can <code>Z.listen()</code> to a component for when it's updated.</p>
+    <p>You can <code>Z.watch()</code> to a component for when it's updated.</p>
 
-    <pre><code class="language-js">Z.listen("foo", function(){
+    <pre><code class="language-js">Z.watch("foo", function(){
       console.log("foo updated!");
 })</code></pre>
-
-    <h1>Previous</h1>
-
-    <p>
-      You can access the prevoius state of a method eg.
-      <code>Z.previous.foo</code> would be the previous state of
-      <code>Z.foo</code>
-    </p>
 
     <h2>Demos</h2>
     <h3>Counter Demo</h3>
