@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#1d92d6" />
+    <meta name="apple-mobile-web-app-title" content="Zed.js" />
+    <meta name="application-name" content="Zed.js" />
+    <meta name="msapplication-TileColor" content="#1d92d6" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta
+      name="description"
+      content="Zed.js is a templateless micro frontend framework. It handles the rendering, updating and state management of your html components in only 1Kb"
+    />
+    <title>Zed.js • Micro framework</title>
+    <link rel="stylesheet" href="css/prism.css" />
+    <link rel="stylesheet" href="css/inter.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i|Overpass:100,100i,200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      !(function(w, d) {
+        if (!w.Z) {
+          var topics = {};
+          w.Z = {
+            load: function(arr, callback) {
+              var arrResolved = [];
+              arr.forEach(function(obj, index) {
+                arrResolved[index] = null;
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                  if (xhr.readyState == 4) {
+                    arrResolved[index] =
+                      xhr.status == (obj.status || 200)
+                        ? obj.callback
+                          ? obj.callback(xhr.responseText)
+                          : xhr.responseText
+                        : undefined;
+                    Z.load[obj.key] = arrResolved[index];
+                    if (!~arrResolved.indexOf(null)) {
+                      callback(arrResolved);
+                    }
+                  }
+                };
+                xhr.open(obj.method || "GET", obj.url, true);
+                for (var key in obj.headers) {
+                  xhr.setRequestHeader(key, obj.headers[key]);
+                }
+                xhr.send(obj.body);
+              });
+            },
+            update: function(key, obj) {
+              if (topics[key]) {
+                topics[key].f(obj);
+                topics[key].l.forEach(function(fn) {
+                  fn();
+                });
+              }
+            },
+            mount: function(obj, noSubscribe) {
+              if (obj.key && !noSubscribe) {
+                topics[obj.key] = {
+                  l: [],
+                  f: function(data) {
+                    for (var k in data) {
+                      obj[k] = data[k];
+                    }
+                    Z.mount(obj, true);
+                  }
+                };
+              }
+              if ((obj.pre && obj.pre()) != false) {
+                var inner = obj.inner;
+                var outer = obj.outer;
+                var state = obj.state;
+                var before = obj.before;
+                var after = obj.after;
+                var o = {
+                  state: state,
+                  prev: Z[obj.key]
+                };
+                if ((before && before(o.state, o.prev)) != false) {
+                  var x = obj.render(o.state, o.prev);
+                  if (inner) {
+                    inner.innerHTML = x;
+                  }
+                  if (outer) {
+                    outer.outerHTML = x;
+                  }
+                  after && after(o.state, o.prev);
+                }
+                Z[obj.key] = state;
+              }
+            },
+            watch: function(key, obj) {
+              topics[key] && topics[key].l.push(obj);
+            }
+          };
+        }
+      })(window, document);
+    </script>
+  </head>
+  <body>
+    <div id="welcome"></div>
+    <script>
+      Z.load(
+        [
+          {
+            key: "batman",
+            url: "demos/json/sample.json",
+            callback: function(data) {
+              return JSON.parse(data);
+            }
+          },
+          {
+            key: "robin",
+            url: "demos/json/products.json",
+            callback: function(data) {
+              return JSON.parse(data);
+            }
+          }
+        ],
+        function() {
+          Z.mount({
+            key: "greeting",
+            state: {
+              batman: Z.load.batman,
+              robin: Z.load.robin
+            },
+            render: function(Q) {
+              return `<h1>hello ${Q.state.batman.name} you are ${Q.state.robin[2].name}</h1>`;
+            },
+            inner: document.getElementById("welcome")
+          });
+        }
+      );
+    </script>
+  </body>
+</html>

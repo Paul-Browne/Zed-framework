@@ -1,0 +1,1 @@
+"use strict";"<h1>".concat(state.name," is ").concat(state.age," years old!</h1>");

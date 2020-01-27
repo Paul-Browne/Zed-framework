@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#1d92d6" />
+    <meta name="apple-mobile-web-app-title" content="Zed.js" />
+    <meta name="application-name" content="Zed.js" />
+    <meta name="msapplication-TileColor" content="#1d92d6" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta
+      name="description"
+      content="Zed.js is a templateless micro frontend framework. It handles the rendering, updating and state management of your html components in only 1Kb"
+    />
+    <title>Zed.js • Micro framework</title>
+    <link rel="stylesheet" href="css/prism.css" />
+    <link rel="stylesheet" href="css/inter.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i|Overpass:100,100i,200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://ajaxorg.github.io/ace-builds/src-min-noconflict/ace.js"></script>
+    <style type="text/css">
+      *,
+      *:before,
+      *:after {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Overpass, sans-serif;
+      }
+      img {
+        vertical-align: middle;
+      }
+    </style>
+    <style>
+      .header-background {
+        position: absolute;
+        z-index: -1;
+        top: -150px;
+        width: 100%;
+        height: 430px;
+        transform: skewY(10deg);
+        background-color: #1d92d6;
+      }
+      h1,
+      h2 {
+        margin: 0;
+        color: #fff;
+      }
+      h1 {
+        font-size: 101px;
+        line-height: 80px;
+        font-weight: 800;
+      }
+      h2 {
+        font-size: 25px;
+        line-height: 25px;
+        font-weight: 600;
+        margin: 27px 0 27px 0;
+      }
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 620px;
+        margin: 60px auto 0;
+      }
+      button.btn-hero {
+        outline: 0;
+        color: #1d92d6;
+        cursor: pointer;
+        font-size: 18px;
+        padding: 0 1.3em;
+        vertical-align: middle;
+        display: inline-block;
+        line-height: 50px;
+        background: #fff;
+        border: 5px solid #1d92d6;
+        border-radius: 9em;
+        text-transform: uppercase;
+        font-weight: 800;
+      }
+      button.run {
+        outline: 0;
+        border: 0;
+        color: #fff;
+        cursor: pointer;
+        font-size: 14px;
+        padding: 0 1em;
+        background: #1d92d6;
+        text-transform: uppercase;
+        font-weight: 800;
+        border-radius: 4em;
+      }
+      nav {
+        background: #1775ab;
+        height: 40px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        /*box-shadow: 0 -0.4rem 0.9rem 0.2rem rgba(0, 0, 0, 0.5);*/
+      }
+    </style>
+    <style>
+      pre {
+        margin: 0;
+      }
+      .desc {
+        width: 350px;
+        padding: 10px;
+      }
+      .desc h2 {
+        color: #333;
+        margin-top: 0;
+        margin-bottom: 1rem;
+      }
+      .simple .html {
+        width: 560px;
+        height: 180px;
+        border-bottom-left-radius: 1rem;
+      }
+      .simple .output {
+        width: 280px;
+        height: 180px;
+      }
+
+      .comp-with-data .html {
+        width: 560px;
+        height: 280px;
+        border-bottom-left-radius: 1rem;
+      }
+      .comp-with-data .output {
+        width: 280px;
+        height: 280px;
+      }
+
+      .simple-update .html {
+        width: 560px;
+        height: 320px;
+        border-bottom-left-radius: 1rem;
+      }
+      .simple-update .output {
+        width: 280px;
+        height: 320px;
+      }
+
+      .render-update .html {
+        width: 560px;
+        height: 540px;
+        border-bottom-left-radius: 1rem;
+      }
+      .render-update .output {
+        width: 280px;
+        height: 540px;
+      }
+
+      .external-data .html {
+        width: 560px;
+        height: 540px;
+        border-bottom-left-radius: 1rem;
+      }
+      .external-data .output {
+        width: 280px;
+        height: 540px;
+      }
+
+      .watching .html {
+        width: 560px;
+        height: 340px;
+        border-bottom-left-radius: 1rem;
+      }
+      .watching .output {
+        width: 280px;
+        height: 340px;
+      }
+
+      .before-after .html {
+        width: 560px;
+        height: 340px;
+        border-bottom-left-radius: 1rem;
+      }
+      .before-after .output {
+        width: 280px;
+        height: 340px;
+      }
+
+      .counter-demo .html {
+        width: 560px;
+        height: 380px;
+        border-bottom-left-radius: 1rem;
+      }
+      .counter-demo .output {
+        width: 280px;
+        height: 380px;
+      }
+
+      .todo-demo .html {
+        width: 560px;
+        height: 500px;
+        border-bottom-left-radius: 1rem;
+      }
+      .todo-demo .output {
+        width: 280px;
+        height: 500px;
+      }
+      main {
+        display: flex;
+        justify-content: center;
+        margin: 4rem 0;
+      }
+      iframe {
+        display: block;
+        background-color: transparent;
+        border: 0;
+        overflow: hidden;
+        padding: 0;
+        margin: 0;
+        border-right: 1px solid #ececec;
+        border-bottom: 1px solid #ececec;
+        border-bottom-right-radius: 1rem;
+      }
+      .input-container .label {
+        margin: 0;
+        padding: 0.5rem 1rem;
+        color: #a0a0a0;
+        background: rgb(48, 49, 41);
+        border-top-left-radius: 1rem;
+      }
+      .result-container .label {
+        display: flex;
+        justify-content: space-between;
+        margin: 0;
+        padding: 0.5rem 1rem;
+        color: #6d6d6d;
+        background: #ececec;
+        border-top-right-radius: 1rem;
+      }
+      .ace-monokai .ace_indent-guide {
+        background: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!--     <nav>
+      <img src="images/logo-white.svg" height="35px" />
+      <span>Zed.js</span>
+      <span>Getting Started</span>
+    </nav> -->
+    <div class="header-background"></div>
+    <div class="header">
+      <img src="images/logo-white-blue-border.svg" height="240px" />
+      <div>
+        <h1 class="zed">ZED.JS</h1>
+        <h2>1kb micro frontend framework</h2>
+        <button class="btn-hero">Get started</button>
+      </div>
+    </div>
+
+    <main class="simple">
+      <div class="desc">
+        <h2>The Simplest Component</h2>
+        <p>
+          This simple component will mount the returned html of the render
+          function, replacing the DOM element of the "outer", in this example,
+          the script element itself.
+        </p>
+      </div>
+      <div class="input-container">
+        <p class="label">HTML</p>
+        <pre id="html-simple" class="html">
+&lt;script id="welcome"&gt;
+  Z.mount({
+    render: function() {
+      return "&lt;h1&gt;Hello world!&lt;/h1&gt;";
+    },
+    outer: document.getElementById("welcome")
+  });
+&lt;/script&gt;
+</pre
+        >
+      </div>
+      <div class="result-container">
+        <div class="label">
+          <span>RESULT</span>
+          <button id="run-simple" class="run">run</button>
+        </div>
+        <iframe id="output-simple" class="output"></iframe>
+      </div>
+    </main>
+
+    <main class="comp-with-data">
+      <div class="desc">
+        <h2>Component with State</h2>
+        <p>
+          You can also add "state" to be used in the render of a component.
+        </p>
+        <p>
+          The state will be available globally after the component is mounted
+          using the key. eg. Z.greeting will be {name: "Paul"}
+        </p>
+      </div>
+      <div class="input-container">
+        <p class="label">HTML</p>
+        <pre id="html-comp-with-data" class="html">
+&lt;div id="welcome"&gt;&lt;/div&gt;
+&lt;script&gt;
+  Z.mount({
+    key: "greeting",
+    render: function(state) {
+      return `&lt;h1&gt;Hello ${state.name}!&lt;/h1&gt;`
+    },
+    inner: document.getElementById("welcome"),
+    state: {
+      name: "Paul"
+    }
+  });
+&lt;/script&gt;
+</pre
+        >
+      </div>
+      <div class="result-container">
+        <div class="label">
+          <span>RESULT</span>
+          <button id="run-comp-with-data" class="run">run</button>
+        </div>
+        <iframe id="output-comp-with-data" class="output"></iframe>
+      </div>
+    </main>
+
+    <main class="simple-update">
+      <div class="desc">
+        <h2>Updating Components</h2>
+        <p>
+          Components can be updated by passing the key name, and an object with
+          what is to be updated. This will then re-render that component.
+        </p>
+      </div>
+      <div class="input-container">
+        <p class="label">HTML</p>
+        <pre id="html-simple-update" class="html">
+&lt;div id="welcome"&gt;&lt;/div&gt;
+&lt;button onclick='Z.update("foo", {state: {name:"Tina", age:24} })'&gt;Update!&lt;/button&gt;
+&lt;script&gt;
+  Z.mount({
+    key: "foo",
+    render: function(state) {
+      return `&lt;h1&gt;${state.name} is ${state.age} years old!&lt;/h1&gt;`;
+    },
+    inner: document.getElementById("welcome"),
+    state: {
+      name: "Robert",
+      age: 48
+    }
+  });
+&lt;/script&gt;
+</pre
+        >
+      </div>
+      <div class="result-container">
+        <div class="label">
+          <span>RESULT</span>
+          <button id="run-simple-update" class="run">run</button>
+        </div>
+        <iframe id="output-simple-update" class="output"></iframe>
+      </div>
+    </main>
+
+    <main class="render-update">
+      <div class="desc">
+        <h2>Updating Components cont.</h2>
+        <p>
+          You are not just limited to updating state. It is also possible to
+          update the render function as well.
+        </p>
+        <p>
+          NOTE: Only components mounted using "inner" can be updated, since
+          mounting using "outer" will replace the original DOM element used for
+          mounting.
+        </p>
+      </div>
+      <div class="input-container">
+        <p class="label">HTML</p>
+        <pre id="html-render-update" class="html">
+&lt;div id="welcome"&gt;&lt;/div&gt;
+&lt;button id="update"&gt;Update!&lt;/button&gt;
+&lt;script&gt;
+  Z.mount({
+    key: "foo",
+    render: function(state) {
+      return `&lt;h1&gt;${state.name} is ${state.age} years old!&lt;/h1&gt;`;
+    },
+    inner: document.getElementById("welcome"),
+    state: {
+      name: "Thomas", 
+      age: 19
+    }
+  });
+  document.getElementById("update").addEventListener("click", function(){
+    Z.update("foo", {
+      render: function(state){
+        return `&lt;h1&gt;${state.age} years old ${state.name} is!&lt;/h1&gt;`;
+      },
+      state: {
+        name: "Luke", 
+        age: 31
+      }
+    });
+  })
+&lt;/script&gt;
+</pre
+        >
+      </div>
+      <div class="result-container">
+        <div class="label">
+          <span>RESULT</span>
+          <button id="run-render-update" class="run">run</button>
+        </div>
+        <iframe id="output-render-update" class="output"></iframe>
+      </div>
+    </main>
+
+    <main class="external-data">
+      <div class="desc">
+        <h2>Loading External Data</h2>
+        <p>You can also load data eg. a JSON before mounting a component.</p>
+        <p>
+          The Z.load function takes an array of objects as the resources to be
+          loaded, and a callback function fired when all the resources are
+          fetched.
+        </p>
+        <p>
+          Resources are available globally as, in this example Z.load.robert
+        </p>
+      </div>
+      <div class="input-container">
+        <p class="label">HTML</p>
+        <pre id="html-external-data" class="html">
+&lt;div id="welcome"&gt;&lt;/div&gt;
+&lt;script&gt;
+  Z.load(
+    [
+      {
+        key: "robert",
+        url: "demos/json/robert.json",
+        callback: function(data) {
+          return JSON.parse(data);
+        }
+      }
+    ],
+    function() {
+      Z.mount({
+        key: "foo",
+        render: function(state) {
+          return `&lt;h1&gt;${state.name} is ${state.age} years old!&lt;/h1&gt;`;
+        },
+        inner: document.getElementById("welcome"),
+        state: Z.load.robert
+      });
+    }
+  ) 
+&lt;/script&gt;
+</pre
+        >
+      </div>
+      <div class="result-container">
+        <div class="label">
+          <span>RESULT</span>
+          <button id="run-external-data" class="run">run</button>
+        </div>
+        <iframe id="output-external-data" class="output"></iframe>
+      </div>
+    </main>
+
+    <main class="watching">
+      <div class="desc">
+        <h2>Watching Components</h2>
+        <p>
+          It is also possible to watch for when components are updated.
+        </p>
+        <p>
+          NOTE: Z.watch must be declared after the component with that key has
+          been mounted.
+        </p>
+      </div>
+      <div class="input-container">
+        <p class="label">HTML</p>
+        <pre id="html-watching" class="html">
+&lt;div id="welcome"&gt;&lt;/div&gt;
+&lt;button onclick='Z.update("foo", {state: {name:"Luke", age:30} })'&gt;Update!&lt;/button&gt;
+&lt;script&gt;
+  Z.mount({
+    key: "foo",
+    render: function(state) {
+      return `&lt;h1&gt;${state.name} is ${state.age} years old!&lt;/h1&gt;`;
+    },
+    inner: document.getElementById("welcome"),
+    state: {name: "Paul", age: 35}
+  });
+
+  Z.watch("foo", function(){
+    alert(Z.foo.name + " use the force!");
+  });
+&lt;/script&gt;
+</pre
+        >
+      </div>
+      <div class="result-container">
+        <div class="label">
+          <span>RESULT</span>
+          <button id="run-watching" class="run">run</button>
+        </div>
+        <iframe id="output-watching" class="output"></iframe>
+      </div>
+    </main>
+
+    <main class="before-after">
+      <div class="desc">
+        <h2>Before and After</h2>
+        <p>
+          The functions before and after are fired before and after the render
+          of a component.
+        </p>
+        <p>
+          If you return false from the before function the component will not
+          render.
+        </p>
+        <p>
+          This can be used to only re-render a component if the state is
+          different from the previous state.
+        </p>
+      </div>
+      <div class="input-container">
+        <p class="label">HTML</p>
+        <pre id="html-before-after" class="html">
+&lt;div id="welcome"&gt;&lt;/div&gt;
+&lt;script&gt;
+  Z.mount({
+    key: "foo",
+    before: function(state, prev){
+      return JSON.stringify(state) != JSON.stringify(prev);
+    },
+    render: function(state, prev) {
+      console.log("render fired");
+      return `
+        &lt;h1&gt;${state.name} is ${state.age} years old!&lt;/h1&gt;
+        &lt;button id="btn"&gt;Update!&lt;/button&gt;
+      `;
+    },
+    after: function(){
+      document.getElementById("btn").addEventListener("click", function(){
+        Z.update("foo", {state: {
+          name: "Thomas",
+          age: 72
+        }})
+      })
+    },
+    inner: document.getElementById("welcome"),
+    state: {
+      name: "Benita",
+      age: 36
+    }
+  });  
+&lt;/script&gt;
+</pre
+        >
+      </div>
+      <div class="result-container">
+        <div class="label">
+          <span>RESULT</span>
+          <button id="run-before-after" class="run">run</button>
+        </div>
+        <iframe id="output-before-after" class="output"></iframe>
+      </div>
+    </main>
+
+    <!-- COUNTER DEMO!! -->
+
+    <main class="counter-demo">
+      <div class="input-container">
+        <p class="label">HTML</p>
+        <pre id="html-counter" class="html">
+&lt;h1&gt;Counter Demo&lt;/h1&gt;
+&lt;button onclick="Z.update('count', {state: Z.count - 1})"&gt;
+  -
+&lt;/button&gt;
+&lt;span id="output"&gt;&lt;/span&gt;
+&lt;button onclick="Z.update('count', {state: Z.count + 1})"&gt;
+  +
+&lt;/button&gt;
+&lt;script&gt;
+  Z.mount({
+    key: "count",
+    render: function(state) {
+      return state;
+    },
+    inner: document.getElementById("output"),
+    state: 0
+  });
+&lt;/script&gt;
+</pre
+        >
+      </div>
+      <div class="result-container">
+        <div class="label">
+          <span>RESULT</span>
+          <button id="run-counter" class="run">run</button>
+        </div>
+        <iframe id="output-counter" class="output"></iframe>
+      </div>
+    </main>
+
+    <main class="todo-demo">
+      <div class="input-container">
+        <p class="label">HTML</p>
+        <pre id="html-todo" class="html">
+&lt;h1&gt;Todo List Demo&lt;/h1&gt;
+&lt;div id="todo-add"&gt;&lt;/div&gt;
+&lt;div id="todo-list"&gt;&lt;/div&gt;
+&lt;script&gt;
+  Z.mount({
+    key: "todos",
+    render: function(state) {
+      return state
+        .map(function(todo, index) {
+          return `
+            &lt;div&gt;
+              &lt;span&gt;${todo}&lt;/span&gt;
+              &lt;button onclick="Z.todos.splice(${index}, 1); Z.update('todos', {state: Z.todos})"&gt;remove&lt;/button&gt;
+            &lt;/div&gt;
+          `;
+        })
+        .join("");
+    },
+    inner: document.getElementById("todo-list"),
+    state: []
+  });
+
+  Z.mount({
+  render: function() {
+    return `
+      &lt;input id="task" type="text" placeholder="add task" /&gt;
+      &lt;button&gt;Add&lt;/button&gt;
+    `;
+  },
+  after: function() {
+    document
+      .querySelector("#task + button")
+      .addEventListener("click", function() {
+        var task = document.getElementById("task");
+        Z.todos.push(task.value);
+        Z.update("todos", {
+          state: Z.todos
+        });
+        task.value = "";
+      });
+  },
+  outer: document.getElementById("todo-add")
+  });
+&lt;/script&gt;
+</pre
+        >
+      </div>
+      <div class="result-container">
+        <div class="label">
+          <span>RESULT</span>
+          <button id="run-todo" class="run">run</button>
+        </div>
+        <iframe id="output-todo" class="output"></iframe>
+      </div>
+    </main>
+
+    <script>
+      var s = "script";
+      var baseStart =
+        '<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><' +
+        s +
+        ' src="https://unpkg.com/zedjs@2.4.2/Z.min.js"></' +
+        s +
+        "></head><body>";
+      var baseEnd = "</body></html>";
+
+      var htmlSimple = ace.edit("html-simple");
+      htmlSimple.setTheme("ace/theme/monokai");
+      htmlSimple.session.setMode("ace/mode/html");
+      htmlSimple.setFontSize("15px");
+      htmlSimple.setShowPrintMargin(false);
+      htmlSimple.setOption("showLineNumbers", false);
+      htmlSimple.setOption("highlightActiveLine", false);
+      htmlSimple.getSession().setUseWorker(false);
+
+      document
+        .getElementById("run-simple")
+        .addEventListener("click", function() {
+          document.getElementById("output-simple").srcdoc =
+            baseStart + htmlSimple.getValue() + baseEnd;
+        });
+
+      // var htmlSimple2 = ace.edit("html-second-simple");
+      // htmlSimple2.setTheme("ace/theme/monokai");
+      // htmlSimple2.session.setMode("ace/mode/html");
+      // htmlSimple2.setFontSize("15px");
+      // htmlSimple2.setShowPrintMargin(false);
+      // htmlSimple2.setOption("showLineNumbers", false);
+      // htmlSimple2.setOption("highlightActiveLine", false);
+      // htmlSimple2.getSession().setUseWorker(false);
+
+      // document
+      //   .getElementById("run-second-simple")
+      //   .addEventListener("click", function() {
+      //     document.getElementById("output-second-simple").srcdoc =
+      //       baseStart + htmlSimple2.getValue() + baseEnd;
+      //   });
+
+      var htmlCompWithData = ace.edit("html-comp-with-data");
+      htmlCompWithData.setTheme("ace/theme/monokai");
+      htmlCompWithData.session.setMode("ace/mode/html");
+      htmlCompWithData.setFontSize("15px");
+      htmlCompWithData.setShowPrintMargin(false);
+      htmlCompWithData.setOption("showLineNumbers", false);
+      htmlCompWithData.setOption("highlightActiveLine", false);
+      htmlCompWithData.getSession().setUseWorker(false);
+
+      document
+        .getElementById("run-comp-with-data")
+        .addEventListener("click", function() {
+          document.getElementById("output-comp-with-data").srcdoc =
+            baseStart + htmlCompWithData.getValue() + baseEnd;
+        });
+
+      var htmlCompWithExtData = ace.edit("html-external-data");
+      htmlCompWithExtData.setTheme("ace/theme/monokai");
+      htmlCompWithExtData.session.setMode("ace/mode/html");
+      htmlCompWithExtData.setFontSize("15px");
+      htmlCompWithExtData.setShowPrintMargin(false);
+      htmlCompWithExtData.setOption("showLineNumbers", false);
+      htmlCompWithExtData.setOption("highlightActiveLine", false);
+      htmlCompWithExtData.getSession().setUseWorker(false);
+
+      document
+        .getElementById("run-external-data")
+        .addEventListener("click", function() {
+          document.getElementById("output-external-data").srcdoc =
+            baseStart + htmlCompWithExtData.getValue() + baseEnd;
+        });
+
+      var htmlSimpleUpdate = ace.edit("html-simple-update");
+      htmlSimpleUpdate.setTheme("ace/theme/monokai");
+      htmlSimpleUpdate.session.setMode("ace/mode/html");
+      htmlSimpleUpdate.setFontSize("15px");
+      htmlSimpleUpdate.setShowPrintMargin(false);
+      htmlSimpleUpdate.setOption("showLineNumbers", false);
+      htmlSimpleUpdate.setOption("highlightActiveLine", false);
+      htmlSimpleUpdate.getSession().setUseWorker(false);
+
+      document
+        .getElementById("run-simple-update")
+        .addEventListener("click", function() {
+          document.getElementById("output-simple-update").srcdoc =
+            baseStart + htmlSimpleUpdate.getValue() + baseEnd;
+        });
+
+      var htmlRenderUpdate = ace.edit("html-render-update");
+      htmlRenderUpdate.setTheme("ace/theme/monokai");
+      htmlRenderUpdate.session.setMode("ace/mode/html");
+      htmlRenderUpdate.setFontSize("15px");
+      htmlRenderUpdate.setShowPrintMargin(false);
+      htmlRenderUpdate.setOption("showLineNumbers", false);
+      htmlRenderUpdate.setOption("highlightActiveLine", false);
+      htmlRenderUpdate.getSession().setUseWorker(false);
+
+      document
+        .getElementById("run-render-update")
+        .addEventListener("click", function() {
+          document.getElementById("output-render-update").srcdoc =
+            baseStart + htmlRenderUpdate.getValue() + baseEnd;
+        });
+
+      var htmlWatching = ace.edit("html-watching");
+      htmlWatching.setTheme("ace/theme/monokai");
+      htmlWatching.session.setMode("ace/mode/html");
+      htmlWatching.setFontSize("15px");
+      htmlWatching.setShowPrintMargin(false);
+      htmlWatching.setOption("showLineNumbers", false);
+      htmlWatching.setOption("highlightActiveLine", false);
+      htmlWatching.getSession().setUseWorker(false);
+
+      document
+        .getElementById("run-watching")
+        .addEventListener("click", function() {
+          document.getElementById("output-watching").srcdoc =
+            baseStart + htmlWatching.getValue() + baseEnd;
+        });
+
+      var htmlBeforeAfter = ace.edit("html-before-after");
+      htmlBeforeAfter.setTheme("ace/theme/monokai");
+      htmlBeforeAfter.session.setMode("ace/mode/html");
+      htmlBeforeAfter.setFontSize("15px");
+      htmlBeforeAfter.setShowPrintMargin(false);
+      htmlBeforeAfter.setOption("showLineNumbers", false);
+      htmlBeforeAfter.setOption("highlightActiveLine", false);
+      htmlBeforeAfter.getSession().setUseWorker(false);
+
+      document
+        .getElementById("run-before-after")
+        .addEventListener("click", function() {
+          document.getElementById("output-before-after").srcdoc =
+            baseStart + htmlBeforeAfter.getValue() + baseEnd;
+        });
+
+      var htmlCounter = ace.edit("html-counter");
+      htmlCounter.setTheme("ace/theme/monokai");
+      htmlCounter.session.setMode("ace/mode/html");
+      htmlCounter.setFontSize("15px");
+      htmlCounter.setShowPrintMargin(false);
+      htmlCounter.setOption("showLineNumbers", false);
+      htmlCounter.setOption("highlightActiveLine", false);
+      htmlCounter.getSession().setUseWorker(false);
+
+      document
+        .getElementById("run-counter")
+        .addEventListener("click", function() {
+          document.getElementById("output-counter").srcdoc =
+            baseStart + htmlCounter.getValue() + baseEnd;
+        });
+
+      var htmlTodo = ace.edit("html-todo");
+      htmlTodo.setTheme("ace/theme/monokai");
+      htmlTodo.session.setMode("ace/mode/html");
+      htmlTodo.setFontSize("15px");
+      htmlTodo.setShowPrintMargin(false);
+      htmlTodo.setOption("showLineNumbers", false);
+      htmlTodo.setOption("highlightActiveLine", false);
+      htmlTodo.getSession().setUseWorker(false);
+
+      document.getElementById("run-todo").addEventListener("click", function() {
+        document.getElementById("output-todo").srcdoc =
+          baseStart + htmlTodo.getValue() + baseEnd;
+      });
+    </script>
+  </body>
+</html>

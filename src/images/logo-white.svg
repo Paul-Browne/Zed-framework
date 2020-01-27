@@ -1,0 +1,32 @@
+<svg 
+	xmlns="http://www.w3.org/2000/svg" 
+	xmlns:xlink='http://www.w3.org/1999/xlink' 
+	viewBox="0 0 300 350" 
+	fill="#ffffff">
+  <defs>
+    <path
+      id="t-down"
+      d="M0 0 L50 86.6 L100 0 Z"
+      transform="translate(5 4.33) scale(0.9)"
+    />
+    <path
+      id="t-up"
+      d="M50 0 L0 86.6 L100 86.6 Z"
+      transform="translate(5 4.33) scale(0.9)"
+    />
+  </defs>
+  <use xlink:href="#t-down" />
+  <use x="50" y="2.5" xlink:href="#t-up" />
+  <use x="100" xlink:href="#t-down" />
+  <use x="150" y="2.5" xlink:href="#t-up" />
+  <use x="200" xlink:href="#t-down" />
+  <use x="100" y="89.1" xlink:href="#t-up" />
+  <use x="150" y="86.6" xlink:href="#t-down" />
+  <use x="50" y="175.7" xlink:href="#t-up" />
+  <use x="100" y="173.2" xlink:href="#t-down" />
+  <use x="0" y="262.3" xlink:href="#t-up" />
+  <use x="50" y="259.8" xlink:href="#t-down" />
+  <use x="100" y="262.3" xlink:href="#t-up" />
+  <use x="150" y="259.8" xlink:href="#t-down" />
+  <use x="200" y="262.3" xlink:href="#t-up" />
+</svg>
