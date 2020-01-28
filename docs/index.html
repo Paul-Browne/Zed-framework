@@ -1,244 +1,199 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"><link rel="manifest" href="site.webmanifest"><link rel="mask-icon" href="safari-pinned-tab.svg" color="#1d92d6"><meta name="apple-mobile-web-app-title" content="Zed.js"><meta name="application-name" content="Zed.js"><meta name="msapplication-TileColor" content="#1d92d6"><meta name="theme-color" content="#ffffff"><meta name="description" content="Zed.js is a templateless micro frontend framework. It handles the rendering, updating and state management of your html components in only 1Kb"><title>Zed.js • Micro framework</title><link rel="stylesheet" href="css/prism.css"><style type="text/css">body{margin:10px auto;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";max-width:960px;padding:0 10px}img{margin:0 auto;display:block;animation-name:hue;animation-duration:36s}.center{text-align:center}.wb-ba{word-break:break-all!important;white-space:normal!important}.zed{padding:13px;border:1px dashed #000;border-radius:6px}p code{background:#333;color:#fff;font-family:Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;border-radius:4px;padding:.05rem .3rem;font-size:13px}@keyframes hue{from{filter:hue-rotate(0)}to{filter:hue-rotate(360deg)}}</style></head><body><img src="images/logo-blue.svg" height="100"><h1 class="center">Zed.js</h1><h3 class="center">Zed.js is a templateless micro frontend framework.<br>It handles the rendering, updating and state management of your html components in only 1Kb</h3><pre class="language-html"><code class="wb-ba">&lt;script>!function(e){if(!e.Z){var i={};e.Z={load:function(e,r){var o=[];e.forEach(function(e,t){o[t]=null;var n=new XMLHttpRequest;for(var a in n.onreadystatechange=function(){4==n.readyState&&(o[t]=n.status==(e.status||200)?e.callback?e.callback(n.responseText):n.responseText:void 0,Z.load[e.key]=o[t],~o.indexOf(null)||r(o))},n.open(e.method||"GET",e.url,!0),e.headers)n.setRequestHeader(a,e.headers[a]);n.send(e.body)})},update:function(e,t){i[e]&&(i[e].f(t),i[e].l.forEach(function(e){e()}))},mount:function(n,e){if(n.key&&!e&&(i[n.key]={l:[],f:function(e){for(var t in e)n[t]=e[t];Z.mount(n,!0)}}),0!=(n.pre&&n.pre())){var t=n.inner,a=n.outer,r=n.state,o=n.before,u=n.after,f={state:r,prev:Z[n.key]};if(0!=(o&&o(f.state,f.prev))){var s=n.render(f.state,f.prev);t&&(t.innerHTML=s),a&&(a.outerHTML=s),u&&u(f.state,f.prev)}Z[n.key]=r}},watch:function(e,t){i[e]&&i[e].l.push(t)}}}}(window,document);&lt;/script></code></pre><p>or include from a cdn</p><div><pre class="language-html"><code>&lt;script src="https://cdn.jsdelivr.net/npm/zedjs">&lt;/script></code></pre><pre class="language-html"><code>&lt;script src="https://unpkg.com/zedjs">&lt;/script></code></pre></div><br><a class="github-button" href="https://github.com/paul-browne/Zed-framework" data-icon="octicon-star" data-size="large" aria-label="Star paul-browne/Zed-framework on GitHub">Star on GitHub</a><br><h1>Mount</h1><pre><code class="language-js">Z.mount({
-    key: string, // to update the component or if using data
-    inner: DOM node, // to render inside of
-    outer: DOM node, // for render to replace
-    pre: function(), // fired before the render
-    before: function(), // fired before the render, but after 
-    render: function(), // html to be rendered 
-    after: function(), // fired after the render
-    state: JSON // requires key
-})</code></pre><h2>render:</h2><p>The simplest <code>Z.mount()</code> will insert the contents of <code>render:</code> into the <code>inner:</code> DOM element.</p><pre><code class="language-js">Z.mount({
-    render: function(){
-        return "&lt;h1>Hello world!&lt;/h1>";
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"><link rel="manifest" href="site.webmanifest"><link rel="mask-icon" href="safari-pinned-tab.svg" color="#1d92d6"><meta name="apple-mobile-web-app-title" content="Zed.js"><meta name="application-name" content="Zed.js"><meta name="msapplication-TileColor" content="#1d92d6"><meta name="theme-color" content="#ffffff"><meta name="description" content="Zed.js is a templateless micro frontend framework. It handles the rendering, updating and state management of your html components in only 1Kb"><title>Zed.js • Micro framework</title><link rel="stylesheet" href="css/prism.css"><link rel="stylesheet" href="css/inter.css"><link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i|Overpass:100,100i,200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet"><script src="https://ajaxorg.github.io/ace-builds/src-min-noconflict/ace.js"></script><style type="text/css">*,:after,:before{box-sizing:border-box}body{margin:0;font-family:Overpass,sans-serif}img{vertical-align:middle}</style><style>.header-background{position:absolute;z-index:-1;top:-150px;width:100%;height:430px;transform:skewY(10deg);background-color:#1d92d6}h1,h2{margin:0;color:#fff}h1{font-size:101px;line-height:80px;font-weight:800}h2{font-size:38px;line-height:38px;font-weight:600;margin:27px 0 0 0;width:344px}.header{display:flex;align-items:center;justify-content:space-between;width:620px;margin:60px auto 0}button.btn-hero{outline:0;color:#1d92d6;cursor:pointer;font-size:18px;padding:0 1.3em;vertical-align:middle;display:inline-block;line-height:50px;background:#fff;border:5px solid #1d92d6;border-radius:9em;text-transform:uppercase;font-weight:800}button.run{outline:0;border:0;color:#fff;cursor:pointer;font-size:14px;padding:0 1em;background:#1d92d6;text-transform:uppercase;font-weight:800;border-radius:4em}nav{background:#1775ab;height:40px;color:#fff;display:flex;align-items:center}</style><style>pre{margin:0}.desc{width:350px;padding:10px}.desc h2{color:#333;margin-top:0;margin-bottom:1rem}.simple .html{width:560px;height:180px;border-bottom-left-radius:1rem}.simple .output{width:280px;height:180px}.comp-with-data .html{width:560px;height:280px;border-bottom-left-radius:1rem}.comp-with-data .output{width:280px;height:280px}.simple-update .html{width:560px;height:320px;border-bottom-left-radius:1rem}.simple-update .output{width:280px;height:320px}.render-update .html{width:560px;height:460px;border-bottom-left-radius:1rem}.render-update .output{width:280px;height:460px}.external-data .html{width:560px;height:500px;border-bottom-left-radius:1rem}.external-data .output{width:280px;height:500px}.watching .html{width:560px;height:340px;border-bottom-left-radius:1rem}.watching .output{width:280px;height:340px}.before-after .html{width:560px;height:340px;border-bottom-left-radius:1rem}.before-after .output{width:280px;height:340px}.counter-demo .html{width:560px;height:380px;border-bottom-left-radius:1rem}.counter-demo .output{width:280px;height:380px}.todo-demo .html{width:560px;height:500px;border-bottom-left-radius:1rem}.todo-demo .output{width:280px;height:500px}main{display:flex;flex-wrap:wrap;justify-content:center;margin:4rem 0}iframe{display:block;background-color:transparent;border:0;overflow:hidden;padding:0;margin:0;border-right:1px solid #ececec;border-bottom:1px solid #ececec;border-bottom-right-radius:1rem}.input-container .label{margin:0;padding:.5rem 1rem;color:#a0a0a0;background:#303129;border-top-left-radius:1rem}.result-container .label{display:flex;justify-content:space-between;margin:0;padding:.5rem 1rem;color:#6d6d6d;background:#ececec;border-top-right-radius:1rem}.ace-monokai .ace_indent-guide{background:0}@media (max-width:1200px){.desc{width:560px;margin-bottom:20px}.desc h2{margin:0 auto 20px auto;text-align:center}.desc p{margin:0 auto;text-align:center}}@media (max-width:860px){.input-container html{width:560px}.result-container iframe{width:560px!important}.input-container *{border-radius:0!important}.result-container *{border-radius:0!important}}@media (max-width:560px){.desc{width:100%}.desc h2{width:100%}.input-container{width:100%}.input-container .html{width:100%}.result-container{width:100%!important}.result-container iframe{width:100%!important}}@media (max-width:680px){.header{width:100%;margin-top:20px;flex-direction:column}.header img{height:100px}.header-background{top:0;width:100%;height:360px;transform:skewY(0)}.header h1{margin-top:30px}}</style></head><body><div class="header-background"></div><div class="header"><img src="images/logo-white-blue-border.svg" height="240px"><div><h1 class="zed">ZED.JS</h1><h2>The 868 byte micro frontend framework</h2></div></div><main class="simple"><div class="desc"><h2>The Simplest Component</h2><p>This simple component will mount the returned html of the render function, replacing the DOM element of the "outer", in this example, the script element itself.</p></div><div class="input-container"><p class="label">HTML</p><pre id="html-simple" class="html">
+&lt;script id="welcome">
+  Z.mount({
+    render: function() {
+      return "&lt;h1>Hello world!&lt;/h1>";
     },
-    inner: document.getElementById("insert-here")
-})</code></pre><p>You can alternatively pass a string to <code>render:</code> which will be interpreted as a path to the HTML resource.</p><pre><code class="language-js">Z.mount({
-    render: "path/to/component.html",
-    inner: document.getElementById("insert-here")
-})</code></pre><h2>inner: and outer:</h2><p><code>inner:</code> and <code>outer:</code> are DOM node references that are used as the entry point for the <code>render:</code></p><p>The only difference is that the contents of <code>render:</code> will be placed inside the <code>inner:</code> DOM node, but will entirely replace the <code>outer:</code> DOM node.</p><p>NOTE: when you use <code>outer:</code> it will not be possible to update that component.</p><h2>before: and after:</h2><p><code>before:</code> and <code>after:</code> are functions that will be executed before and after the <code>render:</code></p><pre><code class="language-js">Z.mount({
-    before: function(){
-      console.log("fires before the render");
-      return ...
-    },    
-    render: "path/to/component.html",
-    after: function(){
-      console.log("fires after the render");
-      return ...
+    outer: document.getElementById("welcome")
+  });
+&lt;/script>
+</pre></div><div class="result-container"><div class="label"><span>RESULT</span> <button id="run-simple" class="run">run</button></div><iframe id="output-simple" class="output"></iframe></div></main><main class="comp-with-data"><div class="desc"><h2>Component with State</h2><p>You can also add "state" to be used in the render of a component.</p><p>The state will be available globally after the component is mounted using the key. eg. Z.greeting will be {name: "Paul"}</p></div><div class="input-container"><p class="label">HTML</p><pre id="html-comp-with-data" class="html">
+&lt;div id="welcome">&lt;/div>
+&lt;script>
+  Z.mount({
+    key: "greeting",
+    render: function(state) {
+      return `&lt;h1>Hello ${state.name}!&lt;/h1>`
     },
-    inner: document.getElementById("insert-here")
-})</code></pre><h2>key:</h2><p>A <code>key:</code> is required if you are updating a component, or if you are associating some <code>data:</code> with that component.</p><h2>data:</h2><p>You can also add some <code>data:</code> to the <code>render:</code>, in the following example the array <code>["bar", "baz", "buff"]</code> will be available globally as <code>Z.foo</code> before the <code>render:</code></p><p><code>data:</code> is also available for the <code>before:</code> function</p><pre><code class="language-js">Z.mount({
-    key: "foo",
-    render: "path/to/component.html",
-    inner: document.getElementById("insert-here"),
-    data: ["bar", "baz", "buff"]
-})</code></pre><p>Again, you can pass a string to <code>data:</code> to use an external resource for the data.</p><pre><code class="language-js">Z.mount({
-    key: "foo",
-    render: "path/to/component.html",
-    inner: document.getElementById("insert-here"),
-    data: "path/to/data.json"
-})</code></pre><h2>Renderless (data only) components</h2><p>"Dumb" components do not render anything. They are basically just used as a global placeholder for data</p><pre><code class="language-js">Z.mount({
-    key: "foo",
-    data: "path/to/data.json"
-})</code></pre><h1>Update</h1><pre><code class="language-js">Z.update("key", {
-    before: function(), // update the "before" function
-    render: function() or string "path/to/resource.html", // update the render
-    after: function(), // update the "after" function
-    data: JSON or string "path/to/resource.json" // update the data
-})</code></pre><p>To update a component, with no new methods, simply do the following.</p><p></p><pre><code class="language-js">Z.update("foo")</code></pre><p>To update a component with new <code>data:</code></p><p>This will re-render the component with the new <code>Z.foo</code> array.</p><pre><code class="language-js">Z.update("foo", {
-    data: ["lorem", "ipsum", "dolor"]
-})</code></pre><p>You can also re-render with a new HTML component.</p><pre><code class="language-js">Z.update("foo", {
-    render: "path/to/new-component.html"
-})</code></pre><p>and you could also pass new <code>before:</code> and/or <code>after:</code> functions.</p><pre><code class="language-js">Z.update("foo", {
-    before: null,
-    after: function(){
-      console.log("after");
+    inner: document.getElementById("welcome"),
+    state: {
+      name: "Paul"
     }
-})</code></pre><h1>Watch</h1><p>You can <code>Z.watch()</code> to a component for when it's updated.</p><pre><code class="language-js">Z.watch("foo", function(){
-      console.log("foo updated!");
-})</code></pre><h2>Demos</h2><h3>Counter Demo</h3><h4>view <a href="demos/counter">live</a> version</h4><pre><code class="language-html">&lt;head>
-    &lt;script src="js/Z.min.js">&lt;/script>
-&lt;/head>
-&lt;body>
-	&lt;h1>Counter Demo&lt;/h1>
-    &lt;button onclick='Z.update("count", {data: Z.count - 1})'>-&lt;/button>
-    &lt;span id="output">&lt;/span>
-    &lt;button onclick='Z.update("count", {data: Z.count + 1})'>+&lt;/button>
-    &lt;script>
-      Z.mount({
-        key: "count",
-        render: function() {
-          return Z.count;
-        },
-        inner: document.getElementById("output"),
-        data: 0
-      })
-    &lt;/script>
-&lt;/body></code></pre><h3>Todo List Demo</h3><h4>view <a href="demos/todo">live</a> version</h4><pre><code class="language-html">&lt;head>
-    &lt;script src="js/Z.min.js">&lt;/script>
-&lt;/head>
-&lt;body>
-    &lt;h1>Todo List Demo&lt;/h1>
-    &lt;div id="todo-list">&lt;/div>
-    &lt;div id="todo-add">&lt;/div>
-    &lt;script>
-      Z.mount({
-        key: "todos",
-        render: function() {
-          return Z.todos.map(function(todo, index) {
-            return `
-              &lt;div>
-                &lt;span>${todo}&lt;/span>
-                &lt;button onclick="Z.todos.splice(${index}, 1); Z.update('todos', {data: Z.todos})">remove&lt;/button>
-              &lt;/div>
-            `;
-          }).join("");
-        },
-        inner: document.getElementById("todo-list"),
-        data: []
-      });
-
-      Z.mount({
-        render: function() {
-          return `
-            &lt;input id="task" type="text" placeholder="add task" />
-            &lt;button>Add&lt;/button>
-          `;
-        },
-        after: function() {
-          document.querySelector("#task + button").addEventListener("click", function() {
-            var task = document.getElementById("task");
-            Z.todos.push(task.value);
-            Z.update("todos", {
-              data: Z.todos
-            });
-            task.value = "";
-          });
-        },
-        outer: document.getElementById("todo-add")
-      });      
-    &lt;/script>
-&lt;/body></code></pre><h3>Shop Demo</h3><h4>view <a href="demos/shop">live</a> version</h4><pre><code class="language-html">&lt;head>
-    &lt;script src="js/Z.min.js">&lt;/script>
-    &lt;link rel="stylesheet" type="text/css" href="css/shop.css" />
-&lt;/head>
-&lt;body>
-    &lt;div id="basket">&lt;/div>
-    &lt;div id="products">&lt;/div>
-    &lt;div id="view">&lt;/div>
-    &lt;script>
-
-    Z.mount({
-      key: "basket",
-      render: function() {
-        var total = Z.basket.products.reduce(function(acc, current) {
-          return acc + current.quantity * current.price;
-        }, 0);
-
-        return Z.basket.products.length
-          ? Z.basket.products
-              .map(function(product, index) {
-                return `
-                  &lt;div>
-                      &lt;span>${
-                        product.name
-                      }&lt;/span> &lt;span>&lt;button onclick="Z.basket.adjustCart(${index}, -1)">-&lt;/button> &lt;span>${product.quantity}&lt;/span> &lt;button onclick="Z.basket.adjustCart(${index}, 1)">+&lt;/button>&lt;/span> &lt;span>${(product.price * product.quantity).toFixed(2)}&lt;/span>
-                  &lt;/div>
-                `;
-              })
-              .join("") +
-              `&lt;div>
-                &lt;span>Total: ${total.toFixed(2)}&lt;/span>
-              &lt;/div>
-              `
-          : "";
-      },
-      inner: document.getElementById("basket"),
-      before: function() {},
-      data: {
-        products: JSON.parse(localStorage.getItem("basket")) || [],
-        update: function() {
-          localStorage.setItem("basket", JSON.stringify(this.products));
-          Z.update("basket", {
-            data: this
-          });
-          Z.update("view");
-        },
-
-        adjustCart: function(index, increment) {
-          Z.basket.products[index].quantity += increment;
-          if (!Z.basket.products[index].quantity) {
-            Z.basket.products.splice(index, 1);
-          }
-          Z.basket.update();
-        },
-
-        addToBasket: function(item) {
-          var basketObj = {
-            name: item.name,
-            price: item.price
-          };
-
-          var cartContainsItem = Z.basket.products.some(function(product, index) {
-            if (product.name === basketObj.name) {
-              product.quantity = product.quantity + 1;
-              return true;
-            }
-          });
-
-          if (!cartContainsItem) {
-            basketObj.quantity = 1;
-            Z.basket.products.push(basketObj);
-          }
-          Z.basket.update();
-        }
+  });
+&lt;/script>
+</pre></div><div class="result-container"><div class="label"><span>RESULT</span> <button id="run-comp-with-data" class="run">run</button></div><iframe id="output-comp-with-data" class="output"></iframe></div></main><main class="simple-update"><div class="desc"><h2>Updating Components</h2><p>Components can be updated by passing the key name, and an object with what is to be updated. This will then re-render that component.</p></div><div class="input-container"><p class="label">HTML</p><pre id="html-simple-update" class="html">
+&lt;div id="welcome">&lt;/div>
+&lt;button onclick='Z.update("foo", {state: {name:"Tina", age:24} })'>Update!&lt;/button>
+&lt;script>
+  Z.mount({
+    key: "foo",
+    render: function(state) {
+      return `&lt;h1>${state.name} is ${state.age} years old!&lt;/h1>`;
+    },
+    inner: document.getElementById("welcome"),
+    state: {
+      name: "Robert",
+      age: 48
+    }
+  });
+&lt;/script>
+</pre></div><div class="result-container"><div class="label"><span>RESULT</span> <button id="run-simple-update" class="run">run</button></div><iframe id="output-simple-update" class="output"></iframe></div></main><main class="render-update"><div class="desc"><h2>Updating Components cont.</h2><p>You are not just limited to updating state. It is also possible to update the render, before and after functions as well.</p><p>NOTE: Only components mounted using "inner" can be updated, since mounting using "outer" will replace the original DOM element used for mounting.</p></div><div class="input-container"><p class="label">HTML</p><pre id="html-render-update" class="html">
+&lt;div id="welcome">&lt;/div>
+&lt;button id="update">Update!&lt;/button>
+&lt;script>
+  Z.mount({
+    key: "foo",
+    render: function(state) {
+      return `&lt;h1>${state.name} is ${state.age} years old!&lt;/h1>`;
+    },
+    inner: document.getElementById("welcome"),
+    state: {
+      name: "Thomas", 
+      age: 19
+    }
+  });
+  document.getElementById("update").addEventListener("click", function(){
+    Z.update("foo", {
+      render: function(state){
+        return `&lt;h1>${state.age} years old ${state.name} is!&lt;/h1>`;
       }
     });
+  })
+&lt;/script>
+</pre></div><div class="result-container"><div class="label"><span>RESULT</span> <button id="run-render-update" class="run">run</button></div><iframe id="output-render-update" class="output"></iframe></div></main><main class="external-data"><div class="desc"><h2>Loading External Data</h2><p>You can also load data eg. a JSON before mounting a component.</p><p>The Z.load function takes an array of objects as the resources to be loaded, and a callback function fired when all the resources are fetched.</p><p>Resources are available globally as, in this example Z.load.robert</p></div><div class="input-container"><p class="label">HTML</p><pre id="html-external-data" class="html">
+&lt;div id="welcome">&lt;/div>
+&lt;script>
+  Z.load(
+    [
+      {
+        key: "robert",
+        url: "demos/json/robert.json",
+        callback: function(data) {
+          return JSON.parse(data);
+        }
+      }
+    ],
+    function() {
+      Z.mount({
+        key: "foo",
+        render: function(state) {
+          return `&lt;h1>${state.name} is ${state.age} years old!&lt;/h1>`;
+        },
+        inner: document.getElementById("welcome"),
+        state: Z.load.robert
+      });
+    }
+  ) 
+&lt;/script>
+</pre></div><div class="result-container"><div class="label"><span>RESULT</span> <button id="run-external-data" class="run">run</button></div><iframe id="output-external-data" class="output"></iframe></div></main><main class="watching"><div class="desc"><h2>Watching Components</h2><p>It is also possible to watch for when components are updated.</p><p>NOTE: Z.watch must be declared after the component with that key has been mounted.</p></div><div class="input-container"><p class="label">HTML</p><pre id="html-watching" class="html">
+&lt;div id="welcome">&lt;/div>
+&lt;button onclick='Z.update("foo", {state: {name:"Luke", age:30} })'>Update!&lt;/button>
+&lt;script>
+  Z.mount({
+    key: "foo",
+    render: function(state) {
+      return `&lt;h1>${state.name} is ${state.age} years old!&lt;/h1>`;
+    },
+    inner: document.getElementById("welcome"),
+    state: {name: "Paul", age: 35}
+  });
 
-    Z.mount({
-      key: "products",
-      render: function() {
-        return Z.products
-          .map(function(product, index) {
-            return `
-            &lt;div class="product" onclick='Z.update("view", {data:Z.products[${index}]})'>
-                &lt;h2>${product.name}&lt;/h2>
-                &lt;img src="images/${product.image}" width="200">
-                &lt;span>${product.price} €&lt;/span>
+  Z.watch("foo", function(){
+    alert(Z.foo.name + " use the force!");
+  });
+&lt;/script>
+</pre></div><div class="result-container"><div class="label"><span>RESULT</span> <button id="run-watching" class="run">run</button></div><iframe id="output-watching" class="output"></iframe></div></main><main class="before-after"><div class="desc"><h2>Before and After</h2><p>The functions before and after are fired before and after the render of a component.</p><p>If you return false from the before function the component will not render.</p><p>This can be used to only re-render a component if the state is different from the previous state.</p></div><div class="input-container"><p class="label">HTML</p><pre id="html-before-after" class="html">
+&lt;div id="welcome">&lt;/div>
+&lt;script>
+  Z.mount({
+    key: "foo",
+    before: function(state, prev){
+      return JSON.stringify(state) != JSON.stringify(prev);
+    },
+    render: function(state, prev) {
+      console.log("render fired");
+      return `
+        &lt;h1>${state.name} is ${state.age} years old!&lt;/h1>
+        &lt;button id="btn">Update!&lt;/button>
+      `;
+    },
+    after: function(){
+      document.getElementById("btn").addEventListener("click", function(){
+        Z.update("foo", {state: {
+          name: "Thomas",
+          age: 72
+        }})
+      })
+    },
+    inner: document.getElementById("welcome"),
+    state: {
+      name: "Benita",
+      age: 36
+    }
+  });  
+&lt;/script>
+</pre></div><div class="result-container"><div class="label"><span>RESULT</span> <button id="run-before-after" class="run">run</button></div><iframe id="output-before-after" class="output"></iframe></div></main><main class="counter-demo"><div class="desc"><h2>Counter Demo</h2></div><div class="input-container"><p class="label">HTML</p><pre id="html-counter" class="html">
+&lt;h1>Counter Demo&lt;/h1>
+&lt;button onclick="Z.update('count', {state: Z.count - 1})">
+  -
+&lt;/button>
+&lt;span id="output">&lt;/span>
+&lt;button onclick="Z.update('count', {state: Z.count + 1})">
+  +
+&lt;/button>
+&lt;script>
+  Z.mount({
+    key: "count",
+    render: function(state) {
+      return state;
+    },
+    inner: document.getElementById("output"),
+    state: 0
+  });
+&lt;/script>
+</pre></div><div class="result-container"><div class="label"><span>RESULT</span> <button id="run-counter" class="run">run</button></div><iframe id="output-counter" class="output"></iframe></div></main><main class="todo-demo"><div class="desc"><h2>Todo Demo</h2></div><div class="input-container"><p class="label">HTML</p><pre id="html-todo" class="html">
+&lt;h1>Todo List Demo&lt;/h1>
+&lt;div id="todo-add">&lt;/div>
+&lt;div id="todo-list">&lt;/div>
+&lt;script>
+  Z.mount({
+    key: "todos",
+    render: function(state) {
+      return state
+        .map(function(todo, index) {
+          return `
+            &lt;div>
+              &lt;span>${todo}&lt;/span>
+              &lt;button onclick="Z.todos.splice(${index}, 1); Z.update('todos', {state: Z.todos})">remove&lt;/button>
             &lt;/div>
           `;
-          })
-          .join("");
-      },
-      inner: document.getElementById("products"),
-      data: "json/products.json"
-    });
+        })
+        .join("");
+    },
+    inner: document.getElementById("todo-list"),
+    state: []
+  });
 
-    Z.mount({
-      key: "view",
-      render: function() {
-        var btn = `&lt;button onclick="Z.basket.addToBasket(Z.view)">Add To Cart&lt;/button>`;
-        Z.basket.products.forEach(function(product, index) {
-          if (product.name === Z.view.name) {
-            btn = `&lt;button onclick="Z.basket.adjustCart(${index}, -1)">-&lt;/button> &lt;span>${product.quantity}&lt;/span> &lt;button onclick="Z.basket.adjustCart(${index}, 1)">+&lt;/button>`;
-          }
+  Z.mount({
+  render: function() {
+    return `
+      &lt;input id="task" type="text" placeholder="add task" />
+      &lt;button>Add&lt;/button>
+    `;
+  },
+  after: function() {
+    document
+      .querySelector("#task + button")
+      .addEventListener("click", function() {
+        var task = document.getElementById("task");
+        Z.todos.push(task.value);
+        Z.update("todos", {
+          state: Z.todos
         });
-        
-        return Z.view.name
-          ? `
-          &lt;div class="view-modal">
-            &lt;div class="view">
-                &lt;button onclick='Z.update("view", {data:{}})'>close&lt;/button>
-                &lt;h3>${Z.view.name}&lt;/h3>
-                &lt;img src="images/${Z.view.image}" width="250">
-                &lt;p>${Z.view.price} €&lt;/p>
-                ${btn}
-            &lt;/div>
-          &lt;/div>
-          `
-          : "";
-      },
-      inner: document.getElementById("view"),
-      data: {}
-    });    
-    &lt;/script>
-&lt;/body></code></pre><br><br><script src="js/prism.js"></script><script async defer="defer" src="https://buttons.github.io/buttons.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-7"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-36765884-7")</script></body></html>
+        task.value = "";
+      });
+  },
+  outer: document.getElementById("todo-add")
+  });
+&lt;/script>
+</pre></div><div class="result-container"><div class="label"><span>RESULT</span> <button id="run-todo" class="run">run</button></div><iframe id="output-todo" class="output"></iframe></div></main><script>var s="script",baseStart='<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><'+s+' src="https://unpkg.com/zedjs@2.4.2/Z.min.js"></'+s+"></head><body>",baseEnd="</body></html>",htmlSimple=ace.edit("html-simple");htmlSimple.setTheme("ace/theme/monokai"),htmlSimple.session.setMode("ace/mode/html"),htmlSimple.setFontSize("15px"),htmlSimple.setShowPrintMargin(!1),htmlSimple.setOption("showLineNumbers",!1),htmlSimple.setOption("highlightActiveLine",!1),htmlSimple.getSession().setUseWorker(!1),document.getElementById("run-simple").addEventListener("click",function(){document.getElementById("output-simple").srcdoc=baseStart+htmlSimple.getValue()+baseEnd});var htmlCompWithData=ace.edit("html-comp-with-data");htmlCompWithData.setTheme("ace/theme/monokai"),htmlCompWithData.session.setMode("ace/mode/html"),htmlCompWithData.setFontSize("15px"),htmlCompWithData.setShowPrintMargin(!1),htmlCompWithData.setOption("showLineNumbers",!1),htmlCompWithData.setOption("highlightActiveLine",!1),htmlCompWithData.getSession().setUseWorker(!1),document.getElementById("run-comp-with-data").addEventListener("click",function(){document.getElementById("output-comp-with-data").srcdoc=baseStart+htmlCompWithData.getValue()+baseEnd});var htmlCompWithExtData=ace.edit("html-external-data");htmlCompWithExtData.setTheme("ace/theme/monokai"),htmlCompWithExtData.session.setMode("ace/mode/html"),htmlCompWithExtData.setFontSize("15px"),htmlCompWithExtData.setShowPrintMargin(!1),htmlCompWithExtData.setOption("showLineNumbers",!1),htmlCompWithExtData.setOption("highlightActiveLine",!1),htmlCompWithExtData.getSession().setUseWorker(!1),document.getElementById("run-external-data").addEventListener("click",function(){document.getElementById("output-external-data").srcdoc=baseStart+htmlCompWithExtData.getValue()+baseEnd});var htmlSimpleUpdate=ace.edit("html-simple-update");htmlSimpleUpdate.setTheme("ace/theme/monokai"),htmlSimpleUpdate.session.setMode("ace/mode/html"),htmlSimpleUpdate.setFontSize("15px"),htmlSimpleUpdate.setShowPrintMargin(!1),htmlSimpleUpdate.setOption("showLineNumbers",!1),htmlSimpleUpdate.setOption("highlightActiveLine",!1),htmlSimpleUpdate.getSession().setUseWorker(!1),document.getElementById("run-simple-update").addEventListener("click",function(){document.getElementById("output-simple-update").srcdoc=baseStart+htmlSimpleUpdate.getValue()+baseEnd});var htmlRenderUpdate=ace.edit("html-render-update");htmlRenderUpdate.setTheme("ace/theme/monokai"),htmlRenderUpdate.session.setMode("ace/mode/html"),htmlRenderUpdate.setFontSize("15px"),htmlRenderUpdate.setShowPrintMargin(!1),htmlRenderUpdate.setOption("showLineNumbers",!1),htmlRenderUpdate.setOption("highlightActiveLine",!1),htmlRenderUpdate.getSession().setUseWorker(!1),document.getElementById("run-render-update").addEventListener("click",function(){document.getElementById("output-render-update").srcdoc=baseStart+htmlRenderUpdate.getValue()+baseEnd});var htmlWatching=ace.edit("html-watching");htmlWatching.setTheme("ace/theme/monokai"),htmlWatching.session.setMode("ace/mode/html"),htmlWatching.setFontSize("15px"),htmlWatching.setShowPrintMargin(!1),htmlWatching.setOption("showLineNumbers",!1),htmlWatching.setOption("highlightActiveLine",!1),htmlWatching.getSession().setUseWorker(!1),document.getElementById("run-watching").addEventListener("click",function(){document.getElementById("output-watching").srcdoc=baseStart+htmlWatching.getValue()+baseEnd});var htmlBeforeAfter=ace.edit("html-before-after");htmlBeforeAfter.setTheme("ace/theme/monokai"),htmlBeforeAfter.session.setMode("ace/mode/html"),htmlBeforeAfter.setFontSize("15px"),htmlBeforeAfter.setShowPrintMargin(!1),htmlBeforeAfter.setOption("showLineNumbers",!1),htmlBeforeAfter.setOption("highlightActiveLine",!1),htmlBeforeAfter.getSession().setUseWorker(!1),document.getElementById("run-before-after").addEventListener("click",function(){document.getElementById("output-before-after").srcdoc=baseStart+htmlBeforeAfter.getValue()+baseEnd});var htmlCounter=ace.edit("html-counter");htmlCounter.setTheme("ace/theme/monokai"),htmlCounter.session.setMode("ace/mode/html"),htmlCounter.setFontSize("15px"),htmlCounter.setShowPrintMargin(!1),htmlCounter.setOption("showLineNumbers",!1),htmlCounter.setOption("highlightActiveLine",!1),htmlCounter.getSession().setUseWorker(!1),document.getElementById("run-counter").addEventListener("click",function(){document.getElementById("output-counter").srcdoc=baseStart+htmlCounter.getValue()+baseEnd});var htmlTodo=ace.edit("html-todo");htmlTodo.setTheme("ace/theme/monokai"),htmlTodo.session.setMode("ace/mode/html"),htmlTodo.setFontSize("15px"),htmlTodo.setShowPrintMargin(!1),htmlTodo.setOption("showLineNumbers",!1),htmlTodo.setOption("highlightActiveLine",!1),htmlTodo.getSession().setUseWorker(!1),document.getElementById("run-todo").addEventListener("click",function(){document.getElementById("output-todo").srcdoc=baseStart+htmlTodo.getValue()+baseEnd})</script></body></html>
