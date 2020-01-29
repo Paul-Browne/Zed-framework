@@ -24,6 +24,7 @@
       rel="stylesheet"
     />
     <script src="https://ajaxorg.github.io/ace-builds/src-min-noconflict/ace.js"></script>
+    <link rel="stylesheet" href="css/prism.css" />
     <style type="text/css">
       *,
       *:before,
@@ -48,44 +49,91 @@
         transform: skewY(10deg);
         background-color: #1d92d6;
       }
-      h1,
-      h2 {
-        margin: 0;
-        color: #fff;
-      }
-      h1 {
-        font-size: 101px;
-        line-height: 80px;
-        font-weight: 800;
-      }
-      h2 {
-        font-size: 38px;
-        line-height: 38px;
-        font-weight: 600;
-        margin: 27px 0 0 0;
-        width: 344px;
-      }
       .header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         width: 620px;
-        margin: 60px auto 0;
+        margin: 30px auto 0;
       }
-      button.btn-hero {
-        outline: 0;
-        color: #1d92d6;
-        cursor: pointer;
-        font-size: 18px;
-        padding: 0 1.3em;
-        vertical-align: middle;
-        display: inline-block;
-        line-height: 50px;
-        background: #fff;
-        border: 5px solid #1d92d6;
-        border-radius: 9em;
-        text-transform: uppercase;
+      .header img {
+        height: 240px;
+      }
+      .header .text {
+        width: 350px;
+      }
+      .header h1,
+      .header h2 {
+        margin: 0;
+        color: #fff;
+      }
+      .header h1 {
+        font-size: 101px;
+        line-height: 80px;
         font-weight: 800;
+      }
+      .header h2 {
+        font-size: 38px;
+        line-height: 38px;
+        font-weight: 600;
+        margin: 27px 0 0 0;
+      }
+    </style>
+
+    <style>
+      section {
+        max-width: 1000px;
+        margin: 2rem auto;
+      }
+      .sandbox {
+        display: flex;
+      }
+      pre,
+      iframe {
+        margin: 0;
+      }
+      pre {
+        width: 640px;
+      }
+      iframe {
+        width: 360px;
+      }
+      .desc {
+        width: 640px;
+        padding: 10px;
+        height: auto;
+      }
+      iframe {
+        display: block;
+        background-color: transparent;
+        border: 0;
+        overflow: hidden;
+        padding: 0;
+        border-right: 1px solid #e3e3e3;
+        border-bottom: 1px solid #e3e3e3;
+      }
+      .desc h2 {
+        color: #333;
+        font-size: 30px;
+        line-height: 1.1em;
+        margin: 0;
+      }
+      .input-container .label {
+        margin: 0;
+        padding: 0.5rem 1rem;
+        color: #a0a0a0;
+        background: rgb(48, 49, 41);
+      }
+      .result-container .label {
+        display: flex;
+        justify-content: space-between;
+        margin: 0;
+        padding: 0.5rem 1rem;
+        color: #6d6d6d;
+        background: #e3e3e3;
+      }
+      .ace-monokai .ace_indent-guide {
+        background: 0;
       }
       button.run {
         outline: 0;
@@ -97,246 +145,207 @@
         background: #1d92d6;
         text-transform: uppercase;
         font-weight: 800;
-        border-radius: 4em;
       }
-      nav {
-        background: #1775ab;
-        height: 40px;
-        color: #fff;
-        display: flex;
-        align-items: center;
-        /*box-shadow: 0 -0.4rem 0.9rem 0.2rem rgba(0, 0, 0, 0.5);*/
+
+      .simple pre,
+      .simple iframe {
+        height: 180px;
       }
-    </style>
-    <style>
-      pre {
-        margin: 0;
+
+      .comp-with-data pre,
+      .comp-with-data iframe {
+        height: 280px;
       }
-      .desc {
-        width: 350px;
+
+      .simple-update pre,
+      .simple-update iframe {
+        height: 320px;
+      }
+
+      .render-update pre,
+      .render-update iframe {
+        height: 460px;
+      }
+
+      .external-data pre,
+      .external-data iframe {
+        height: 500px;
+      }
+
+      .watching pre,
+      .watching iframe {
+        height: 380px;
+      }
+
+      .before-after pre,
+      .before-after iframe {
+        height: 620px;
+      }
+
+      .counter-demo pre,
+      .counter-demo iframe {
+        height: 380px;
+      }
+
+      .todo-demo pre,
+      .todo-demo iframe {
+        height: 880px;
+      }
+
+      .source {
+        max-width: 1000px;
+        margin: 40px auto 0 auto;
         padding: 10px;
       }
-      .desc h2 {
-        color: #333;
-        margin-top: 0;
-        margin-bottom: 1rem;
-      }
-      .simple .html {
-        width: 560px;
-        height: 180px;
-        border-bottom-left-radius: 1rem;
-      }
-      .simple .output {
-        width: 280px;
-        height: 180px;
+
+      .wb-ba {
+        word-break: break-all !important;
+        white-space: normal !important;
       }
 
-      .comp-with-data .html {
-        width: 560px;
-        height: 280px;
-        border-bottom-left-radius: 1rem;
-      }
-      .comp-with-data .output {
-        width: 280px;
-        height: 280px;
+      .language-html {
+        width: 100%;
+        margin: 0 auto;
       }
 
-      .simple-update .html {
-        width: 560px;
-        height: 320px;
-        border-bottom-left-radius: 1rem;
-      }
-      .simple-update .output {
-        width: 280px;
-        height: 320px;
-      }
-
-      .render-update .html {
-        width: 560px;
-        height: 460px;
-        border-bottom-left-radius: 1rem;
-      }
-      .render-update .output {
-        width: 280px;
-        height: 460px;
-      }
-
-      .external-data .html {
-        width: 560px;
-        height: 500px;
-        border-bottom-left-radius: 1rem;
-      }
-      .external-data .output {
-        width: 280px;
-        height: 500px;
-      }
-
-      .watching .html {
-        width: 560px;
-        height: 340px;
-        border-bottom-left-radius: 1rem;
-      }
-      .watching .output {
-        width: 280px;
-        height: 340px;
-      }
-
-      .before-after .html {
-        width: 560px;
-        height: 340px;
-        border-bottom-left-radius: 1rem;
-      }
-      .before-after .output {
-        width: 280px;
-        height: 340px;
-      }
-
-      .counter-demo .html {
-        width: 560px;
-        height: 380px;
-        border-bottom-left-radius: 1rem;
-      }
-      .counter-demo .output {
-        width: 280px;
-        height: 380px;
-      }
-
-      .todo-demo .html {
-        width: 560px;
-        height: 500px;
-        border-bottom-left-radius: 1rem;
-      }
-      .todo-demo .output {
-        width: 280px;
-        height: 500px;
-      }
-      main {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin: 4rem 0;
-      }
-      iframe {
-        display: block;
-        background-color: transparent;
-        border: 0;
-        overflow: hidden;
-        padding: 0;
-        margin: 0;
-        border-right: 1px solid #ececec;
-        border-bottom: 1px solid #ececec;
-        border-bottom-right-radius: 1rem;
-      }
-      .input-container .label {
-        margin: 0;
-        padding: 0.5rem 1rem;
-        color: #a0a0a0;
-        background: rgb(48, 49, 41);
-        border-top-left-radius: 1rem;
-      }
-      .result-container .label {
-        display: flex;
-        justify-content: space-between;
-        margin: 0;
-        padding: 0.5rem 1rem;
-        color: #6d6d6d;
-        background: #ececec;
-        border-top-right-radius: 1rem;
-      }
-      .ace-monokai .ace_indent-guide {
-        background: 0;
-      }
-
-      @media (max-width: 1200px) {
-        .desc {
-          width: 560px;
-          margin-bottom: 20px;
-        }
-        .desc h2 {
-          margin: 0 auto 20px auto;
-          text-align: center;
-        }
-        .desc p {
-          margin: 0 auto;
-          text-align: center;
-        }
-      }
-
-      @media (max-width: 860px) {
-        .input-container html {
-          width: 560px;
-        }
-        .result-container iframe {
-          width: 560px !important;
-        }
-
-        .input-container * {
-          border-radius: 0 !important;
-        }
-        .result-container * {
-          border-radius: 0 !important;
-        }
-      }
-
-      @media (max-width: 560px) {
+      @media (max-width: 1000px) {
+        section,
         .desc {
           width: 100%;
         }
-        .desc h2 {
-          width: 100%;
-        }
-        .input-container {
-          width: 100%;
-        }
-        .input-container .html {
-          width: 100%;
-        }
-        .result-container {
-          width: 100% !important;
-        }
-        .result-container iframe {
-          width: 100% !important;
+        pre {
+          width: calc(100vw - 360px);
         }
       }
 
-      @media (max-width: 680px) {
-        .header {
-          width: 100%;
-          margin-top: 20px;
+      @media (max-width: 720px) {
+        .sandbox {
           flex-direction: column;
         }
-        .header img {
-          height: 100px;
-        }
-        .header-background {
-          top: 0px;
+        section,
+        pre,
+        iframe,
+        .desc,
+        .input-container,
+        .result-container {
           width: 100%;
+        }
+        iframe {
+          border-right: 0;
+        }
+
+        .simple iframe {
+          height: 120px;
+        }
+
+        .comp-with-data iframe {
+          height: 120px;
+        }
+
+        .simple-update iframe {
+          height: 120px;
+        }
+
+        .render-update iframe {
+          height: 120px;
+        }
+
+        .external-data iframe {
+          height: 120px;
+        }
+
+        .watching iframe {
+          height: 120px;
+        }
+
+        .before-after iframe {
+          height: 120px;
+        }
+
+        .counter-demo iframe {
+          height: 120px;
+        }
+
+        .todo-demo iframe {
+          height: 240px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .header-background {
+          top: -150px;
           height: 360px;
-          transform: skewY(0deg);
+        }
+        .header {
+          width: 400px;
+        }
+        .header img {
+          height: 140px;
+        }
+        .header .text {
+          width: 250px;
         }
         .header h1 {
-          margin-top: 30px;
+          font-size: 72px;
+          line-height: 72px;
+        }
+        .header h2 {
+          font-size: 27px;
+          line-height: 30px;
+          margin: 10px 0 0 0;
+        }
+      }
+
+      @media (max-width: 420px) {
+        .header-background {
+          height: 307px;
+        }
+        .header {
+          width: 320px;
+        }
+        .header img {
+          height: 120px;
+        }
+        .header .text {
+          width: 190px;
+        }
+        .header h1 {
+          font-size: 53px;
+          line-height: 53px;
+        }
+        .header h2 {
+          font-size: 20px;
+          line-height: 22px;
+          margin: 10px 0 0 0;
+        }
+        .language-html {
+          font-size: 12px !important;
         }
       }
     </style>
   </head>
   <body>
-    <!--     <nav>
-      <img src="images/logo-white.svg" height="35px" />
-      <span>Zed.js</span>
-      <span>Getting Started</span>
-    </nav> -->
     <div class="header-background"></div>
     <div class="header">
-      <img src="images/logo-white-blue-border.svg" height="240px" />
-      <div>
+      <img src="images/logo-white-blue-border.svg" />
+      <div class="text">
         <h1 class="zed">ZED.JS</h1>
         <h2>The 868 byte micro frontend framework</h2>
-        <!-- <button class="btn-hero">Get started</button> -->
       </div>
     </div>
 
-    <main class="simple">
+    <div class="source">
+      <pre
+        class="language-html"
+      ><code class="wb-ba">&lt;script&gt;!function(e){if(!e.Z){var c={};e.Z={load:function(e,r){var o=[];e.forEach(function(e,t){o[t]=null;var n=new XMLHttpRequest;for(var a in n.onreadystatechange=function(){4==n.readyState&&(o[t]=n.status==(e.status||200)?e.callback?e.callback(n.responseText):n.responseText:void 0,Z.load[e.key]=o[t],~o.indexOf(null)||r(o))},n.open(e.method||"GET",e.url,!0),e.headers)n.setRequestHeader(a,e.headers[a]);n.send(e.body)})},update:function(e,t){c[e]&&(c[e].f(t),c[e].l.forEach(function(e){e()}))},mount:function(n,e){n.key&&!e&&(c[n.key]={l:[],f:function(e){for(var t in e)n[t]=e[t];Z.mount(n,!0)}});var t=n.inner,a=n.outer,r=n.state,o=n.before,u=n.after,s={state:r,prev:Z[n.key]};if(0!=(o&&o(s.state,s.prev))){var f=n.render(s.state,s.prev);t&&(t.innerHTML=f),a&&(a.outerHTML=f),u&&u(s.state,s.prev)}Z[n.key]=r},watch:function(e,t){c[e]&&c[e].l.push(t)}}}}(window,document);&lt;/script&gt;</code></pre>
+
+      <pre
+        class="language-html"
+      ><code>&lt;script src="https://cdn.jsdelivr.net/npm/zedjs"&gt;&lt;/script&gt;
+&lt;script src="https://unpkg.com/zedjs@2.4.2/Z.min.js"&gt;&lt;/script&gt;</code></pre>
+    </div>
+
+    <section class="simple">
       <div class="desc">
         <h2>The Simplest Component</h2>
         <p>
@@ -345,9 +354,10 @@
           the script element itself.
         </p>
       </div>
-      <div class="input-container">
-        <p class="label">HTML</p>
-        <pre id="html-simple" class="html">
+      <div class="sandbox">
+        <div class="input-container">
+          <p class="label">HTML</p>
+          <pre id="html-simple" class="html">
 &lt;script id="welcome"&gt;
   Z.mount({
     render: function() {
@@ -356,19 +366,20 @@
     outer: document.getElementById("welcome")
   });
 &lt;/script&gt;
-</pre
-        >
-      </div>
-      <div class="result-container">
-        <div class="label">
-          <span>RESULT</span>
-          <button id="run-simple" class="run">run</button>
+  </pre
+          >
         </div>
-        <iframe id="output-simple" class="output"></iframe>
+        <div class="result-container">
+          <div class="label">
+            <span>RESULT</span>
+            <button id="run-simple" class="run">run</button>
+          </div>
+          <iframe id="output-simple" class="output"></iframe>
+        </div>
       </div>
-    </main>
+    </section>
 
-    <main class="comp-with-data">
+    <section class="comp-with-data">
       <div class="desc">
         <h2>Component with State</h2>
         <p>
@@ -379,14 +390,15 @@
           using the key. eg. Z.greeting will be {name: "Paul"}
         </p>
       </div>
-      <div class="input-container">
-        <p class="label">HTML</p>
-        <pre id="html-comp-with-data" class="html">
+      <div class="sandbox">
+        <div class="input-container">
+          <p class="label">HTML</p>
+          <pre id="html-comp-with-data" class="html">
 &lt;div id="welcome"&gt;&lt;/div&gt;
 &lt;script&gt;
   Z.mount({
     key: "greeting",
-    render: function(state) {
+    render: function(state, prev) {
       return `&lt;h1&gt;Hello ${state.name}!&lt;/h1&gt;`
     },
     inner: document.getElementById("welcome"),
@@ -396,18 +408,19 @@
   });
 &lt;/script&gt;
 </pre
-        >
-      </div>
-      <div class="result-container">
-        <div class="label">
-          <span>RESULT</span>
-          <button id="run-comp-with-data" class="run">run</button>
+          >
         </div>
-        <iframe id="output-comp-with-data" class="output"></iframe>
+        <div class="result-container">
+          <div class="label">
+            <span>RESULT</span>
+            <button id="run-comp-with-data" class="run">run</button>
+          </div>
+          <iframe id="output-comp-with-data" class="output"></iframe>
+        </div>
       </div>
-    </main>
+    </section>
 
-    <main class="simple-update">
+    <section class="simple-update">
       <div class="desc">
         <h2>Updating Components</h2>
         <p>
@@ -415,15 +428,16 @@
           what is to be updated. This will then re-render that component.
         </p>
       </div>
-      <div class="input-container">
-        <p class="label">HTML</p>
-        <pre id="html-simple-update" class="html">
+      <div class="sandbox">
+        <div class="input-container">
+          <p class="label">HTML</p>
+          <pre id="html-simple-update" class="html">
 &lt;div id="welcome"&gt;&lt;/div&gt;
 &lt;button onclick='Z.update("foo", {state: {name:"Tina", age:24} })'&gt;Update!&lt;/button&gt;
 &lt;script&gt;
   Z.mount({
     key: "foo",
-    render: function(state) {
+    render: function(state, prev) {
       return `&lt;h1&gt;${state.name} is ${state.age} years old!&lt;/h1&gt;`;
     },
     inner: document.getElementById("welcome"),
@@ -434,18 +448,19 @@
   });
 &lt;/script&gt;
 </pre
-        >
-      </div>
-      <div class="result-container">
-        <div class="label">
-          <span>RESULT</span>
-          <button id="run-simple-update" class="run">run</button>
+          >
         </div>
-        <iframe id="output-simple-update" class="output"></iframe>
+        <div class="result-container">
+          <div class="label">
+            <span>RESULT</span>
+            <button id="run-simple-update" class="run">run</button>
+          </div>
+          <iframe id="output-simple-update" class="output"></iframe>
+        </div>
       </div>
-    </main>
+    </section>
 
-    <main class="render-update">
+    <section class="render-update">
       <div class="desc">
         <h2>Updating Components cont.</h2>
         <p>
@@ -458,15 +473,16 @@
           mounting.
         </p>
       </div>
-      <div class="input-container">
-        <p class="label">HTML</p>
-        <pre id="html-render-update" class="html">
+      <div class="sandbox">
+        <div class="input-container">
+          <p class="label">HTML</p>
+          <pre id="html-render-update" class="html">
 &lt;div id="welcome"&gt;&lt;/div&gt;
 &lt;button id="update"&gt;Update!&lt;/button&gt;
 &lt;script&gt;
   Z.mount({
     key: "foo",
-    render: function(state) {
+    render: function(state, prev) {
       return `&lt;h1&gt;${state.name} is ${state.age} years old!&lt;/h1&gt;`;
     },
     inner: document.getElementById("welcome"),
@@ -477,25 +493,26 @@
   });
   document.getElementById("update").addEventListener("click", function(){
     Z.update("foo", {
-      render: function(state){
+      render: function(state, prev){
         return `&lt;h1&gt;${state.age} years old ${state.name} is!&lt;/h1&gt;`;
       }
     });
   })
 &lt;/script&gt;
 </pre
-        >
-      </div>
-      <div class="result-container">
-        <div class="label">
-          <span>RESULT</span>
-          <button id="run-render-update" class="run">run</button>
+          >
         </div>
-        <iframe id="output-render-update" class="output"></iframe>
+        <div class="result-container">
+          <div class="label">
+            <span>RESULT</span>
+            <button id="run-render-update" class="run">run</button>
+          </div>
+          <iframe id="output-render-update" class="output"></iframe>
+        </div>
       </div>
-    </main>
+    </section>
 
-    <main class="external-data">
+    <section class="external-data">
       <div class="desc">
         <h2>Loading External Data</h2>
         <p>You can also load data eg. a JSON before mounting a component.</p>
@@ -508,9 +525,10 @@
           Resources are available globally as, in this example Z.load.robert
         </p>
       </div>
-      <div class="input-container">
-        <p class="label">HTML</p>
-        <pre id="html-external-data" class="html">
+      <div class="sandbox">
+        <div class="input-container">
+          <p class="label">HTML</p>
+          <pre id="html-external-data" class="html">
 &lt;div id="welcome"&gt;&lt;/div&gt;
 &lt;script&gt;
   Z.load(
@@ -526,7 +544,7 @@
     function() {
       Z.mount({
         key: "foo",
-        render: function(state) {
+        render: function(state, prev) {
           return `&lt;h1&gt;${state.name} is ${state.age} years old!&lt;/h1&gt;`;
         },
         inner: document.getElementById("welcome"),
@@ -536,18 +554,19 @@
   ) 
 &lt;/script&gt;
 </pre
-        >
-      </div>
-      <div class="result-container">
-        <div class="label">
-          <span>RESULT</span>
-          <button id="run-external-data" class="run">run</button>
+          >
         </div>
-        <iframe id="output-external-data" class="output"></iframe>
+        <div class="result-container">
+          <div class="label">
+            <span>RESULT</span>
+            <button id="run-external-data" class="run">run</button>
+          </div>
+          <iframe id="output-external-data" class="output"></iframe>
+        </div>
       </div>
-    </main>
+    </section>
 
-    <main class="watching">
+    <section class="watching">
       <div class="desc">
         <h2>Watching Components</h2>
         <p>
@@ -558,38 +577,42 @@
           been mounted.
         </p>
       </div>
-      <div class="input-container">
-        <p class="label">HTML</p>
-        <pre id="html-watching" class="html">
+      <div class="sandbox">
+        <div class="input-container">
+          <p class="label">HTML</p>
+          <pre id="html-watching" class="html">
 &lt;div id="welcome"&gt;&lt;/div&gt;
 &lt;button onclick='Z.update("foo", {state: {name:"Luke", age:30} })'&gt;Update!&lt;/button&gt;
 &lt;script&gt;
   Z.mount({
     key: "foo",
-    render: function(state) {
+    render: function(state, prev) {
       return `&lt;h1&gt;${state.name} is ${state.age} years old!&lt;/h1&gt;`;
     },
     inner: document.getElementById("welcome"),
-    state: {name: "Paul", age: 35}
+    state: {
+      name: "Paul", 
+      age: 35
+    }
   });
-
   Z.watch("foo", function(){
     alert(Z.foo.name + " use the force!");
   });
 &lt;/script&gt;
 </pre
-        >
-      </div>
-      <div class="result-container">
-        <div class="label">
-          <span>RESULT</span>
-          <button id="run-watching" class="run">run</button>
+          >
         </div>
-        <iframe id="output-watching" class="output"></iframe>
+        <div class="result-container">
+          <div class="label">
+            <span>RESULT</span>
+            <button id="run-watching" class="run">run</button>
+          </div>
+          <iframe id="output-watching" class="output"></iframe>
+        </div>
       </div>
-    </main>
+    </section>
 
-    <main class="before-after">
+    <section class="before-after">
       <div class="desc">
         <h2>Before and After</h2>
         <p>
@@ -601,13 +624,14 @@
           render.
         </p>
         <p>
-          This can be used to only re-render a component if the state is
+          This can be used to re-render a component only if the state is
           different from the previous state.
         </p>
       </div>
-      <div class="input-container">
-        <p class="label">HTML</p>
-        <pre id="html-before-after" class="html">
+      <div class="sandbox">
+        <div class="input-container">
+          <p class="label">HTML</p>
+          <pre id="html-before-after" class="html">
 &lt;div id="welcome"&gt;&lt;/div&gt;
 &lt;script&gt;
   Z.mount({
@@ -616,18 +640,19 @@
       return JSON.stringify(state) != JSON.stringify(prev);
     },
     render: function(state, prev) {
-      console.log("render fired");
       return `
         &lt;h1&gt;${state.name} is ${state.age} years old!&lt;/h1&gt;
         &lt;button id="btn"&gt;Update!&lt;/button&gt;
       `;
     },
-    after: function(){
+    after: function(state, prev){
       document.getElementById("btn").addEventListener("click", function(){
-        Z.update("foo", {state: {
-          name: "Thomas",
-          age: 72
-        }})
+        Z.update("foo", {
+          state: {
+            name: "Thomas",
+            age: 72
+          }
+        })
       })
     },
     inner: document.getElementById("welcome"),
@@ -638,26 +663,28 @@
   });  
 &lt;/script&gt;
 </pre
-        >
-      </div>
-      <div class="result-container">
-        <div class="label">
-          <span>RESULT</span>
-          <button id="run-before-after" class="run">run</button>
+          >
         </div>
-        <iframe id="output-before-after" class="output"></iframe>
+        <div class="result-container">
+          <div class="label">
+            <span>RESULT</span>
+            <button id="run-before-after" class="run">run</button>
+          </div>
+          <iframe id="output-before-after" class="output"></iframe>
+        </div>
       </div>
-    </main>
+    </section>
 
     <!-- COUNTER DEMO!! -->
 
-    <main class="counter-demo">
+    <section class="counter-demo">
       <div class="desc">
         <h2>Counter Demo</h2>
       </div>
-      <div class="input-container">
-        <p class="label">HTML</p>
-        <pre id="html-counter" class="html">
+      <div class="sandbox">
+        <div class="input-container">
+          <p class="label">HTML</p>
+          <pre id="html-counter" class="html">
 &lt;h1&gt;Counter Demo&lt;/h1&gt;
 &lt;button onclick="Z.update('count', {state: Z.count - 1})"&gt;
   -
@@ -677,24 +704,26 @@
   });
 &lt;/script&gt;
 </pre
-        >
-      </div>
-      <div class="result-container">
-        <div class="label">
-          <span>RESULT</span>
-          <button id="run-counter" class="run">run</button>
+          >
         </div>
-        <iframe id="output-counter" class="output"></iframe>
+        <div class="result-container">
+          <div class="label">
+            <span>RESULT</span>
+            <button id="run-counter" class="run">run</button>
+          </div>
+          <iframe id="output-counter" class="output"></iframe>
+        </div>
       </div>
-    </main>
+    </section>
 
-    <main class="todo-demo">
+    <section class="todo-demo">
       <div class="desc">
         <h2>Todo Demo</h2>
       </div>
-      <div class="input-container">
-        <p class="label">HTML</p>
-        <pre id="html-todo" class="html">
+      <div class="sandbox">
+        <div class="input-container">
+          <p class="label">HTML</p>
+          <pre id="html-todo" class="html">
 &lt;h1&gt;Todo List Demo&lt;/h1&gt;
 &lt;div id="todo-add"&gt;&lt;/div&gt;
 &lt;div id="todo-list"&gt;&lt;/div&gt;
@@ -716,7 +745,6 @@
     inner: document.getElementById("todo-list"),
     state: []
   });
-
   Z.mount({
   render: function() {
     return `
@@ -740,16 +768,17 @@
   });
 &lt;/script&gt;
 </pre
-        >
-      </div>
-      <div class="result-container">
-        <div class="label">
-          <span>RESULT</span>
-          <button id="run-todo" class="run">run</button>
+          >
         </div>
-        <iframe id="output-todo" class="output"></iframe>
+        <div class="result-container">
+          <div class="label">
+            <span>RESULT</span>
+            <button id="run-todo" class="run">run</button>
+          </div>
+          <iframe id="output-todo" class="output"></iframe>
+        </div>
       </div>
-    </main>
+    </section>
 
     <script>
       var s = "script";
@@ -903,5 +932,6 @@
           baseStart + htmlTodo.getValue() + baseEnd;
       });
     </script>
+    <script src="js/prism.js"></script>
   </body>
 </html>
