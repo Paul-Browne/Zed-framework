@@ -46,8 +46,8 @@
         padding: 0;
       }
       .run {
-        position: fixed;
-        top: 10px;
+        position: absolute;
+        top: calc(100vh + 10px);
         right: 10px;
         outline: 0;
         border: 0;
@@ -73,13 +73,16 @@
 
       @media (max-width: 440px) {
         #divider {
-          position: fixed;
-          top: 50%;
-          left: 0;
-          height: 6px;
+          display: none;
+        }
+        body {
+          flex-direction: column;
+        }
+        pre,
+        iframe {
           width: 100vw;
-          cursor: ns-resize;
-          margin-top: -3px;
+          height: 100vh;
+          margin: 0;
         }
       }
 
@@ -136,33 +139,33 @@
           document.getElementById("output-sandbox").srcdoc = sandbox.getValue();
         });
 
-      var isPressed = false;
-      var divider = document.getElementById("divider");
-      divider.addEventListener("mousedown", function(e) {
-        isPressed = true;
-        var div = document.getElementById("divider");
-        div.style.width = "100%";
-        //div.style.height = "100%";
-        div.style.marginLeft = "-50%";
-        //div.style.marginTop = "-50%";
-      });
-      divider.addEventListener("mouseup", function(e) {
-        isPressed = false;
-        var div = document.getElementById("divider");
-        div.style.width = "";
-        div.style.height = "";
-        div.style.marginLeft = "";
-        div.style.marginTop = "";
-      });
-      divider.addEventListener("mousemove", function(e) {
-        if (isPressed) {
-          var ww = window.innerWidth;
+      var ww = window.innerWidth;
+      if (ww > 440) {
+        var isPressed = false;
+        var divider = document.getElementById("divider");
+        divider.addEventListener("mousedown", function(e) {
+          isPressed = true;
           var div = document.getElementById("divider");
-          document.querySelector("pre").style.width = e.x + "px";
-          document.querySelector("iframe").style.width = ww - e.x + "px";
-          div.style.left = e.x + "px";
-        }
-      });
+          div.style.width = "100%";
+          div.style.marginLeft = "-50%";
+        });
+        divider.addEventListener("mouseup", function(e) {
+          isPressed = false;
+          var div = document.getElementById("divider");
+          div.style.width = "";
+          div.style.height = "";
+          div.style.marginLeft = "";
+          div.style.marginTop = "";
+        });
+        divider.addEventListener("mousemove", function(e) {
+          if (isPressed) {
+            var div = document.getElementById("divider");
+            document.querySelector("pre").style.width = e.x + "px";
+            document.querySelector("iframe").style.width = ww - e.x + "px";
+            div.style.left = e.x + "px";
+          }
+        });
+      }
     </script>
     <script
       async
