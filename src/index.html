@@ -14,7 +14,7 @@
     <meta name="theme-color" content="#ffffff" />
     <meta
       name="description"
-      content="Zed.js is a templateless micro frontend framework. It handles the rendering, updating and state management of your html components in only 863 bytes"
+      content="Zed.js is a templateless micro frontend framework. It handles the rendering, updating and state management of your html components in only 854 bytes"
     />
     <title>Zed.js • Micro framework</title>
     <link rel="stylesheet" href="css/prism.css" />
@@ -333,19 +333,19 @@
       <img src="images/logo-white-blue-border.svg" />
       <div class="text">
         <h1 class="zed">ZED.JS</h1>
-        <h2>The 863 byte micro frontend framework</h2>
+        <h2>The 854 byte micro frontend framework</h2>
       </div>
     </div>
 
     <div class="source">
       <pre
         class="language-html"
-      ><code class="wb-ba">&lt;script&gt;!function(e){if(!e.Z){var s={};e.Z={load:function(e,r){var o=[];e.forEach(function(e,t){o[t]=null;var n=new XMLHttpRequest;for(var a in n.onreadystatechange=function(){4==n.readyState&&(o[t]=n.status==(e.status||200)?e.callback?e.callback(n.responseText):n.responseText:void 0,Z.load[e.id]=o[t],~o.indexOf(null)||r(o))},n.open(e.method||"GET",e.url,!0),e.headers)n.setRequestHeader(a,e.headers[a]);n.send(e.body)})},update:function(e,t){s[e]&&(s[e].f(t),s[e].l.forEach(function(e){e()}))},mount:function(n,e){n.id&&!e&&(s[n.id]={l:[],f:function(e){for(var t in e)n[t]=e[t];Z.mount(n,!0)}});var t=n.inner,a=n.outer,r=n.state,o=n.before,i=n.after,u={state:r,prev:Z[n.id]};if(0!=(o&&o(u.state,u.prev))){var d=n.render(u.state,u.prev);t&&(t.innerHTML=d),a&&(a.outerHTML=d),i&&i(u.state,u.prev)}Z[n.id]=r},watch:function(e,t){s[e]&&s[e].l.push(t)}}}}(window,document);&lt;/script&gt;</code></pre>
+      ><code class="wb-ba">&lt;script&gt;!function(e){if(!e.Z){var d={};e.Z={load:function(e,r){var o=[];e.forEach(function(e,t){o[t]=null;var n=new XMLHttpRequest;for(var a in n.onreadystatechange=function(){4==n.readyState&&(o[t]=n.status==(e.status||200)?e.callback?e.callback(n.responseText):n.responseText:void 0,Z.load[e.id]=o[t],~o.indexOf(null)||r(o))},n.open(e.method||"GET",e.url,!0),e.headers)n.setRequestHeader(a,e.headers[a]);n.send(e.body)})},update:function(e,t){d[e]&&(d[e].f(t),d[e].l.forEach(function(e){e()}))},mount:function(n,e){n.id&&!e&&(d[n.id]={l:[],f:function(e){for(var t in e)n[t]=e[t];Z.mount(n,!0)}});var t=n.inner,a=n.outer,r=n.state,o=n.before,i=n.after,u={state:r,prev:Z[n.id]};if(0!=(o&&o(u.state,u.prev))){var s=n.render(u.state,u.prev);t&&(t.innerHTML=s),a&&(a.outerHTML=s),i&&i(u.state,u.prev)}Z[n.id]=r},watch:function(e,t){d[e]&&d[e].l.push(t)}}}}(window);&lt;/script&gt;</code></pre>
 
       <pre
         class="language-html"
       ><code>&lt;script src="https://cdn.jsdelivr.net/npm/zedjs"&gt;&lt;/script&gt;
-&lt;script src="https://unpkg.com/zedjs@2.4.3/Z.min.js"&gt;&lt;/script&gt;</code></pre>
+&lt;script src="https://unpkg.com/zedjs@2.4.4/Z.min.js"&gt;&lt;/script&gt;</code></pre>
     </div>
 
     <section class="simple">
@@ -426,8 +426,8 @@
       <div class="desc">
         <h2>Updating Components</h2>
         <p>
-          Components can be updated by passing the id name, and an object with
-          what is to be updated. This will then re-render that component.
+          Components can be updated by passing the id, and an object with what
+          is to be updated. This will then re-render that component.
         </p>
       </div>
       <div class="sandbox">
@@ -779,7 +779,7 @@
       var baseStart =
         '<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><' +
         s +
-        ' src="https://unpkg.com/zedjs@2.4.3/Z.min.js"></' +
+        ' src="https://unpkg.com/zedjs@2.4.4/Z.min.js"></' +
         s +
         "></head><body>";
       var baseEnd = "</body></html>";

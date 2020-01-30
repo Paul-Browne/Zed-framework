@@ -1,4 +1,4 @@
-!(function(w, d) {
+!(function(w) {
   if (!w.Z) {
     var topics = {};
     w.Z = {
@@ -74,4 +74,4 @@
       }
     };
   }
-})(window, document);
+})(window);
