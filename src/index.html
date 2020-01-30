@@ -23,7 +23,6 @@
       href="https://fonts.googleapis.com/css?family=Overpass:600,700,800&display=swap"
       rel="stylesheet"
     />
-    <script src="https://ajaxorg.github.io/ace-builds/src-min-noconflict/ace.js"></script>
     <link rel="stylesheet" href="css/prism.css" />
     <style type="text/css">
       *,
@@ -322,6 +321,10 @@
           font-size: 12px !important;
         }
       }
+
+      body .ace_scrollbar {
+        display: none;
+      }
     </style>
   </head>
   <body>
@@ -406,8 +409,7 @@
       name: "Paul"
     }
   });
-&lt;/script&gt;
-</pre
+&lt;/script&gt;</pre
           >
         </div>
         <div class="result-container">
@@ -446,8 +448,7 @@
       age: 48
     }
   });
-&lt;/script&gt;
-</pre
+&lt;/script&gt;</pre
           >
         </div>
         <div class="result-container">
@@ -497,8 +498,7 @@
       }
     });
   })
-&lt;/script&gt;
-</pre
+&lt;/script&gt;</pre
           >
         </div>
         <div class="result-container">
@@ -551,8 +551,7 @@
       });
     }
   ) 
-&lt;/script&gt;
-</pre
+&lt;/script&gt;</pre
           >
         </div>
         <div class="result-container">
@@ -597,8 +596,7 @@
   Z.watch("foo", function(){
     alert(Z.foo.name + " use the force!");
   });
-&lt;/script&gt;
-</pre
+&lt;/script&gt;</pre
           >
         </div>
         <div class="result-container">
@@ -660,8 +658,7 @@
       age: 36
     }
   });  
-&lt;/script&gt;
-</pre
+&lt;/script&gt;</pre
           >
         </div>
         <div class="result-container">
@@ -701,8 +698,7 @@
     inner: document.getElementById("output"),
     state: 0
   });
-&lt;/script&gt;
-</pre
+&lt;/script&gt;</pre
           >
         </div>
         <div class="result-container">
@@ -765,8 +761,7 @@
   },
   outer: document.getElementById("todo-add")
   });
-&lt;/script&gt;
-</pre
+&lt;/script&gt;</pre
           >
         </div>
         <div class="result-container">
@@ -778,7 +773,7 @@
         </div>
       </div>
     </section>
-
+    <script src="https://ajaxorg.github.io/ace-builds/src-min-noconflict/ace.js"></script>
     <script>
       var s = "script";
       var baseStart =
