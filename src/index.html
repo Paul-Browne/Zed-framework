@@ -337,12 +337,12 @@
     <div class="source">
       <pre
         class="language-html"
-      ><code class="wb-ba">&lt;script&gt;!function(e){if(!e.Z){var c={};e.Z={load:function(e,r){var o=[];e.forEach(function(e,t){o[t]=null;var n=new XMLHttpRequest;for(var a in n.onreadystatechange=function(){4==n.readyState&&(o[t]=n.status==(e.status||200)?e.callback?e.callback(n.responseText):n.responseText:void 0,Z.load[e.key]=o[t],~o.indexOf(null)||r(o))},n.open(e.method||"GET",e.url,!0),e.headers)n.setRequestHeader(a,e.headers[a]);n.send(e.body)})},update:function(e,t){c[e]&&(c[e].f(t),c[e].l.forEach(function(e){e()}))},mount:function(n,e){n.key&&!e&&(c[n.key]={l:[],f:function(e){for(var t in e)n[t]=e[t];Z.mount(n,!0)}});var t=n.inner,a=n.outer,r=n.state,o=n.before,u=n.after,s={state:r,prev:Z[n.key]};if(0!=(o&&o(s.state,s.prev))){var f=n.render(s.state,s.prev);t&&(t.innerHTML=f),a&&(a.outerHTML=f),u&&u(s.state,s.prev)}Z[n.key]=r},watch:function(e,t){c[e]&&c[e].l.push(t)}}}}(window,document);&lt;/script&gt;</code></pre>
+      ><code class="wb-ba">&lt;script&gt;!function(e){if(!e.Z){var s={};e.Z={load:function(e,r){var o=[];e.forEach(function(e,t){o[t]=null;var n=new XMLHttpRequest;for(var a in n.onreadystatechange=function(){4==n.readyState&&(o[t]=n.status==(e.status||200)?e.callback?e.callback(n.responseText):n.responseText:void 0,Z.load[e.id]=o[t],~o.indexOf(null)||r(o))},n.open(e.method||"GET",e.url,!0),e.headers)n.setRequestHeader(a,e.headers[a]);n.send(e.body)})},update:function(e,t){s[e]&&(s[e].f(t),s[e].l.forEach(function(e){e()}))},mount:function(n,e){n.id&&!e&&(s[n.id]={l:[],f:function(e){for(var t in e)n[t]=e[t];Z.mount(n,!0)}});var t=n.inner,a=n.outer,r=n.state,o=n.before,i=n.after,u={state:r,prev:Z[n.id]};if(0!=(o&&o(u.state,u.prev))){var d=n.render(u.state,u.prev);t&&(t.innerHTML=d),a&&(a.outerHTML=d),i&&i(u.state,u.prev)}Z[n.id]=r},watch:function(e,t){s[e]&&s[e].l.push(t)}}}}(window,document);&lt;/script&gt;</code></pre>
 
       <pre
         class="language-html"
       ><code>&lt;script src="https://cdn.jsdelivr.net/npm/zedjs"&gt;&lt;/script&gt;
-&lt;script src="https://unpkg.com/zedjs@2.4.2/Z.min.js"&gt;&lt;/script&gt;</code></pre>
+&lt;script src="https://unpkg.com/zedjs@2.4.3/Z.min.js"&gt;&lt;/script&gt;</code></pre>
     </div>
 
     <section class="simple">
@@ -387,7 +387,7 @@
         </p>
         <p>
           The state will be available globally after the component is mounted
-          using the key. eg. Z.greeting will be {name: "Paul"}
+          using the id. eg. Z.greeting will be {name: "Paul"}
         </p>
       </div>
       <div class="sandbox">
@@ -397,7 +397,7 @@
 &lt;div id="welcome"&gt;&lt;/div&gt;
 &lt;script&gt;
   Z.mount({
-    key: "greeting",
+    id: "greeting",
     render: function(state, prev) {
       return `&lt;h1&gt;Hello ${state.name}!&lt;/h1&gt;`
     },
@@ -424,7 +424,7 @@
       <div class="desc">
         <h2>Updating Components</h2>
         <p>
-          Components can be updated by passing the key name, and an object with
+          Components can be updated by passing the id name, and an object with
           what is to be updated. This will then re-render that component.
         </p>
       </div>
@@ -436,7 +436,7 @@
 &lt;button onclick='Z.update("foo", {state: {name:"Tina", age:24} })'&gt;Update!&lt;/button&gt;
 &lt;script&gt;
   Z.mount({
-    key: "foo",
+    id: "foo",
     render: function(state, prev) {
       return `&lt;h1&gt;${state.name} is ${state.age} years old!&lt;/h1&gt;`;
     },
@@ -481,7 +481,7 @@
 &lt;button id="update"&gt;Update!&lt;/button&gt;
 &lt;script&gt;
   Z.mount({
-    key: "foo",
+    id: "foo",
     render: function(state, prev) {
       return `&lt;h1&gt;${state.name} is ${state.age} years old!&lt;/h1&gt;`;
     },
@@ -534,7 +534,7 @@
   Z.load(
     [
       {
-        key: "robert",
+        id: "robert",
         url: "demos/json/robert.json",
         callback: function(data) {
           return JSON.parse(data);
@@ -543,7 +543,7 @@
     ],
     function() {
       Z.mount({
-        key: "foo",
+        id: "foo",
         render: function(state, prev) {
           return `&lt;h1&gt;${state.name} is ${state.age} years old!&lt;/h1&gt;`;
         },
@@ -573,7 +573,7 @@
           It is also possible to watch for when components are updated.
         </p>
         <p>
-          NOTE: Z.watch must be declared after the component with that key has
+          NOTE: Z.watch must be declared after the component with that id has
           been mounted.
         </p>
       </div>
@@ -585,7 +585,7 @@
 &lt;button onclick='Z.update("foo", {state: {name:"Luke", age:30} })'&gt;Update!&lt;/button&gt;
 &lt;script&gt;
   Z.mount({
-    key: "foo",
+    id: "foo",
     render: function(state, prev) {
       return `&lt;h1&gt;${state.name} is ${state.age} years old!&lt;/h1&gt;`;
     },
@@ -635,7 +635,7 @@
 &lt;div id="welcome"&gt;&lt;/div&gt;
 &lt;script&gt;
   Z.mount({
-    key: "foo",
+    id: "foo",
     before: function(state, prev){
       return JSON.stringify(state) != JSON.stringify(prev);
     },
@@ -695,7 +695,7 @@
 &lt;/button&gt;
 &lt;script&gt;
   Z.mount({
-    key: "count",
+    id: "count",
     render: function(state) {
       return state;
     },
@@ -729,7 +729,7 @@
 &lt;div id="todo-list"&gt;&lt;/div&gt;
 &lt;script&gt;
   Z.mount({
-    key: "todos",
+    id: "todos",
     render: function(state) {
       return state
         .map(function(todo, index) {

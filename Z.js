@@ -15,30 +15,30 @@
                     ? obj.callback(xhr.responseText)
                     : xhr.responseText
                   : undefined;
-              Z.load[obj.key] = arrResolved[index];
+              Z.load[obj.id] = arrResolved[index];
               if (!~arrResolved.indexOf(null)) {
                 callback(arrResolved);
               }
             }
           };
           xhr.open(obj.method || "GET", obj.url, true);
-          for (var key in obj.headers) {
-            xhr.setRequestHeader(key, obj.headers[key]);
+          for (var id in obj.headers) {
+            xhr.setRequestHeader(id, obj.headers[id]);
           }
           xhr.send(obj.body);
         });
       },
-      update: function(key, obj) {
-        if (topics[key]) {
-          topics[key].f(obj);
-          topics[key].l.forEach(function(fn) {
+      update: function(id, obj) {
+        if (topics[id]) {
+          topics[id].f(obj);
+          topics[id].l.forEach(function(fn) {
             fn();
           });
         }
       },
       mount: function(obj, noSubscribe) {
-        if (obj.key && !noSubscribe) {
-          topics[obj.key] = {
+        if (obj.id && !noSubscribe) {
+          topics[obj.id] = {
             l: [],
             f: function(data) {
               for (var k in data) {
@@ -55,7 +55,7 @@
         var after = obj.after;
         var o = {
           state: state,
-          prev: Z[obj.key]
+          prev: Z[obj.id]
         };
         if ((before && before(o.state, o.prev)) != false) {
           var x = obj.render(o.state, o.prev);
@@ -67,10 +67,10 @@
           }
           after && after(o.state, o.prev);
         }
-        Z[obj.key] = state;
+        Z[obj.id] = state;
       },
-      watch: function(key, obj) {
-        topics[key] && topics[key].l.push(obj);
+      watch: function(id, obj) {
+        topics[id] && topics[id].l.push(obj);
       }
     };
   }
