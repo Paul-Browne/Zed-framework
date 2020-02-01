@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "Autumnal",
+    "price": 35.99,
+    "image": "autumnal-lilies-and-roses.png"
+  },
+  {
+    "id": 2,
+    "name": "Familial",
+    "price": 28.99,
+    "image": "familial-lilies-and-gerberas.png"
+  },
+  {
+    "id": 3,
+    "name": "Freshness",
+    "price": 44.99,
+    "image": "freshness-roses-and-lilies.png"
+  },
+  {
+    "id": 4,
+    "name": "Harmony",
+    "price": 19.99,
+    "image": "harmony-roses-and-callas.png"
+  },
+  {
+    "id": 5,
+    "name": "Ice cream",
+    "price": 55.99,
+    "image": "icecream-chrysanthemums-and-roses.png"
+  },
+  {
+    "id": 6,
+    "name": "Innocent",
+    "price": 74.99,
+    "image": "innocent-love-lilies-and-roses.png"
+  },
+  {
+    "id": 7,
+    "name": "Mango Night",
+    "price": 34.99,
+    "image": "mango-orange-roses-and-gerberas.png"
+  },
+  {
+    "id": 8,
+    "name": "Orange Dream",
+    "price": 39.99,
+    "image": "orange-bloom-roses-and-calles.png"
+  },
+  {
+    "id": 9,
+    "name": "Pink Diamond",
+    "price": 22.99,
+    "image": "pink-diamond-roses-and-gerberas.png"
+  },
+  {
+    "id": 10,
+    "name": "Pumpkin",
+    "price": 53.99,
+    "image": "pumpkin-roses-and-alstroemerias.png"
+  },
+  {
+    "id": 11,
+    "name": "Velvet Red",
+    "price": 99.99,
+    "image": "velvet-red-lilies-and-roses.png"
+  },
+  {
+    "id": 12,
+    "name": "Vibrancy",
+    "price": 79.99,
+    "image": "vibrancy-yellow-and-pink-roses.png"
+  }
+]
