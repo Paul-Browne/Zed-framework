@@ -1,1 +1,0 @@
-"use strict";Z.mount({key:"greeting",state:{name:"John",age:35},render:function(e){return"<h1>hello ".concat(e.name,"</h1>")},inner:document.getElementById("welcome")});

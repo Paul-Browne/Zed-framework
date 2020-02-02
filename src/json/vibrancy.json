@@ -1,0 +1,37 @@
+{
+  "name": "Vibrancy",
+  "fullname": "Vibrancy: Yellow and Pink Roses",
+  "description": "This pink and yellow rose bouquet is a bright and colourful departure from darker, more dramatic rose bouquets. What could be more heavenly than a pink and yellow rose delivery for someone’s birthday, to say “congratulations” on their wedding day or to wish mum a warm greeting on Mother's Day!",
+  "images": [
+    "vibrancy/vibrancy-yellow-and-pink-roses.png",
+    "vibrancy/vibrancy-vase-on-table.jpg",
+    "vibrancy/vibrancy-detailed-view.png"
+  ],
+  "included": [
+    {
+      "name": "Pink roses",
+      "image": "pink-roses.jpg"
+    },
+    {
+      "name": "Yellow roses",
+      "image": "yellow-roses.jpg"
+    },
+    {
+      "name": "Pink germini",
+      "image": "pink-germini.jpg"
+    },
+    {
+      "name": "White alstroemerias",
+      "image": "white-alstroemerias.jpg"
+    },
+    {
+      "name": "Goldenrod",
+      "image": "goldenrod.jpg"
+    },
+    {
+      "name": "Decorative greenery",
+      "image": "decorative-greenery.jpg"
+    }
+  ],
+  "price": 79.99
+}

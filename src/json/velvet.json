@@ -1,0 +1,33 @@
+{
+  "name": "Velvet",
+  "fullname": "Velvet: Red Lilies And Roses",
+  "description": "If this bouquet were a fabric, it would have to be velvet. The red lilies and roses of this bouquet have a soft, warm and cosy velvety texture. Alstroemerias, in the same shade, give a silky touch to an arrangement that communicates passion and emotion, making it perfect to send as a symbol of love. Express all your affections with this gorgeous combination of flowers!",
+  "images": [
+    "velvet/velvet-red-lilies-and-roses.png",
+    "velvet/velvet-vase-on-table.jpg",
+    "velvet/velvet-detailed-view.png"
+  ],
+  "included": [
+    {
+      "name": "Orange roses",
+      "image": "orange-roses.jpg"
+    },
+    {
+      "name": "Red roses",
+      "image": "red-roses.jpg"
+    },
+    {
+      "name": "Red lilies",
+      "image": "red-lilies.jpg"
+    },
+    {
+      "name": "Decorative greenery",
+      "image": "decorative-greenery.jpg"
+    },
+    {
+      "name": "Red alstroemerias",
+      "image": "red-alstroemerias.jpg"
+    }
+  ],
+  "price": 99.99
+}

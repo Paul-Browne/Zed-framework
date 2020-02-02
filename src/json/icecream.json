@@ -1,0 +1,41 @@
+{
+  "name": "Ice Cream",
+  "fullname": "Ice Cream: Chrysanthemums and Roses",
+  "description": "As sweet as an ice cream. This bouquet of pink-coloured roses and white callas is perfect to send a breath of fresh air with flowers this summer. Pink, white and green chrysanthemums put the finishing touches to this composition, while the blue of the veronicas could be the topping for this delicate dessert.",
+  "images": [
+    "icecream/icecream-chrysanthemums-and-roses.png",
+    "icecream/icecream-vase-on-table.png",
+    "icecream/icecream-detailed-view.png"
+  ],
+  "included": [
+    {
+      "name": "Pink roses",
+      "image": "pink-roses.jpg"
+    },
+    {
+      "name": "Calla lilies",
+      "image": "calla-lilies.jpg"
+    },
+    {
+      "name": "Pink chrysanthemums",
+      "image": "pink-chrysanthemums.jpg"
+    },
+    {
+      "name": "White chrysanthemums",
+      "image": "white-chrysanthemums.jpg"
+    },
+    {
+      "name": "Green chrysanthemums",
+      "image": "green-chrysanthemums.jpg"
+    },
+    {
+      "name": "Veronica",
+      "image": "veronica.jpg"
+    },
+    {
+      "name": "Decorative greenery",
+      "image": "decorative-greenery.jpg"
+    }
+  ],
+  "price": 55.99
+}

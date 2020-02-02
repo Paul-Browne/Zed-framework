@@ -1,0 +1,33 @@
+{
+  "name": "Familial Love",
+  "fullname": "Familial Love: White Lilies and Gerberas",
+  "description": "Capture and share a tiny piece of the emotion you feel for your loved ones and send these brilliant white lilies and gerberas in a dazzling bouquet. White flowers symbolise purity and sending this gift for a birthday or to welcome a new baby certainly demonstrates the truth of your loving feelings.",
+  "images": [
+    "familial/familial-lilies-and-gerberas.png",
+    "familial/familial-vase-on-table.jpg",
+    "familial/familial-detailed-view.jpg"
+  ],
+  "included": [
+    {
+      "name": "White lilies",
+      "image": "white-lilies.jpg"
+    },
+    {
+      "name": "White germini",
+      "image": "white-germini.jpg"
+    },
+    {
+      "name": "White chrysanthemums",
+      "image": "white-chrysanthemums.jpg"
+    },
+    {
+      "name": "Green chrysanthemums",
+      "image": "green-chrysanthemums.jpg"
+    },
+    {
+      "name": "Decorative greenery",
+      "image": "decorative-greenery.jpg"
+    }
+  ],
+  "price": 28.99
+}

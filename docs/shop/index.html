@@ -1,0 +1,117 @@
+<!DOCTYPE html><html><head><script src="https://unpkg.com/zedjs@2.4.4/Z.min.js"></script><script id="head" src="/js/head.js"></script><title>Zed.js • Shop</title><style type="text/css">*,:after,:before{box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"}#products{display:flex;justify-content:space-around;flex-wrap:wrap;max-width:1200px;margin:0 auto}#products .product{width:230px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;border:1px solid #ddd;padding:1rem;border-radius:6px;margin-bottom:1em;cursor:pointer}#products .product h2{margin-top:0;margin-bottom:auto}#products .product img{vertical-align:middle;margin:1em 0}.view-modal:before{content:"";position:fixed;top:0;left:0;height:100%;width:100%;background:rgba(0,0,0,.4)}.view{background:#fff;border-radius:6px;padding:1em 2em;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);max-height:calc(100% - 40px);max-width:calc(100% - 40px);overflow:auto;width:560px}.view .included{display:flex}</style></head><body><div id="basket"></div><script src="/js/basket.js"></script><div id="products"></div><div id="view"></div><script>/*******
+        VIEW
+      *******/
+
+      Z.mount({
+        id: "view",
+        render: function(state) {
+          var btn = `<button onclick="Z.basket.addToBasket(Z.view)">Add To Cart</button>`;
+          Z.basket.products.forEach(function(product, index) {
+            if (product.name === state.name) {
+              btn = `<button onclick="Z.basket.adjustCart(${index}, -1)">-</button> <span>${product.quantity}</span> <button onclick="Z.basket.adjustCart(${index}, 1)">+</button>`;
+            }
+          });
+          return state.name
+            ? `
+            <div class="view-modal">
+              <div class="view">
+                  <button onclick='Z.update("view", {state:{}})'>close</button>
+                  <h3>${state.fullname}</h3>
+                  <div>
+                    ${state.images
+                      .map(function(image) {
+                        return `<img src="/images/${image}" height="150">`;
+                      })
+                      .join("")}
+                  </div>
+                  <p>${state.description}</p>
+                  <div class="included">
+                  ${state.included
+                    .map(function(inc) {
+                      return `
+                        <div>
+                          <img src="/images/details/${inc.image}" height="40">
+                          <p>${inc.name}</p>
+                        </div>`;
+                    })
+                    .join("")}
+                  </div>
+                  <p>${state.price} €</p>
+                  <div id="button"></div>
+              </div>
+            </div>
+            `
+            : "";
+        },
+        after: function(viewState) {
+          Z.mount({
+            id: "button",
+            render: function() {
+              var btn = `<button onclick="Z.basket.addToBasket(Z.view)">Add To Cart</button>`;
+              Z.basket.products.forEach(function(product, index) {
+                if (product.name === viewState.name) {
+                  btn = `<button onclick="Z.basket.adjustCart(${index}, -1)">-</button> <span>${product.quantity}</span> <button onclick="Z.basket.adjustCart(${index}, 1)">+</button>`;
+                }
+              });
+              return btn;
+            },
+            inner: document.getElementById("button")
+          });
+        },
+        inner: document.getElementById("view"),
+        state: {}
+      });
+
+      Z.load(
+        [
+          {
+            id: "products",
+            url: "/json/products.json",
+            callback: function(data) {
+              return JSON.parse(data);
+            }
+          }
+        ],
+        function() {
+          Z.mount({
+            id: "products",
+            render: function(state) {
+              return state
+                .map(function(product, index) {
+                  return `
+                  <div data-src="${product.details}" class="product" >
+                    <h2>${product.name}</h2>
+                    <img src="/images/${product.image}" width="200">
+                    <span>${product.price} €</span>
+                  </div>`;
+                })
+                .join("");
+            },
+            after: function(state) {
+              var products = document.querySelectorAll("#products .product");
+              var i = products.length;
+              while (i--) {
+                products[i].addEventListener("click", function() {
+                  var src = this.dataset.src;
+                  Z.load(
+                    [
+                      {
+                        id: "view",
+                        url: src,
+                        callback: function(data) {
+                          return JSON.parse(data);
+                        }
+                      }
+                    ],
+                    function() {
+                      Z.update("view", { state: Z.load.view });
+                    }
+                  );
+                });
+              }
+            },
+            inner: document.getElementById("products"),
+            state: Z.load.products
+          });
+        }
+      );</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-7"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-36765884-7")</script></body></html>

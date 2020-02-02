@@ -1,0 +1,33 @@
+{
+  "name": "Sincere Smile",
+  "fullname": "Sincere Smile: Pink Roses and Gerberas",
+  "description": "Share a sincere smile by way of our glorious pink gerberas, roses and chrysanthemums. Whatever the happy occasion you’re celebrating, the bright colour of these darling pink flowers is sure to be met with a wide grin when they arrive. Perfect for saying “happy birthday,” “thank you” or “congratulations!”",
+  "images": [
+    "sincere-smile/sincere-smile-pink-roses-and-gerberas.png",
+    "sincere-smile/sincere-smile-vase-on-table.png",
+    "sincere-smile/sincere-smile-detailed-view.jpg"
+  ],
+  "included": [
+    {
+      "name": "Pink roses",
+      "image": "pink-roses.jpg"
+    },
+    {
+      "name": "Pink chrysanthemums",
+      "image": "pink-chrysanthemums.jpg"
+    },
+    {
+      "name": "Pink germini",
+      "image": "pink-germini.jpg"
+    },
+    {
+      "name": "Gypsophila",
+      "image": "gypsophila.jpg"
+    },
+    {
+      "name": "Decorative greenery",
+      "image": "decorative-greenery.jpg"
+    }
+  ],
+  "price": 53.99
+}

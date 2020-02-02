@@ -1,0 +1,33 @@
+{
+  "name": "Pink Diamond",
+  "fullname": "Pink Diamond: Roses and Gerberas",
+  "description": "Deliver this beautiful bouquet of flowers in pink tones to give someone a warm hug and add a smile to their day. This bouquet combines 4 different flowers: roses, chrysanthemums, alstroemerias and gerberas making it truly versatile and perfect for any occasion you want to celebrate. Send a message of friendship and love today that is just as strong and unique as a precious stone!",
+  "images": [
+    "pink-diamond/pink-diamond-roses-and-gerberas.png",
+    "pink-diamond/pink-diamond-vase-on-table.jpg",
+    "pink-diamond/pink-diamond-detailed-view.jpg"
+  ],
+  "included": [
+    {
+      "name": "Pink germini",
+      "image": "pink-germini.jpg"
+    },
+    {
+      "name": "Pink roses",
+      "image": "pink-roses.jpg"
+    },
+    {
+      "name": "Purple alstroemerias",
+      "image": "purple-alstroemerias.jpg"
+    },
+    {
+      "name": "Green chrysanthemums",
+      "image": "green-chrysanthemums.jpg"
+    },
+    {
+      "name": "Decorative greenery",
+      "image": "decorative-greenery.jpg"
+    }
+  ],
+  "price": 22.99
+}

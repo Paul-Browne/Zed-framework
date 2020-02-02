@@ -1,74 +1,86 @@
 [
   {
     "id": 1,
-    "name": "Autumnal",
+    "name": "Autumnal Splendour",
     "price": 35.99,
-    "image": "autumnal-lilies-and-roses.png"
+    "image": "autumnal/autumnal-lilies-and-roses.png",
+    "details": "/json/autumnal.json"
   },
   {
     "id": 2,
-    "name": "Familial",
+    "name": "Familial Love",
     "price": 28.99,
-    "image": "familial-lilies-and-gerberas.png"
+    "image": "familial/familial-lilies-and-gerberas.png",
+    "details": "/json/familial.json"
   },
   {
     "id": 3,
-    "name": "Freshness",
+    "name": "Subtle Freshness",
     "price": 44.99,
-    "image": "freshness-roses-and-lilies.png"
+    "image": "freshness/freshness-roses-and-lilies.png",
+    "details": "/json/freshness.json"
   },
   {
     "id": 4,
     "name": "Harmony",
     "price": 19.99,
-    "image": "harmony-roses-and-callas.png"
+    "image": "harmony/harmony-roses-and-callas.png",
+    "details": "/json/harmony.json"
   },
   {
     "id": 5,
     "name": "Ice cream",
     "price": 55.99,
-    "image": "icecream-chrysanthemums-and-roses.png"
+    "image": "icecream/icecream-chrysanthemums-and-roses.png",
+    "details": "/json/icecream.json"
   },
   {
     "id": 6,
-    "name": "Innocent",
+    "name": "Innocent Love",
     "price": 74.99,
-    "image": "innocent-love-lilies-and-roses.png"
+    "image": "innocent/innocent-love-lilies-and-roses.png",
+    "details": "/json/innocent.json"
   },
   {
     "id": 7,
-    "name": "Mango Night",
+    "name": "Fireflies",
     "price": 34.99,
-    "image": "mango-orange-roses-and-gerberas.png"
+    "image": "fireflies/fireflies-chrysanthemum-and-callas.png",
+    "details": "/json/fireflies.json"
   },
   {
     "id": 8,
-    "name": "Orange Dream",
+    "name": "Orange Bloom",
     "price": 39.99,
-    "image": "orange-bloom-roses-and-calles.png"
+    "image": "orange/orange-bloom-roses-and-callas.png",
+    "details": "/json/orange-bloom.json"
   },
   {
     "id": 9,
     "name": "Pink Diamond",
     "price": 22.99,
-    "image": "pink-diamond-roses-and-gerberas.png"
+    "image": "pink-diamond/pink-diamond-roses-and-gerberas.png",
+    "details": "/json/pink-diamond.json"
   },
   {
     "id": 10,
-    "name": "Pumpkin",
+    "name": "Sincere Smile",
     "price": 53.99,
-    "image": "pumpkin-roses-and-alstroemerias.png"
+    "image": "sincere-smile/sincere-smile-pink-roses-and-gerberas.png",
+    "details": "/json/sincere-smile.json"
   },
   {
     "id": 11,
-    "name": "Velvet Red",
+    "name": "Velvet",
     "price": 99.99,
-    "image": "velvet-red-lilies-and-roses.png"
+    "image": "velvet/velvet-red-lilies-and-roses.png",
+    "details": "/json/velvet.json"
   },
   {
     "id": 12,
     "name": "Vibrancy",
     "price": 79.99,
-    "image": "vibrancy-yellow-and-pink-roses.png"
+    "image": "vibrancy/vibrancy-yellow-and-pink-roses.png",
+    "details": "/json/vibrancy.json"
   }
 ]

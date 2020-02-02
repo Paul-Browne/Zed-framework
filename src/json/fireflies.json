@@ -1,0 +1,41 @@
+{
+  "name": "Fireflies",
+  "fullname": "Fireflies: Chrysanthemum and callas",
+  "description": "A night outdoors watching the fireflies flutter about? If you feel like sharing this summer plan with someone, we suggest you send this colourful bouquet filled with sparks of light, a beautiful message for the person who receives it. Coloured chrysanthemums, gerberas, veronicas and the elegance of the callas in a fresh and summery bouquet.",
+  "images": [
+    "fireflies/fireflies-chrysanthemum-and-callas.png",
+    "fireflies/fireflies-vase-on-table.png",
+    "fireflies/fireflies-detailed-view.png"
+  ],
+  "included": [
+    {
+      "name": "Yellow germini",
+      "image": "yellow-germini.jpg"
+    },
+    {
+      "name": "Calla lilies",
+      "image": "calla-lilies.jpg"
+    },
+    {
+      "name": "Pink chrysanthemums",
+      "image": "pink-chrysanthemums.jpg"
+    },
+    {
+      "name": "White chrysanthemums",
+      "image": "white-chrysanthemums.jpg"
+    },
+    {
+      "name": "Green chrysanthemums",
+      "image": "green-chrysanthemums.jpg"
+    },
+    {
+      "name": "Veronica",
+      "image": "veronica.jpg"
+    },
+    {
+      "name": "Decorative greenery",
+      "image": "decorative-greenery.jpg"
+    }
+  ],
+  "price": 34.99
+}

@@ -1,0 +1,30 @@
+{
+  "name": "Autumnal Splendour",
+  "fullname": "Autumnal Splendour: Lilies and Roses",
+  "description": "Share the splendour of the season with this luscious bouquet of Red lilies, Marie Claire roses and red oak. This warm coloured bouquet can be delivered to over 100 countries for any winter birthdays, anniversaries or just to show your loved ones that you're thinking about them from far away.",
+  "images": [
+    "autumnal/autumnal-lilies-and-roses.png",
+    "autumnal/autumnal-vase-on-table.jpg",
+    "autumnal/autumnal-detailed-view.jpg"
+  ],
+  "included": [
+    {
+      "name": "Orange roses",
+      "image": "orange-roses.jpg"
+    },
+    {
+      "name": "Red lilies",
+      "image": "red-lilies.jpg"
+    },
+    {
+      "name": "Decorative greenery",
+      "image": "decorative-greenery.jpg"
+    },
+    {
+      "name": "Oak leaf",
+      "image": "oak-leaf.jpg"
+    }
+  ],
+  "price": 35.99,
+  "similar": [8, 11]
+}

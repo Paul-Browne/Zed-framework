@@ -1,0 +1,45 @@
+{
+  "name": "Harmony",
+  "fullname": "Harmony: Roses and Callas",
+  "description": "Harmony is the one thing that everyone wants to enjoy with their family on a day of celebration. This inspired us to create this arrangement of Roses and Callas with its perfect two-colour balance, red from chrysanthemums, roses and hypericum and white from more chrysanthemums calla lilies and salix. Share a feeling of peace and harmony just in time for the any occasion with this serene winter bouquet!",
+  "images": [
+    "harmony/harmony-roses-and-callas.png",
+    "harmony/harmony-vase-on-table.jpg",
+    "harmony/harmony-detailed-view.png"
+  ],
+  "included": [
+    {
+      "name": "Calla lilies",
+      "image": "calla-lilies.jpg"
+    },
+    {
+      "name": "Red roses",
+      "image": "red-roses.jpg"
+    },
+    {
+      "name": "Red chrysanthemums",
+      "image": "red-chrysanthemums.jpg"
+    },
+    {
+      "name": "White chrysanthemums",
+      "image": "white-chrysanthemums.jpg"
+    },
+    {
+      "name": "Hypericum",
+      "image": "hypericum.jpg"
+    },
+    {
+      "name": "Salix",
+      "image": "salix.jpg"
+    },
+    {
+      "name": "Gypsophila",
+      "image": "gypsophila.jpg"
+    },
+    {
+      "name": "Decorative greenery",
+      "image": "decorative-greenery.jpg"
+    }
+  ],
+  "price": 19.99
+}
