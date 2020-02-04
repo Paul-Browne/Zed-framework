@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://unpkg.com/zedjs@2.4.4/Z.min.js"></script>
+    <script src="https://unpkg.com/zedjs@2.4.7/Z.dev.js"></script>
+    <script>
+      window.Z.dev.showTimers = true;
+    </script>
     <script id="head" src="/js/head.js"></script>
     <title>Zed.js • Shop</title>
     <style type="text/css">
@@ -85,6 +88,41 @@
     <div id="view"></div>
 
     <script>
+      /***********
+        PRODUCTS  
+      ***********/
+
+      Z.load(
+        [
+          {
+            id: "products",
+            url: "/json/products.json",
+            callback: function(data) {
+              return JSON.parse(data);
+            }
+          }
+        ],
+        function() {
+          Z.mount({
+            id: "products",
+            render: function(state) {
+              return state
+                .map(function(product, index) {
+                  return `
+                  <div class="product" onclick='Z.update("view", {state:Z.products[${index}]})'>
+                    <h2>${product.name}</h2>
+                    <img src="/images/${product.images[0]}" width="200">
+                    <span>${product.price} €</span>
+                  </div>`;
+                })
+                .join("");
+            },
+            inner: document.getElementById("products"),
+            state: Z.load.products
+          });
+        }
+      );
+
       /*******
         VIEW
       *******/
@@ -148,60 +186,6 @@
         inner: document.getElementById("view"),
         state: {}
       });
-
-      Z.load(
-        [
-          {
-            id: "products",
-            url: "/json/products.json",
-            callback: function(data) {
-              return JSON.parse(data);
-            }
-          }
-        ],
-        function() {
-          Z.mount({
-            id: "products",
-            render: function(state) {
-              return state
-                .map(function(product, index) {
-                  return `
-                  <div data-src="${product.details}" class="product" >
-                    <h2>${product.name}</h2>
-                    <img src="/images/${product.image}" width="200">
-                    <span>${product.price} €</span>
-                  </div>`;
-                })
-                .join("");
-            },
-            after: function(state) {
-              var products = document.querySelectorAll("#products .product");
-              var i = products.length;
-              while (i--) {
-                products[i].addEventListener("click", function() {
-                  var src = this.dataset.src;
-                  Z.load(
-                    [
-                      {
-                        id: "view",
-                        url: src,
-                        callback: function(data) {
-                          return JSON.parse(data);
-                        }
-                      }
-                    ],
-                    function() {
-                      Z.update("view", { state: Z.load.view });
-                    }
-                  );
-                });
-              }
-            },
-            inner: document.getElementById("products"),
-            state: Z.load.products
-          });
-        }
-      );
     </script>
     <script
       async

@@ -1,4 +1,39 @@
-<!DOCTYPE html><html><head><script src="https://unpkg.com/zedjs@2.4.4/Z.min.js"></script><script id="head" src="/js/head.js"></script><title>Zed.js • Shop</title><style type="text/css">*,:after,:before{box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"}#products{display:flex;justify-content:space-around;flex-wrap:wrap;max-width:1200px;margin:0 auto}#products .product{width:230px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;border:1px solid #ddd;padding:1rem;border-radius:6px;margin-bottom:1em;cursor:pointer}#products .product h2{margin-top:0;margin-bottom:auto}#products .product img{vertical-align:middle;margin:1em 0}.view-modal:before{content:"";position:fixed;top:0;left:0;height:100%;width:100%;background:rgba(0,0,0,.4)}.view{background:#fff;border-radius:6px;padding:1em 2em;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);max-height:calc(100% - 40px);max-width:calc(100% - 40px);overflow:auto;width:560px}.view .included{display:flex}</style></head><body><div id="basket"></div><script src="/js/basket.js"></script><div id="products"></div><div id="view"></div><script>/*******
+<!DOCTYPE html><html><head><script src="https://unpkg.com/zedjs@2.4.7/Z.dev.js"></script><script>window.Z.dev.showTimers=!0</script><script id="head" src="/js/head.js"></script><title>Zed.js • Shop</title><style type="text/css">*,:after,:before{box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"}#products{display:flex;justify-content:space-around;flex-wrap:wrap;max-width:1200px;margin:0 auto}#products .product{width:230px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;border:1px solid #ddd;padding:1rem;border-radius:6px;margin-bottom:1em;cursor:pointer}#products .product h2{margin-top:0;margin-bottom:auto}#products .product img{vertical-align:middle;margin:1em 0}.view-modal:before{content:"";position:fixed;top:0;left:0;height:100%;width:100%;background:rgba(0,0,0,.4)}.view{background:#fff;border-radius:6px;padding:1em 2em;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);max-height:calc(100% - 40px);max-width:calc(100% - 40px);overflow:auto;width:560px}.view .included{display:flex}</style></head><body><div id="basket"></div><script src="/js/basket.js"></script><div id="products"></div><div id="view"></div><script>/***********
+        PRODUCTS  
+      ***********/
+
+      Z.load(
+        [
+          {
+            id: "products",
+            url: "/json/products.json",
+            callback: function(data) {
+              return JSON.parse(data);
+            }
+          }
+        ],
+        function() {
+          Z.mount({
+            id: "products",
+            render: function(state) {
+              return state
+                .map(function(product, index) {
+                  return `
+                  <div class="product" onclick='Z.update("view", {state:Z.products[${index}]})'>
+                    <h2>${product.name}</h2>
+                    <img src="/images/${product.images[0]}" width="200">
+                    <span>${product.price} €</span>
+                  </div>`;
+                })
+                .join("");
+            },
+            inner: document.getElementById("products"),
+            state: Z.load.products
+          });
+        }
+      );
+
+      /*******
         VIEW
       *******/
 
@@ -60,58 +95,4 @@
         },
         inner: document.getElementById("view"),
         state: {}
-      });
-
-      Z.load(
-        [
-          {
-            id: "products",
-            url: "/json/products.json",
-            callback: function(data) {
-              return JSON.parse(data);
-            }
-          }
-        ],
-        function() {
-          Z.mount({
-            id: "products",
-            render: function(state) {
-              return state
-                .map(function(product, index) {
-                  return `
-                  <div data-src="${product.details}" class="product" >
-                    <h2>${product.name}</h2>
-                    <img src="/images/${product.image}" width="200">
-                    <span>${product.price} €</span>
-                  </div>`;
-                })
-                .join("");
-            },
-            after: function(state) {
-              var products = document.querySelectorAll("#products .product");
-              var i = products.length;
-              while (i--) {
-                products[i].addEventListener("click", function() {
-                  var src = this.dataset.src;
-                  Z.load(
-                    [
-                      {
-                        id: "view",
-                        url: src,
-                        callback: function(data) {
-                          return JSON.parse(data);
-                        }
-                      }
-                    ],
-                    function() {
-                      Z.update("view", { state: Z.load.view });
-                    }
-                  );
-                });
-              }
-            },
-            inner: document.getElementById("products"),
-            state: Z.load.products
-          });
-        }
-      );</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-7"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-36765884-7")</script></body></html>
+      });</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-7"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-36765884-7")</script></body></html>

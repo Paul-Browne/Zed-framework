@@ -3,84 +3,425 @@
     "id": 1,
     "name": "Autumnal Splendour",
     "price": 35.99,
-    "image": "autumnal/autumnal-lilies-and-roses.png",
-    "details": "/json/autumnal.json"
+    "fullname": "Autumnal Splendour: Lilies and Roses",
+    "description": "Share the splendour of the season with this luscious bouquet of Red lilies, Marie Claire roses and red oak. This warm coloured bouquet can be delivered to over 100 countries for any winter birthdays, anniversaries or just to show your loved ones that you're thinking about them from far away.",
+    "images": [
+      "autumnal/autumnal-lilies-and-roses.png",
+      "autumnal/autumnal-vase-on-table.jpg",
+      "autumnal/autumnal-detailed-view.jpg"
+    ],
+    "included": [
+      {
+        "name": "Orange roses",
+        "image": "orange-roses.jpg"
+      },
+      {
+        "name": "Red lilies",
+        "image": "red-lilies.jpg"
+      },
+      {
+        "name": "Decorative greenery",
+        "image": "decorative-greenery.jpg"
+      },
+      {
+        "name": "Oak leaf",
+        "image": "oak-leaf.jpg"
+      }
+    ],
+    "similar": [8, 11]
   },
   {
     "id": 2,
     "name": "Familial Love",
     "price": 28.99,
-    "image": "familial/familial-lilies-and-gerberas.png",
-    "details": "/json/familial.json"
+    "fullname": "Familial Love: White Lilies and Gerberas",
+    "description": "Capture and share a tiny piece of the emotion you feel for your loved ones and send these brilliant white lilies and gerberas in a dazzling bouquet. White flowers symbolise purity and sending this gift for a birthday or to welcome a new baby certainly demonstrates the truth of your loving feelings.",
+    "images": [
+      "familial/familial-lilies-and-gerberas.png",
+      "familial/familial-vase-on-table.jpg",
+      "familial/familial-detailed-view.jpg"
+    ],
+    "included": [
+      {
+        "name": "White lilies",
+        "image": "white-lilies.jpg"
+      },
+      {
+        "name": "White germini",
+        "image": "white-germini.jpg"
+      },
+      {
+        "name": "White chrysanthemums",
+        "image": "white-chrysanthemums.jpg"
+      },
+      {
+        "name": "Green chrysanthemums",
+        "image": "green-chrysanthemums.jpg"
+      },
+      {
+        "name": "Decorative greenery",
+        "image": "decorative-greenery.jpg"
+      }
+    ]
   },
   {
     "id": 3,
     "name": "Subtle Freshness",
     "price": 44.99,
-    "image": "freshness/freshness-roses-and-lilies.png",
-    "details": "/json/freshness.json"
+    "fullname": "Subtle Freshness: Roses and Lilies",
+    "description": "This elegant display of pink is a fantastic modern bouquet that will express your emotions in style. The bright pink roses and lilies are a clear sign of affection and care, making this the perfect arrangement to say: “I love you” or “I’m thinking of you” on a special day.",
+    "images": [
+      "freshness/freshness-roses-and-lilies.png",
+      "freshness/freshness-vase-on-table.jpg",
+      "freshness/freshness-detailed-view.jpg"
+    ],
+    "included": [
+      {
+        "name": "Pink roses",
+        "image": "pink-roses.jpg"
+      },
+      {
+        "name": "Pink lilies",
+        "image": "pink-lilies.jpg"
+      },
+      {
+        "name": "Decorative greenery",
+        "image": "decorative-greenery.jpg"
+      }
+    ]
   },
   {
     "id": 4,
     "name": "Harmony",
     "price": 19.99,
-    "image": "harmony/harmony-roses-and-callas.png",
-    "details": "/json/harmony.json"
+    "fullname": "Harmony: Roses and Callas",
+    "description": "Harmony is the one thing that everyone wants to enjoy with their family on a day of celebration. This inspired us to create this arrangement of Roses and Callas with its perfect two-colour balance, red from chrysanthemums, roses and hypericum and white from more chrysanthemums calla lilies and salix. Share a feeling of peace and harmony just in time for the any occasion with this serene winter bouquet!",
+    "images": [
+      "harmony/harmony-roses-and-callas.png",
+      "harmony/harmony-vase-on-table.jpg",
+      "harmony/harmony-detailed-view.png"
+    ],
+    "included": [
+      {
+        "name": "Calla lilies",
+        "image": "calla-lilies.jpg"
+      },
+      {
+        "name": "Red roses",
+        "image": "red-roses.jpg"
+      },
+      {
+        "name": "Red chrysanthemums",
+        "image": "red-chrysanthemums.jpg"
+      },
+      {
+        "name": "White chrysanthemums",
+        "image": "white-chrysanthemums.jpg"
+      },
+      {
+        "name": "Hypericum",
+        "image": "hypericum.jpg"
+      },
+      {
+        "name": "Salix",
+        "image": "salix.jpg"
+      },
+      {
+        "name": "Gypsophila",
+        "image": "gypsophila.jpg"
+      },
+      {
+        "name": "Decorative greenery",
+        "image": "decorative-greenery.jpg"
+      }
+    ]
   },
   {
     "id": 5,
     "name": "Ice cream",
     "price": 55.99,
-    "image": "icecream/icecream-chrysanthemums-and-roses.png",
-    "details": "/json/icecream.json"
+    "fullname": "Ice Cream: Chrysanthemums and Roses",
+    "description": "As sweet as an ice cream. This bouquet of pink-coloured roses and white callas is perfect to send a breath of fresh air with flowers this summer. Pink, white and green chrysanthemums put the finishing touches to this composition, while the blue of the veronicas could be the topping for this delicate dessert.",
+    "images": [
+      "icecream/icecream-chrysanthemums-and-roses.png",
+      "icecream/icecream-vase-on-table.png",
+      "icecream/icecream-detailed-view.png"
+    ],
+    "included": [
+      {
+        "name": "Pink roses",
+        "image": "pink-roses.jpg"
+      },
+      {
+        "name": "Calla lilies",
+        "image": "calla-lilies.jpg"
+      },
+      {
+        "name": "Pink chrysanthemums",
+        "image": "pink-chrysanthemums.jpg"
+      },
+      {
+        "name": "White chrysanthemums",
+        "image": "white-chrysanthemums.jpg"
+      },
+      {
+        "name": "Green chrysanthemums",
+        "image": "green-chrysanthemums.jpg"
+      },
+      {
+        "name": "Veronica",
+        "image": "veronica.jpg"
+      },
+      {
+        "name": "Decorative greenery",
+        "image": "decorative-greenery.jpg"
+      }
+    ]
   },
   {
     "id": 6,
     "name": "Innocent Love",
     "price": 74.99,
-    "image": "innocent/innocent-love-lilies-and-roses.png",
-    "details": "/json/innocent.json"
+    "fullname": "Innocent Love: Lilies and Roses",
+    "description": "Send a token of your innocent love to your darling one with these angelic white lilies and roses. Make the best day of someone’s life even better, share a kind message of love on your anniversary or simply surprise your beloved to put a smile on their face with this glorious bouquet.",
+    "images": [
+      "innocent/innocent-love-lilies-and-roses.png",
+      "innocent/innocent-vase-on-table.jpg",
+      "innocent/innocent-detailed-view.jpg"
+    ],
+    "included": [
+      {
+        "name": "White lilies",
+        "image": "white-lilies.jpg"
+      },
+      {
+        "name": "White roses",
+        "image": "white-roses.jpg"
+      },
+      {
+        "name": "White alstroemerias",
+        "image": "white-alstroemerias.jpg"
+      },
+      {
+        "name": "Decorative greenery",
+        "image": "decorative-greenery.jpg"
+      }
+    ]
   },
   {
     "id": 7,
     "name": "Fireflies",
     "price": 34.99,
-    "image": "fireflies/fireflies-chrysanthemum-and-callas.png",
-    "details": "/json/fireflies.json"
+    "fullname": "Fireflies: Chrysanthemum and callas",
+    "description": "A night outdoors watching the fireflies flutter about? If you feel like sharing this summer plan with someone, we suggest you send this colourful bouquet filled with sparks of light, a beautiful message for the person who receives it. Coloured chrysanthemums, gerberas, veronicas and the elegance of the callas in a fresh and summery bouquet.",
+    "images": [
+      "fireflies/fireflies-chrysanthemum-and-callas.png",
+      "fireflies/fireflies-vase-on-table.png",
+      "fireflies/fireflies-detailed-view.png"
+    ],
+    "included": [
+      {
+        "name": "Yellow germini",
+        "image": "yellow-germini.jpg"
+      },
+      {
+        "name": "Calla lilies",
+        "image": "calla-lilies.jpg"
+      },
+      {
+        "name": "Pink chrysanthemums",
+        "image": "pink-chrysanthemums.jpg"
+      },
+      {
+        "name": "White chrysanthemums",
+        "image": "white-chrysanthemums.jpg"
+      },
+      {
+        "name": "Green chrysanthemums",
+        "image": "green-chrysanthemums.jpg"
+      },
+      {
+        "name": "Veronica",
+        "image": "veronica.jpg"
+      },
+      {
+        "name": "Decorative greenery",
+        "image": "decorative-greenery.jpg"
+      }
+    ]
   },
   {
     "id": 8,
     "name": "Orange Bloom",
     "price": 39.99,
-    "image": "orange/orange-bloom-roses-and-callas.png",
-    "details": "/json/orange-bloom.json"
+    "fullname": "Orange Bloom: Roses and Callas",
+    "description": "Enjoy this explosion of orange blooming to warm and express the most joyful feeling. The bouquet is unique in the color is portrays with a full orange and yellow rendering that make is so special for fall and brings the happiest feeling when looking at it. Composed with orange and yellow chysanthems, but also roses and callas, it is a perfect gift to offer in autumn and will give the smile to your loved ones.",
+    "images": [
+      "orange/orange-bloom-roses-and-callas.png",
+      "orange/orange-bloom-vase-on-table.jpg",
+      "orange/orange-bloom-detailed-view.png"
+    ],
+    "included": [
+      {
+        "name": "Orange Calla Lily",
+        "image": "orange-calla-lily.jpg"
+      },
+      {
+        "name": "Orange roses",
+        "image": "orange-roses.jpg"
+      },
+      {
+        "name": "Orange mini carnations",
+        "image": "orange-mini-carnations.jpg"
+      },
+      {
+        "name": "Yellow chrysanthemums",
+        "image": "yellow-chrysanthemums.jpg"
+      },
+      {
+        "name": "Decorative greenery",
+        "image": "decorative-greenery.jpg"
+      }
+    ]
   },
   {
     "id": 9,
     "name": "Pink Diamond",
     "price": 22.99,
-    "image": "pink-diamond/pink-diamond-roses-and-gerberas.png",
-    "details": "/json/pink-diamond.json"
+    "fullname": "Pink Diamond: Roses and Gerberas",
+    "description": "Deliver this beautiful bouquet of flowers in pink tones to give someone a warm hug and add a smile to their day. This bouquet combines 4 different flowers: roses, chrysanthemums, alstroemerias and gerberas making it truly versatile and perfect for any occasion you want to celebrate. Send a message of friendship and love today that is just as strong and unique as a precious stone!",
+    "images": [
+      "pink-diamond/pink-diamond-roses-and-gerberas.png",
+      "pink-diamond/pink-diamond-vase-on-table.jpg",
+      "pink-diamond/pink-diamond-detailed-view.jpg"
+    ],
+    "included": [
+      {
+        "name": "Pink germini",
+        "image": "pink-germini.jpg"
+      },
+      {
+        "name": "Pink roses",
+        "image": "pink-roses.jpg"
+      },
+      {
+        "name": "Purple alstroemerias",
+        "image": "purple-alstroemerias.jpg"
+      },
+      {
+        "name": "Green chrysanthemums",
+        "image": "green-chrysanthemums.jpg"
+      },
+      {
+        "name": "Decorative greenery",
+        "image": "decorative-greenery.jpg"
+      }
+    ]
   },
   {
     "id": 10,
     "name": "Sincere Smile",
     "price": 53.99,
-    "image": "sincere-smile/sincere-smile-pink-roses-and-gerberas.png",
-    "details": "/json/sincere-smile.json"
+    "fullname": "Sincere Smile: Pink Roses and Gerberas",
+    "description": "Share a sincere smile by way of our glorious pink gerberas, roses and chrysanthemums. Whatever the happy occasion you’re celebrating, the bright colour of these darling pink flowers is sure to be met with a wide grin when they arrive. Perfect for saying “happy birthday,” “thank you” or “congratulations!”",
+    "images": [
+      "sincere-smile/sincere-smile-pink-roses-and-gerberas.png",
+      "sincere-smile/sincere-smile-vase-on-table.png",
+      "sincere-smile/sincere-smile-detailed-view.jpg"
+    ],
+    "included": [
+      {
+        "name": "Pink roses",
+        "image": "pink-roses.jpg"
+      },
+      {
+        "name": "Pink chrysanthemums",
+        "image": "pink-chrysanthemums.jpg"
+      },
+      {
+        "name": "Pink germini",
+        "image": "pink-germini.jpg"
+      },
+      {
+        "name": "Gypsophila",
+        "image": "gypsophila.jpg"
+      },
+      {
+        "name": "Decorative greenery",
+        "image": "decorative-greenery.jpg"
+      }
+    ]
   },
   {
     "id": 11,
     "name": "Velvet",
     "price": 99.99,
-    "image": "velvet/velvet-red-lilies-and-roses.png",
-    "details": "/json/velvet.json"
+    "fullname": "Velvet: Red Lilies And Roses",
+    "description": "If this bouquet were a fabric, it would have to be velvet. The red lilies and roses of this bouquet have a soft, warm and cosy velvety texture. Alstroemerias, in the same shade, give a silky touch to an arrangement that communicates passion and emotion, making it perfect to send as a symbol of love. Express all your affections with this gorgeous combination of flowers!",
+    "images": [
+      "velvet/velvet-red-lilies-and-roses.png",
+      "velvet/velvet-vase-on-table.jpg",
+      "velvet/velvet-detailed-view.png"
+    ],
+    "included": [
+      {
+        "name": "Orange roses",
+        "image": "orange-roses.jpg"
+      },
+      {
+        "name": "Red roses",
+        "image": "red-roses.jpg"
+      },
+      {
+        "name": "Red lilies",
+        "image": "red-lilies.jpg"
+      },
+      {
+        "name": "Decorative greenery",
+        "image": "decorative-greenery.jpg"
+      },
+      {
+        "name": "Red alstroemerias",
+        "image": "red-alstroemerias.jpg"
+      }
+    ]
   },
   {
     "id": 12,
     "name": "Vibrancy",
     "price": 79.99,
-    "image": "vibrancy/vibrancy-yellow-and-pink-roses.png",
-    "details": "/json/vibrancy.json"
+    "fullname": "Vibrancy: Yellow and Pink Roses",
+    "description": "This pink and yellow rose bouquet is a bright and colourful departure from darker, more dramatic rose bouquets. What could be more heavenly than a pink and yellow rose delivery for someone’s birthday, to say “congratulations” on their wedding day or to wish mum a warm greeting on Mother's Day!",
+    "images": [
+      "vibrancy/vibrancy-yellow-and-pink-roses.png",
+      "vibrancy/vibrancy-vase-on-table.jpg",
+      "vibrancy/vibrancy-detailed-view.png"
+    ],
+    "included": [
+      {
+        "name": "Pink roses",
+        "image": "pink-roses.jpg"
+      },
+      {
+        "name": "Yellow roses",
+        "image": "yellow-roses.jpg"
+      },
+      {
+        "name": "Pink germini",
+        "image": "pink-germini.jpg"
+      },
+      {
+        "name": "White alstroemerias",
+        "image": "white-alstroemerias.jpg"
+      },
+      {
+        "name": "Goldenrod",
+        "image": "goldenrod.jpg"
+      },
+      {
+        "name": "Decorative greenery",
+        "image": "decorative-greenery.jpg"
+      }
+    ]
   }
 ]
