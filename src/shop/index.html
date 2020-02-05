@@ -1,9 +1,146 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://unpkg.com/zedjs@2.4.7/Z.dev.js"></script>
     <script>
-      window.Z.dev.showTimers = true;
+      console.time("ZED LOADED");
+    </script>
+    <script>
+      !(function(w) {
+        if (!w.Z) {
+          var topics = {};
+          w.Z = {
+            load: function(arr, callback, id) {
+              if (!callback) {
+                console.error('Z.load id:"' + id + " no callback function");
+              }
+              var arrResolved = [];
+              arr.forEach(function(obj, index) {
+                arrResolved[index] = null;
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                  if (xhr.readyState == 4) {
+                    arrResolved[index] =
+                      xhr.status == (obj.status || 200)
+                        ? obj.callback
+                          ? obj.callback(xhr.responseText)
+                          : xhr.responseText
+                        : undefined;
+                    Z.load[obj.id] = arrResolved[index];
+                    if (!~arrResolved.indexOf(null)) {
+                      callback(arrResolved);
+                    }
+                  }
+                };
+                xhr.open(obj.method || "GET", obj.url, true);
+                for (var id in obj.headers) {
+                  xhr.setRequestHeader(id, obj.headers[id]);
+                }
+                xhr.send(obj.body);
+              });
+            },
+            update: function(id, obj) {
+              // warn against trying to update when the id doesn't exist
+              if (!topics[id]) {
+                console.warn('Z.update id:"' + id + '" does not exist');
+              }
+              if (topics[id]) {
+                topics[id].f(obj);
+                topics[id].l.forEach(function(fn) {
+                  fn();
+                });
+              }
+            },
+            mount: function(obj, noSubscribe) {
+              if (obj.id && !noSubscribe) {
+                // warn against mounting with the same id
+                if (topics[obj.id]) {
+                  (document.contains(obj.inner) ||
+                    document.contains(obj.outer)) &&
+                    console.warn('Z.mount id:"' + obj.id + '" already exists');
+                }
+                topics[obj.id] = {
+                  l: [],
+                  f: function(data) {
+                    for (var k in data) {
+                      obj[k] = data[k];
+                    }
+                    Z.mount(obj, true);
+                  }
+                };
+              }
+              var inner = obj.inner;
+              var outer = obj.outer;
+              var state = obj.state;
+              var before = obj.before;
+              var after = obj.after;
+              if (typeof inner == "undefined" && typeof outer == "undefined") {
+                console.error(
+                  'Z.mount id:"' +
+                    obj.id +
+                    '" must reference either inner: or outer:'
+                );
+              }
+              if (inner === null) {
+                console.error(
+                  'Z.mount id:"' + obj.id + '" inner: not found in the DOM'
+                );
+              }
+              if (outer === null) {
+                console.error(
+                  'Z.mount id:"' + obj.id + '" outer: not found in the DOM'
+                );
+              }
+              if (inner && inner.length) {
+                console.error(
+                  'Z.mount id:"' + obj.id + '" inner: has multiple DOM elements'
+                );
+              }
+              if (outer && outer.length) {
+                console.error(
+                  'Z.mount id:"' + obj.id + '" outer: has multiple DOM elements'
+                );
+              }
+              if (before && typeof before != "function") {
+                console.error(
+                  'Z.mount id:"' + obj.id + '" before: is not a function'
+                );
+              }
+              if (after && typeof after != "function") {
+                console.error(
+                  'Z.mount id:"' + obj.id + '" after: is not a function'
+                );
+              }
+              var o = {
+                state: state,
+                prev: Z[obj.id]
+              };
+              if ((before && before(o.state, o.prev)) != false) {
+                var x = obj.render(o.state, o.prev);
+                if (inner) {
+                  inner.innerHTML = x;
+                }
+                if (outer) {
+                  outer.outerHTML = x;
+                }
+                after && after(o.state, o.prev);
+              }
+              Z[obj.id] = state;
+            },
+            watch: function(id, obj) {
+              // warn against trying to watch when the id doesn't exist
+              if (!topics[id]) {
+                console.error('Z.watch id:"' + id + '" does not exist');
+              }
+              topics[id] && topics[id].l.push(obj);
+            }
+          };
+        } else {
+          console.warn("Z already loaded");
+        }
+      })(window);
+    </script>
+    <script>
+      console.timeEnd("ZED LOADED");
     </script>
     <script id="head" src="/js/head.js"></script>
     <title>Zed.js • Shop</title>
@@ -86,107 +223,8 @@
 
     <div id="products"></div>
     <div id="view"></div>
+    <script src="/js/products-and-view.js"></script>
 
-    <script>
-      /***********
-        PRODUCTS  
-      ***********/
-
-      Z.load(
-        [
-          {
-            id: "products",
-            url: "/json/products.json",
-            callback: function(data) {
-              return JSON.parse(data);
-            }
-          }
-        ],
-        function() {
-          Z.mount({
-            id: "products",
-            render: function(state) {
-              return state
-                .map(function(product, index) {
-                  return `
-                  <div class="product" onclick='Z.update("view", {state:Z.products[${index}]})'>
-                    <h2>${product.name}</h2>
-                    <img src="/images/${product.images[0]}" width="200">
-                    <span>${product.price} €</span>
-                  </div>`;
-                })
-                .join("");
-            },
-            inner: document.getElementById("products"),
-            state: Z.load.products
-          });
-        }
-      );
-
-      /*******
-        VIEW
-      *******/
-
-      Z.mount({
-        id: "view",
-        render: function(state) {
-          var btn = `<button onclick="Z.basket.addToBasket(Z.view)">Add To Cart</button>`;
-          Z.basket.products.forEach(function(product, index) {
-            if (product.name === state.name) {
-              btn = `<button onclick="Z.basket.adjustCart(${index}, -1)">-</button> <span>${product.quantity}</span> <button onclick="Z.basket.adjustCart(${index}, 1)">+</button>`;
-            }
-          });
-          return state.name
-            ? `
-            <div class="view-modal">
-              <div class="view">
-                  <button onclick='Z.update("view", {state:{}})'>close</button>
-                  <h3>${state.fullname}</h3>
-                  <div>
-                    ${state.images
-                      .map(function(image) {
-                        return `<img src="/images/${image}" height="150">`;
-                      })
-                      .join("")}
-                  </div>
-                  <p>${state.description}</p>
-                  <div class="included">
-                  ${state.included
-                    .map(function(inc) {
-                      return `
-                        <div>
-                          <img src="/images/details/${inc.image}" height="40">
-                          <p>${inc.name}</p>
-                        </div>`;
-                    })
-                    .join("")}
-                  </div>
-                  <p>${state.price} €</p>
-                  <div id="button"></div>
-              </div>
-            </div>
-            `
-            : "";
-        },
-        after: function(viewState) {
-          Z.mount({
-            id: "button",
-            render: function() {
-              var btn = `<button onclick="Z.basket.addToBasket(Z.view)">Add To Cart</button>`;
-              Z.basket.products.forEach(function(product, index) {
-                if (product.name === viewState.name) {
-                  btn = `<button onclick="Z.basket.adjustCart(${index}, -1)">-</button> <span>${product.quantity}</span> <button onclick="Z.basket.adjustCart(${index}, 1)">+</button>`;
-                }
-              });
-              return btn;
-            },
-            inner: document.getElementById("button")
-          });
-        },
-        inner: document.getElementById("view"),
-        state: {}
-      });
-    </script>
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=UA-36765884-7"
