@@ -1,4 +1,4 @@
-console.time("BASKET MOUNTED");
+console.time && console.time("BASKET MOUNTED");
 Z.mount({
   id: "basket",
   render: function(state) {
@@ -12,7 +12,7 @@ Z.mount({
           <div>
             <span>${
               product.name
-            }</span> <span><button onclick='console.time("BASKET UPDATED");Z.basket.adjustCart(${index}, -1);console.timeEnd("BASKET UPDATED");'>-</button> <span>${product.quantity}</span> <button onclick='console.time("BASKET UPDATED");Z.basket.adjustCart(${index}, 1);console.timeEnd("BASKET UPDATED");'>+</button></span> <span>${(product.price * product.quantity).toFixed(2)}</span>
+            }</span> <span><button onclick='console.time && console.time("BASKET UPDATED");Z.basket.adjustCart(${index}, -1);console.time && console.timeEnd("BASKET UPDATED");'>-</button> <span>${product.quantity}</span> <button onclick='console.time && console.time("BASKET UPDATED");Z.basket.adjustCart(${index}, 1);console.time && console.timeEnd("BASKET UPDATED");'>+</button></span> <span>${(product.price * product.quantity).toFixed(2)}</span>
           </div>`;
         })
         .join("") + `<div><span>Total: ${total.toFixed(2)}</span></div>`
@@ -27,9 +27,9 @@ Z.mount({
         state: this
       });
       if (Z.view.name) {
-        console.time("BUTTON UPDATED");
+        console.time && console.time("BUTTON UPDATED");
         Z.update("button");
-        console.timeEnd("BUTTON UPDATED");
+        console.time && console.timeEnd("BUTTON UPDATED");
       }
     },
     adjustCart: function(index, increment) {
@@ -61,4 +61,4 @@ Z.mount({
     }
   }
 });
-console.timeEnd("BASKET MOUNTED");
+console.time && console.timeEnd("BASKET MOUNTED");

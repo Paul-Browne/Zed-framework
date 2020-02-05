@@ -1,4 +1,4 @@
-console.time("PRODUCTS MOUNTED");
+console.time && console.time("PRODUCTS MOUNTED");
 Z.load(
   [
     {
@@ -16,7 +16,7 @@ Z.load(
         return state
           .map(function(product, index) {
             return `
-              <div class="product" onclick='console.time("VIEW UPDATED");Z.update("view", {state:Z.products[${index}]});console.timeEnd("VIEW UPDATED");'>
+              <div class="product" onclick='console.time && console.time("VIEW UPDATED");Z.update("view", {state:Z.products[${index}]});console.time && console.timeEnd("VIEW UPDATED");'>
                 <h2>${product.name}</h2>
                 <img src="/images/${product.images[0]}" width="200">
                 <span>${product.price} €</span>
@@ -27,24 +27,24 @@ Z.load(
       inner: document.getElementById("products"),
       state: Z.load.products
     });
-    console.timeEnd("PRODUCTS MOUNTED");
+    console.time && console.timeEnd("PRODUCTS MOUNTED");
   }
 );
-console.time("VIEW MOUNTED");
+console.time && console.time("VIEW MOUNTED");
 Z.mount({
   id: "view",
   render: function(state) {
-    var btn = `<button onclick='console.time("BASKET UPDATED");Z.basket.addToBasket(Z.view);console.timeEnd("BASKET UPDATED");'>Add To Cart</button>`;
+    var btn = `<button onclick='console.time && console.time("BASKET UPDATED");Z.basket.addToBasket(Z.view);console.time && console.timeEnd("BASKET UPDATED");'>Add To Cart</button>`;
     Z.basket.products.forEach(function(product, index) {
       if (product.name === state.name) {
-        btn = `<button onclick='console.time("BASKET UPDATED");Z.basket.adjustCart(${index}, -1);console.timeEnd("BASKET UPDATED");'>-</button> <span>${product.quantity}</span> <button onclick='console.time("BASKET UPDATED");Z.basket.adjustCart(${index}, 1);console.timeEnd("BASKET UPDATED");'>+</button>`;
+        btn = `<button onclick='console.time && console.time("BASKET UPDATED");Z.basket.adjustCart(${index}, -1);console.time && console.timeEnd("BASKET UPDATED");'>-</button> <span>${product.quantity}</span> <button onclick='console.time && console.time("BASKET UPDATED");Z.basket.adjustCart(${index}, 1);console.time && console.timeEnd("BASKET UPDATED");'>+</button>`;
       }
     });
     return state.name
       ? `
         <div class="view-modal">
           <div class="view">
-              <button onclick='console.time("VIEW UPDATED");Z.update("view", {state:{}});console.timeEnd("VIEW UPDATED");'>close</button>
+              <button onclick='console.time && console.time("VIEW UPDATED");Z.update("view", {state:{}});console.time && console.timeEnd("VIEW UPDATED");'>close</button>
               <h3>${state.fullname}</h3>
               <div>
                 ${state.images
@@ -74,24 +74,24 @@ Z.mount({
   },
   after: function(viewState) {
     if (viewState.name) {
-      console.time("BUTTON MOUNTED");
+      console.time && console.time("BUTTON MOUNTED");
       Z.mount({
         id: "button",
         render: function() {
-          var btn = `<button onclick='console.time("BASKET UPDATED");Z.basket.addToBasket(Z.view);console.timeEnd("BASKET UPDATED");'>Add To Cart</button>`;
+          var btn = `<button onclick='console.time && console.time("BASKET UPDATED");Z.basket.addToBasket(Z.view);console.time && console.timeEnd("BASKET UPDATED");'>Add To Cart</button>`;
           Z.basket.products.forEach(function(product, index) {
             if (product.name === viewState.name) {
-              btn = `<button onclick='console.time("BASKET UPDATED");Z.basket.adjustCart(${index}, -1);console.timeEnd("BASKET UPDATED");'>-</button> <span>${product.quantity}</span> <button onclick='console.time("BASKET UPDATED");Z.basket.adjustCart(${index}, 1);console.timeEnd("BASKET UPDATED");'>+</button>`;
+              btn = `<button onclick='console.time && console.time("BASKET UPDATED");Z.basket.adjustCart(${index}, -1);console.time && console.timeEnd("BASKET UPDATED");'>-</button> <span>${product.quantity}</span> <button onclick='console.time && console.time("BASKET UPDATED");Z.basket.adjustCart(${index}, 1);console.time && console.timeEnd("BASKET UPDATED");'>+</button>`;
             }
           });
           return btn;
         },
         inner: document.getElementById("button")
       });
-      console.timeEnd("BUTTON MOUNTED");
+      console.time && console.timeEnd("BUTTON MOUNTED");
     }
   },
   inner: document.getElementById("view"),
   state: {}
 });
-console.timeEnd("VIEW MOUNTED");
+console.time && console.timeEnd("VIEW MOUNTED");

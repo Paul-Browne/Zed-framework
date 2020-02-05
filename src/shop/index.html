@@ -2,7 +2,7 @@
 <html>
   <head>
     <script>
-      console.time("ZED LOADED");
+      console.time && console.time("ZED LOADED");
       !(function(w) {
         if (!w.Z) {
           var topics = {};
@@ -136,7 +136,7 @@
           console.warn("Z already loaded");
         }
       })(window);
-      console.timeEnd("ZED LOADED");
+      console.time && console.timeEnd("ZED LOADED");
     </script>
     <script id="head" src="/js/head.js"></script>
     <title>Zed.js • Shop</title>
