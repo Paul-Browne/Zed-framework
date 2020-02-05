@@ -3,8 +3,6 @@
   <head>
     <script>
       console.time("ZED LOADED");
-    </script>
-    <script>
       !(function(w) {
         if (!w.Z) {
           var topics = {};
@@ -54,8 +52,8 @@
               if (obj.id && !noSubscribe) {
                 // warn against mounting with the same id
                 if (topics[obj.id]) {
-                  (document.contains(obj.inner) ||
-                    document.contains(obj.outer)) &&
+                  (document.documentElement.contains(obj.inner) ||
+                    document.documentElement.contains(obj.outer)) &&
                     console.warn('Z.mount id:"' + obj.id + '" already exists');
                 }
                 topics[obj.id] = {
@@ -138,8 +136,6 @@
           console.warn("Z already loaded");
         }
       })(window);
-    </script>
-    <script>
       console.timeEnd("ZED LOADED");
     </script>
     <script id="head" src="/js/head.js"></script>

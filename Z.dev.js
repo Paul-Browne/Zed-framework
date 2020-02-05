@@ -47,7 +47,7 @@
         if (obj.id && !noSubscribe) {
           // warn against mounting with the same id
           if(topics[obj.id]){
-            (document.contains(obj.inner) || document.contains(obj.outer)) && console.warn('Z.mount id:"' + obj.id + '" already exists');
+            (document.documentElement.contains(obj.inner) || document.documentElement.contains(obj.outer)) && console.warn('Z.mount id:"' + obj.id + '" already exists');
           }
           topics[obj.id] = {
             l: [],
