@@ -129,7 +129,9 @@
     <title>Zed.js • Performance Test</title>
   </head>
   <body>
-    <div id="app"></div>
+    <table class="table table-striped latest-data">
+      <tbody id="app"></tbody>
+    </table>
     <!-- <script src="../../../mithril.js"></script> -->
     <script>
       // Z.min.js
@@ -599,53 +601,48 @@
 
       var data = [];
 
-      m.mount(document.getElementById("app"), {
-        view: function() {
-          return m("div", [
-            m("table", { className: "table table-striped latest-data" }, [
-              m(
-                "tbody",
-                data.map(function(db) {
-                  return m("tr", { key: db.dbname }, [
-                    m("td", { className: "dbname" }, db.dbname),
-                    m("td", { className: "query-count" }, [
-                      m(
-                        "span",
-                        { className: db.lastSample.countClassName },
-                        db.lastSample.nbQueries
-                      )
-                    ]),
-                    db.lastSample.topFiveQueries.map(function(query) {
-                      return m("td", { className: query.elapsedClassName }, [
-                        query.formatElapsed,
-                        m("div", { className: "popover left" }, [
-                          m(
-                            "div",
-                            { className: "popover-content" },
-                            query.query
-                          ),
-                          m("div", { className: "arrow" })
-                        ])
-                      ]);
-                    })
-                  ]);
-                })
-              )
-            ])
-          ]);
-        }
+      Z.mount({
+        id: "app",
+        render: function(state) {
+          return state
+            .map(function(db, i) {
+              return `
+                    <tr>
+                      <td class="dbname">${db.dbname}</td>
+                      <td class="query-count">
+                        <span class="${
+                          db.lastSample.countClassName
+                        }">${db.lastSample.nbQueries}</span>
+                      </td>
+                      ${db.lastSample.topFiveQueries.map(function(query) {
+                        return `
+                          <td class="query.elapsedClassName">
+                            ${query.formatElapsed}
+                          </td>`;
+                      })}
+                    </tr>`;
+            })
+            .join("");
+        },
+        inner: document.getElementById("app"),
+        state: data
       });
 
       function update() {
         requestAnimationFrame(update);
-
         data = ENV.generateData().toArray();
-
         perfMonitor.startProfile("render");
-        m.redraw();
+
+        data.forEach(function(el, i) {
+          Z.update("a" + i, { state: el });
+
+          el.lastSample.topFiveQueries.forEach(function(q, j) {
+            Z.update("a" + i + "b" + j, { state: q });
+          });
+        });
+
         perfMonitor.endProfile("render");
       }
-
       update();
     </script>
   </body>
