@@ -38,13 +38,7 @@
         data = ENV.generateData().toArray();
         perfMonitor.startProfile("render");
 
-        data.forEach(function(el, i) {
-          Z.update("a" + i, { state: el });
-
-          el.lastSample.topFiveQueries.forEach(function(q, j) {
-            Z.update("a" + i + "b" + j, { state: q });
-          });
-        });
+        Z.update("app", { state: data });
 
         perfMonitor.endProfile("render");
       }
