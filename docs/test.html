@@ -19,12 +19,14 @@
                           db.lastSample.countClassName
                         }">${db.lastSample.nbQueries}</span>
                       </td>
-                      ${db.lastSample.topFiveQueries.map(function(query) {
-                        return `
+                      ${db.lastSample.topFiveQueries
+                        .map(function(query) {
+                          return `
                           <td class="query.elapsedClassName">
                             ${query.formatElapsed}
                           </td>`;
-                      })}
+                        })
+                        .join("")}
                     </tr>`;
             })
             .join("");
