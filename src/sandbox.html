@@ -47,7 +47,7 @@
       }
       .run {
         position: absolute;
-        top: calc(100vh + 10px);
+        top: 10px;
         right: 10px;
         outline: 0;
         border: 0;
@@ -84,6 +84,9 @@
           height: 100vh;
           margin: 0;
         }
+        .run {
+          top: calc(100vh + 10px);
+        }
       }
 
       .ace-monokai .ace_indent-guide {
@@ -101,14 +104,14 @@
   &lt;head&gt;
     &lt;meta charset="utf-8"&gt;
     &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
-    &lt;script src="https://unpkg.com/zedjs@2.4.4/Z.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://unpkg.com/zedjs@3.1.1/standalone/Z.min.js"&gt;&lt;/script&gt;
   &lt;/head&gt;
   &lt;body&gt;
     &lt;div id="welcome"&gt;&lt;/div&gt;
     &lt;script&gt;
       Z.mount({
         id: "foo",
-        render: function(state, prev) {
+        render: function(state) {
           return `&lt;h1&gt;${state.greeting} ${state.place}!&lt;/h1&gt;`
         },
         inner: document.getElementById("welcome"),

@@ -18,7 +18,7 @@
     />
     <meta
       name="description"
-      content="Zed.js is a templateless micro frontend framework. It handles the rendering, updating and state management of your html components in only 854 bytes"
+      content="Zed.js is a templateless micro frontend framework. It handles the rendering, updating and state management of your html components in only 836 bytes"
     />
     <title>Zed.js • Micro framework</title>
     <link rel="stylesheet" href="css/prism.css" />
@@ -162,12 +162,7 @@
 
       .simple-update pre,
       .simple-update iframe {
-        height: 320px;
-      }
-
-      .render-update pre,
-      .render-update iframe {
-        height: 460px;
+        height: 410px;
       }
 
       .external-data pre,
@@ -175,9 +170,14 @@
         height: 500px;
       }
 
+      .external-data-local-storage pre,
+      .external-data-local-storage iframe {
+        height: 570px;
+      }
+
       .watching pre,
       .watching iframe {
-        height: 380px;
+        height: 510px;
       }
 
       .before-after pre,
@@ -187,12 +187,12 @@
 
       .counter-demo pre,
       .counter-demo iframe {
-        height: 380px;
+        height: 500px;
       }
 
       .todo-demo pre,
       .todo-demo iframe {
-        height: 880px;
+        height: 890px;
       }
 
       .source {
@@ -337,19 +337,19 @@
       <img src="images/logo-white-blue-border.svg" />
       <div class="text">
         <h1 class="zed">ZED.JS</h1>
-        <h2>The 854 byte micro frontend framework</h2>
+        <h2>The 836 byte micro frontend framework</h2>
       </div>
     </div>
 
     <div class="source">
       <pre
         class="language-html"
-      ><code class="wb-ba">&lt;script&gt;!function(e){if(!e.Z){var d={};e.Z={load:function(e,r){var o=[];e.forEach(function(e,t){o[t]=null;var n=new XMLHttpRequest;for(var a in n.onreadystatechange=function(){4==n.readyState&&(o[t]=n.status==(e.status||200)?e.callback?e.callback(n.responseText):n.responseText:void 0,Z.load[e.id]=o[t],~o.indexOf(null)||r(o))},n.open(e.method||"GET",e.url,!0),e.headers)n.setRequestHeader(a,e.headers[a]);n.send(e.body)})},update:function(e,t){d[e]&&(d[e].f(t),d[e].l.forEach(function(e){e()}))},mount:function(n,e){n.id&&!e&&(d[n.id]={l:[],f:function(e){for(var t in e)n[t]=e[t];Z.mount(n,!0)}});var t=n.inner,a=n.outer,r=n.state,o=n.before,i=n.after,u={state:r,prev:Z[n.id]};if(0!=(o&&o(u.state,u.prev))){var s=n.render(u.state,u.prev);t&&(t.innerHTML=s),a&&(a.outerHTML=s),i&&i(u.state,u.prev)}Z[n.id]=r},watch:function(e,t){d[e]&&d[e].l.push(t)}}}}(window);&lt;/script&gt;</code></pre>
+      ><code class="wb-ba">&lt;script&gt;!function(){var c={};window.Z={load:function(n,c){var u=[];n.forEach(function(n,e){u[e]=null}),n.forEach(function(n,e){var a=n.local&&n.local();if(a)u[e]=n.callback?n.callback(a):a,Z.load[n.id]=u[e],~u.indexOf(null)||c(u);else{var t,o=new XMLHttpRequest;for(t in o.onreadystatechange=function(){4==o.readyState&&(u[e]=o.status==(n.status||200)?n.callback?n.callback(o.responseText):o.responseText:void 0,Z.load[n.id]=u[e],~u.indexOf(null)||c(u))},o.open(n.method||"GET",n.url,!0),n.headers)o.setRequestHeader(t,n.headers[t]);o.send(n.body)}})},mount:function(n,e){n.id&&!e&&(c[n.id]={W:[],F:function(){Z.mount(n,!0)}});var a=n.inner,t=n.outer,o=n.state,e=n.render(o);a&&(a.innerHTML=e),t&&(t.outerHTML=e),Z[n.id]=o},update:function(e){c[e]&&(c[e].F(),c[e].W.forEach(function(n){n(Z[e])}))},watch:function(n,e){c[n]&&c[n].W.push(e)}}}();&lt;/script&gt;</code></pre>
       <p>CDN's</p>
       <pre
         class="language-html"
-      ><code>&lt;script src="https://cdn.jsdelivr.net/npm/zedjs"&gt;&lt;/script&gt;
-&lt;script src="https://unpkg.com/zedjs@2.4.4/Z.min.js"&gt;&lt;/script&gt;</code></pre>
+      ><code>&lt;script src="https://cdn.jsdelivr.net/npm/zedjs/standalone/Z.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://unpkg.com/zedjs@3.1.1/standalone/Z.min.js"&gt;&lt;/script&gt;</code></pre>
     </div>
 
     <section class="simple">
@@ -405,7 +405,7 @@
 &lt;script&gt;
   Z.mount({
     id: "greeting",
-    render: function(state, prev) {
+    render: function(state) {
       return `&lt;h1&gt;Hello ${state.name}!&lt;/h1&gt;`
     },
     inner: document.getElementById("welcome"),
@@ -430,8 +430,8 @@
       <div class="desc">
         <h2>Updating Components</h2>
         <p>
-          Components can be updated by passing the id, and an object with what
-          is to be updated. This will then re-render that component.
+          Components can be updated by passing the id, This will then re-render
+          that component.
         </p>
       </div>
       <div class="sandbox">
@@ -439,17 +439,22 @@
           <p class="label">HTML</p>
           <pre id="html-simple-update" class="html">
 &lt;div id="welcome"&gt;&lt;/div&gt;
-&lt;button onclick='Z.update("foo", {state: {name:"Tina", age:24} })'&gt;Update!&lt;/button&gt;
+&lt;button onclick='Z.foo.update("Laura", 32)'&gt;Update!&lt;/button&gt;
 &lt;script&gt;
   Z.mount({
     id: "foo",
-    render: function(state, prev) {
+    render: function(state) {
       return `&lt;h1&gt;${state.name} is ${state.age} years old!&lt;/h1&gt;`;
     },
     inner: document.getElementById("welcome"),
     state: {
       name: "Robert",
-      age: 48
+      age: 48,
+      update: function(name, age){
+        this.name = name;
+        this.age = age;
+        Z.update("foo");
+      }
     }
   });
 &lt;/script&gt;</pre
@@ -461,56 +466,6 @@
             <button id="run-simple-update" class="run">run</button>
           </div>
           <iframe id="output-simple-update" class="output"></iframe>
-        </div>
-      </div>
-    </section>
-
-    <section class="render-update">
-      <div class="desc">
-        <p>
-          You are not just limited to updating state. It is also possible to
-          update the render, before and after functions as well.
-        </p>
-        <p>
-          NOTE: Only components mounted using "inner" can be updated, since
-          mounting using "outer" will replace the original DOM element used for
-          mounting.
-        </p>
-      </div>
-      <div class="sandbox">
-        <div class="input-container">
-          <p class="label">HTML</p>
-          <pre id="html-render-update" class="html">
-&lt;div id="welcome"&gt;&lt;/div&gt;
-&lt;button id="update"&gt;Update!&lt;/button&gt;
-&lt;script&gt;
-  Z.mount({
-    id: "foo",
-    render: function(state, prev) {
-      return `&lt;h1&gt;${state.name} is ${state.age} years old!&lt;/h1&gt;`;
-    },
-    inner: document.getElementById("welcome"),
-    state: {
-      name: "Thomas", 
-      age: 19
-    }
-  });
-  document.getElementById("update").addEventListener("click", function(){
-    Z.update("foo", {
-      render: function(state, prev){
-        return `&lt;h1&gt;${state.age} years old ${state.name} is!&lt;/h1&gt;`;
-      }
-    });
-  })
-&lt;/script&gt;</pre
-          >
-        </div>
-        <div class="result-container">
-          <div class="label">
-            <span>RESULT</span>
-            <button id="run-render-update" class="run">run</button>
-          </div>
-          <iframe id="output-render-update" class="output"></iframe>
         </div>
       </div>
     </section>
@@ -547,7 +502,7 @@
     function() {
       Z.mount({
         id: "foo",
-        render: function(state, prev) {
+        render: function(state) {
           return `&lt;h1&gt;${state.name} is ${state.age} years old!&lt;/h1&gt;`;
         },
         inner: document.getElementById("welcome"),
@@ -568,6 +523,68 @@
       </div>
     </section>
 
+    <section class="external-data-local-storage">
+      <div class="desc">
+        <h2>Loading External Data and Caching</h2>
+        <p>
+          If you want to store data eg. using localStorage, there is a way to
+          first query if there is local data before making a request
+        </p>
+        <p>
+          If the local method returns falsy, the request will be made, otherwise
+          the returned data from the localStorage will be passed to the callback
+          function.
+        </p>
+      </div>
+      <div class="sandbox">
+        <div class="input-container">
+          <p class="label">HTML</p>
+          <pre id="html-external-data-local-storage" class="html">
+&lt;div id="welcome"&gt;&lt;/div&gt;
+&lt;script&gt;
+  Z.load(
+    [
+      {
+        id: "robert",
+        url: "json/robert.json",
+        local: function(){
+          return localStorage.getItem("robert");
+        },
+        callback: function(data) {
+          localStorage.setItem("robert", data)
+          return JSON.parse(data);
+        }
+      }
+    ],
+    function() {
+      Z.mount({
+        id: "foo",
+        render: function(state) {
+          return `&lt;h1&gt;${state.name} is ${state.age} years old!&lt;/h1&gt;`;
+        },
+        inner: document.getElementById("welcome"),
+        state: Z.load.robert
+      });
+    }
+  ) 
+&lt;/script&gt;</pre
+          >
+        </div>
+        <div class="result-container">
+          <div class="label">
+            <span>RESULT</span>
+            <button id="run-external-data-local-storage" class="run">
+              run
+            </button>
+          </div>
+          <iframe
+            id="output-external-data-local-storage"
+            class="output"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
     <section class="watching">
       <div class="desc">
         <h2>Watching Components</h2>
@@ -584,21 +601,28 @@
           <p class="label">HTML</p>
           <pre id="html-watching" class="html">
 &lt;div id="welcome"&gt;&lt;/div&gt;
-&lt;button onclick='Z.update("foo", {state: {name:"Luke", age:30} })'&gt;Update!&lt;/button&gt;
+&lt;button onclick='Z.foo.update("Luke", 30)'&gt;Update!&lt;/button&gt;
 &lt;script&gt;
   Z.mount({
     id: "foo",
-    render: function(state, prev) {
+    render: function(state) {
       return `&lt;h1&gt;${state.name} is ${state.age} years old!&lt;/h1&gt;`;
     },
     inner: document.getElementById("welcome"),
     state: {
       name: "Paul", 
-      age: 35
+      age: 35,
+      update: function(name, age){
+        this.name = name;
+        this.age = age;
+        Z.update("foo");
+      }
     }
   });
-  Z.watch("foo", function(){
-    alert(Z.foo.name + " use the force!");
+
+
+  Z.watch("foo", function(state){
+    alert(state.name + " use the force!");
   });
 &lt;/script&gt;</pre
           >
@@ -609,68 +633,6 @@
             <button id="run-watching" class="run">run</button>
           </div>
           <iframe id="output-watching" class="output"></iframe>
-        </div>
-      </div>
-    </section>
-
-    <section class="before-after">
-      <div class="desc">
-        <h2>Before and After</h2>
-        <p>
-          The functions before and after are fired before and after the render
-          of a component.
-        </p>
-        <p>
-          If you return false from the before function the component will not
-          render.
-        </p>
-        <p>
-          This can be used to re-render a component only if the state is
-          different from the previous state.
-        </p>
-      </div>
-      <div class="sandbox">
-        <div class="input-container">
-          <p class="label">HTML</p>
-          <pre id="html-before-after" class="html">
-&lt;div id="welcome"&gt;&lt;/div&gt;
-&lt;script&gt;
-  Z.mount({
-    id: "foo",
-    before: function(state, prev){
-      return JSON.stringify(state) != JSON.stringify(prev);
-    },
-    render: function(state, prev) {
-      return `
-        &lt;h1&gt;${state.name} is ${state.age} years old!&lt;/h1&gt;
-        &lt;button id="btn"&gt;Update!&lt;/button&gt;
-      `;
-    },
-    after: function(state, prev){
-      document.getElementById("btn").addEventListener("click", function(){
-        Z.update("foo", {
-          state: {
-            name: "Thomas",
-            age: 72
-          }
-        })
-      })
-    },
-    inner: document.getElementById("welcome"),
-    state: {
-      name: "George",
-      age: 36
-    }
-  });  
-&lt;/script&gt;</pre
-          >
-        </div>
-        <div class="result-container">
-          <div class="label">
-            <span>RESULT</span>
-            <button id="run-before-after" class="run">run</button>
-          </div>
-          <iframe id="output-before-after" class="output"></iframe>
         </div>
       </div>
     </section>
@@ -686,21 +648,27 @@
           <p class="label">HTML</p>
           <pre id="html-counter" class="html">
 &lt;h1&gt;Counter Demo&lt;/h1&gt;
-&lt;button onclick="Z.update('count', {state: Z.count - 1})"&gt;
+&lt;button onclick="Z.count.update(-1)"&gt;
   -
 &lt;/button&gt;
 &lt;span id="output"&gt;&lt;/span&gt;
-&lt;button onclick="Z.update('count', {state: Z.count + 1})"&gt;
+&lt;button onclick="Z.count.update(1)"&gt;
   +
 &lt;/button&gt;
 &lt;script&gt;
   Z.mount({
     id: "count",
     render: function(state) {
-      return state;
+      return state.amount;
     },
     inner: document.getElementById("output"),
-    state: 0
+    state: {
+      amount: 0,
+      update: function(inc){
+        this.amount += inc;
+        Z.update("count");
+      }
+    }
   });
 &lt;/script&gt;</pre
           >
@@ -728,42 +696,43 @@
 &lt;div id="todo-list"&gt;&lt;/div&gt;
 &lt;script&gt;
   Z.mount({
-    id: "todos",
+    id: "list",
     render: function(state) {
-      return state
+      return state.todos
         .map(function(todo, index) {
           return `
             &lt;div&gt;
               &lt;span&gt;${todo}&lt;/span&gt;
-              &lt;button onclick="Z.todos.splice(${index}, 1); Z.update('todos', {state: Z.todos})"&gt;remove&lt;/button&gt;
+              &lt;button onclick="Z.list.remove(${index})"&gt;remove&lt;/button&gt;
             &lt;/div&gt;
           `;
         })
         .join("");
     },
     inner: document.getElementById("todo-list"),
-    state: []
-  });
-  Z.mount({
-  render: function() {
-    return `
-      &lt;input id="task" type="text" placeholder="add task" /&gt;
-      &lt;button&gt;Add&lt;/button&gt;
-    `;
-  },
-  after: function() {
-    document
-      .querySelector("#task + button")
-      .addEventListener("click", function() {
+    state: {
+      todos: [],
+      add: function(){
         var task = document.getElementById("task");
-        Z.todos.push(task.value);
-        Z.update("todos", {
-          state: Z.todos
-        });
+        this.todos.push(task.value);
         task.value = "";
-      });
-  },
-  outer: document.getElementById("todo-add")
+        Z.update("list");
+      },
+      remove: function(index){
+        this.todos.splice(index, 1);
+        Z.update("list");
+      }
+    }
+  });
+
+  Z.mount({
+    render: function() {
+      return `
+        &lt;input id="task" type="text" placeholder="add task" /&gt;
+        &lt;button onclick=Z.list.add()&gt;Add&lt;/button&gt;
+      `;
+    },
+    outer: document.getElementById("todo-add")
   });
 &lt;/script&gt;</pre
           >
@@ -776,8 +745,8 @@
           <iframe id="output-todo" class="output"></iframe>
         </div>
       </div>
-      <p><a href="/shop">Visit the shop demo</a></p>
-      <p><a href="/sandbox">Or try the sandbox</a></p>
+      <!-- <p><a href="/shop">Visit the shop demo</a></p> -->
+      <p><a href="/sandbox">Try the sandbox for a bigger playground :)</a></p>
     </section>
     <script src="https://ajaxorg.github.io/ace-builds/src-min-noconflict/ace.js"></script>
     <script>
@@ -785,7 +754,7 @@
       var baseStart =
         '<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><' +
         s +
-        ' src="https://unpkg.com/zedjs@2.4.4/Z.min.js"></' +
+        ' src="https://unpkg.com/zedjs@3.1.1/standalone/Z.min.js"></' +
         s +
         "></head><body>";
       var baseEnd = "</body></html>";
@@ -838,6 +807,24 @@
             baseStart + htmlCompWithExtData.getValue() + baseEnd;
         });
 
+      var htmlCompWithExtDataLocalStorage = ace.edit(
+        "html-external-data-local-storage"
+      );
+      htmlCompWithExtDataLocalStorage.setTheme("ace/theme/monokai");
+      htmlCompWithExtDataLocalStorage.session.setMode("ace/mode/html");
+      htmlCompWithExtDataLocalStorage.setFontSize("15px");
+      htmlCompWithExtDataLocalStorage.setShowPrintMargin(false);
+      htmlCompWithExtDataLocalStorage.setOption("showLineNumbers", false);
+      htmlCompWithExtDataLocalStorage.setOption("highlightActiveLine", false);
+      htmlCompWithExtDataLocalStorage.getSession().setUseWorker(false);
+
+      document
+        .getElementById("run-external-data-local-storage")
+        .addEventListener("click", function() {
+          document.getElementById("output-external-data-local-storage").srcdoc =
+            baseStart + htmlCompWithExtDataLocalStorage.getValue() + baseEnd;
+        });
+
       var htmlSimpleUpdate = ace.edit("html-simple-update");
       htmlSimpleUpdate.setTheme("ace/theme/monokai");
       htmlSimpleUpdate.session.setMode("ace/mode/html");
@@ -854,22 +841,6 @@
             baseStart + htmlSimpleUpdate.getValue() + baseEnd;
         });
 
-      var htmlRenderUpdate = ace.edit("html-render-update");
-      htmlRenderUpdate.setTheme("ace/theme/monokai");
-      htmlRenderUpdate.session.setMode("ace/mode/html");
-      htmlRenderUpdate.setFontSize("15px");
-      htmlRenderUpdate.setShowPrintMargin(false);
-      htmlRenderUpdate.setOption("showLineNumbers", false);
-      htmlRenderUpdate.setOption("highlightActiveLine", false);
-      htmlRenderUpdate.getSession().setUseWorker(false);
-
-      document
-        .getElementById("run-render-update")
-        .addEventListener("click", function() {
-          document.getElementById("output-render-update").srcdoc =
-            baseStart + htmlRenderUpdate.getValue() + baseEnd;
-        });
-
       var htmlWatching = ace.edit("html-watching");
       htmlWatching.setTheme("ace/theme/monokai");
       htmlWatching.session.setMode("ace/mode/html");
@@ -884,22 +855,6 @@
         .addEventListener("click", function() {
           document.getElementById("output-watching").srcdoc =
             baseStart + htmlWatching.getValue() + baseEnd;
-        });
-
-      var htmlBeforeAfter = ace.edit("html-before-after");
-      htmlBeforeAfter.setTheme("ace/theme/monokai");
-      htmlBeforeAfter.session.setMode("ace/mode/html");
-      htmlBeforeAfter.setFontSize("15px");
-      htmlBeforeAfter.setShowPrintMargin(false);
-      htmlBeforeAfter.setOption("showLineNumbers", false);
-      htmlBeforeAfter.setOption("highlightActiveLine", false);
-      htmlBeforeAfter.getSession().setUseWorker(false);
-
-      document
-        .getElementById("run-before-after")
-        .addEventListener("click", function() {
-          document.getElementById("output-before-after").srcdoc =
-            baseStart + htmlBeforeAfter.getValue() + baseEnd;
         });
 
       var htmlCounter = ace.edit("html-counter");
