@@ -99,12 +99,15 @@
   </head>
   <body>
     <pre id="html-sandbox" class="html">
+
+
+
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;head&gt;
     &lt;meta charset="utf-8"&gt;
     &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
-    &lt;script src="https://unpkg.com/zedjs@4.0.1/standalone/Z.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://unpkg.com/zedjs@4.0.2/standalone/Z.min.js"&gt;&lt;/script&gt;
   &lt;/head&gt;
   &lt;body&gt;
     &lt;div id="app"&gt;&lt;/div&gt;
@@ -113,14 +116,43 @@
         id: "app",
         render: function() {
           document.getElementById(this.id).innerHTML = 
-            `&lt;h1&gt;${this.state.greeting} ${this.state.place}!&lt;/h1&gt;`
+            `&lt;h1&gt;${this.state.greeting} ${this.state.place}!&lt;/h1&gt;
+            &lt;input id="place" value="${this.state.place}"&gt;
+            &lt;button onclick="Z.app.update()"&gt;press me!&lt;/button&gt;
+            &lt;div id="xyz"&gt;&lt;/div&gt;
+            `;
         },
         state: {
           greeting: "Hello",
           place: "World"
+        },
+        update: function(){
+            var val = document.getElementById("place").value;
+            if(this.state.place !== val){
+                this.state.place = val;
+                this.render();
+                Z.xyz.render();
+            }
         }
       });
       Z.app.render();
+      
+      Z({
+          id: "xyz",
+          render: function(){
+              document.getElementById(this.id).innerHTML = `
+                &lt;h2&gt;${this.name}&lt;/h2&gt;
+                &lt;button onclick="Z.xyz.update()"&gt;update me!&lt;/button&gt;
+              `;
+          },
+          name: "Matti",
+          update: function(){
+              this.name = "Thomas";
+              this.render();
+          }
+      });
+      Z.xyz.render();
+      
     &lt;/script&gt;
   &lt;/body&gt;
 &lt;/html&gt;</pre
