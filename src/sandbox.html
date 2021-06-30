@@ -18,7 +18,7 @@
     />
     <meta
       name="description"
-      content="Zed.js is a templateless micro frontend framework. It handles the rendering, updating and state management of your html components in only 854 bytes"
+      content="Zed.js is a templateless micro frontend framework. It handles the rendering, updating and state management of your html components in only 567 bytes"
     />
     <title>Zed.js • Sandbox</title>
     <style type="text/css">
@@ -104,22 +104,23 @@
   &lt;head&gt;
     &lt;meta charset="utf-8"&gt;
     &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
-    &lt;script src="https://unpkg.com/zedjs@3.1.1/standalone/Z.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://unpkg.com/zedjs@4.0.1/standalone/Z.min.js"&gt;&lt;/script&gt;
   &lt;/head&gt;
   &lt;body&gt;
-    &lt;div id="welcome"&gt;&lt;/div&gt;
+    &lt;div id="app"&gt;&lt;/div&gt;
     &lt;script&gt;
-      Z.mount({
-        id: "foo",
-        render: function(state) {
-          return `&lt;h1&gt;${state.greeting} ${state.place}!&lt;/h1&gt;`
+      Z({
+        id: "app",
+        render: function() {
+          document.getElementById(this.id).innerHTML = 
+            `&lt;h1&gt;${this.state.greeting} ${this.state.place}!&lt;/h1&gt;`
         },
-        inner: document.getElementById("welcome"),
         state: {
           greeting: "Hello",
           place: "World"
         }
       });
+      Z.app.render();
     &lt;/script&gt;
   &lt;/body&gt;
 &lt;/html&gt;</pre
