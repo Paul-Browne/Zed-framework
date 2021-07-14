@@ -18,7 +18,7 @@
     />
     <meta
       name="description"
-      content="Zed.js is a templateless micro frontend framework. It handles the rendering, updating and state management of your html components in only 567 bytes"
+      content="Zed.js is a templateless micro frontend framework. It handles the rendering, updating and state management of your html components in only 532 bytes"
     />
     <title>Zed.js • Micro framework</title>
     <link rel="stylesheet" href="css/prism.css" />
@@ -349,19 +349,19 @@
       <img src="images/logo-white-blue-border.svg" />
       <div class="text">
         <h1 class="zed">ZED.JS</h1>
-        <h2>The 567 bytes micro frontend framework</h2>
+        <h2>The 532 bytes micro frontend framework</h2>
       </div>
     </div>
 
     <div class="source">
       <pre
         class="language-html"
-      ><code class="wb-ba">&lt;script&gt;function Z(a){Z[a.id]=a}Z.xhr=function(a,b,c,d){b=b||[];var e=a.local&&a.local();if(e)b[c||0]=a.callback?a.callback(e):e,d&&!~b.indexOf(null)&&d(b);else{var f=new XMLHttpRequest;for(var g in f.onreadystatechange=function(){4==f.readyState&&(b[c||0]=f.status==(a.status||200)?a.callback?a.callback(f.responseText):f.responseText:void 0,d&&!~b.indexOf(null)&&d(b))},f.open(a.method||"GET",a.url,!0),a.headers)f.setRequestHeader(g,a.headers[g]);f.send(a.body)}},Z.xhrs=function(a,b){var c=[];a.forEach(function(a,b){c[b]=null}),a.forEach(function(a,d){Z.xhr(a,c,d,b)})};&lt;/script&gt;</code></pre>
+      ><code class="wb-ba">&lt;script&gt;function Z(a){Z[a.id]=a}Z.xhr=function(a,b,c,d,e,f,g){if(b=b||[],e=a.local&&a.local(),e)b[c||0]=a.callback?a.callback(e):e,d&&!~b.indexOf(void 0)&&d(b);else{for(g in f=new XMLHttpRequest,f.onreadystatechange=function(){4==f.readyState&&(b[c||0]=f.status==(a.status||200)?a.callback?a.callback(f.responseText):f.responseText:NaN,d&&!~b.indexOf(void 0)&&d(b))},f.open(a.method||"GET",a.url,!0),a.headers)f.setRequestHeader(g,a.headers[g]);f.send(a.body)}},Z.xhrs=function(a,b,c,d){for(d in c=a.map(function(){}),a)Z.xhr(a[d],c,d,b)};&lt;/script&gt;</code></pre>
       <p>CDN's</p>
       <pre
         class="language-html"
       ><code>&lt;script src="https://cdn.jsdelivr.net/npm/zedjs/standalone/Z.min.js"&gt;&lt;/script&gt;
-&lt;script src="https://unpkg.com/zedjs@4.0.2/standalone/Z.min.js"&gt;&lt;/script&gt;</code></pre>
+&lt;script src="https://unpkg.com/zedjs@4.0.3/standalone/Z.min.js"&gt;&lt;/script&gt;</code></pre>
 
       <p>NPM</p>
       <pre class="language-shell"><code>npm install zedjs</code></pre>
@@ -827,7 +827,7 @@
       var baseStart =
         '<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><' +
         s +
-        ' src="https://unpkg.com/zedjs@4.0.2/standalone/Z.min.js"></' +
+        ' src="https://unpkg.com/zedjs@4.0.3/standalone/Z.min.js"></' +
         s +
         "></head><body>";
       var baseEnd = "</body></html>";

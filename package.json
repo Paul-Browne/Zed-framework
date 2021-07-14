@@ -1,7 +1,7 @@
 {
   "name": "zedjs",
   "version": "2.4.10",
-  "description": "Zed.js is a templateless micro frontend framework. It handles the rendering, updating and state management of your html components in only 854 bytes",
+  "description": "Zed.js is a templateless micro frontend framework. It handles the rendering, updating and state management of your html components in only 532 bytes",
   "main": "Z.min.js",
   "files": [
     "Z.min.js",
